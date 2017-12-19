@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppRegistry, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import SquareGrid from 'react-native-square-grid';
 import gc from '../../config/game-config';
 import Bit from './Bit';
@@ -121,5 +121,3 @@ BitBoard.propTypes = {
   playable: PropTypes.bool,
   styles: PropTypes.object
 };
-
-AppRegistry.registerComponent('BitBoard', () => BitBoard);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements'
 import CountdownCircle from 'react-native-countdown-circle'
 import BitBoard from '../game/BitBoard';

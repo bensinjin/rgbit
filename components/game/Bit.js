@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppRegistry, TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
 import gc from '../../config/game-config';
 
 export default class Bit extends Component {
@@ -99,5 +99,3 @@ Bit.propTypes = {
   colIndex: PropTypes.string,
   updateBoardState: PropTypes.func
 };
-
-AppRegistry.registerComponent('Bit', () => Bit);
