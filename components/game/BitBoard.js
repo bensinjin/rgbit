@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import SquareGrid from 'react-native-square-grid';
+import { Col, Row, Grid } from "react-native-easy-grid";
+import { Button } from 'react-native-elements'
 import TimerMixin from 'react-timer-mixin';
 import gc from '../../config/game-config';
 import Bit from './Bit';
@@ -11,10 +13,11 @@ export default class BitBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentBoardState: this.props.initialBoardState,
-      timerId: null
+      currentBoardState: this.props.initialBoardState
     };
     this.updateBoardState = this.updateBoardState.bind(this);
+    this._solutionData = this.props.playable ? this._getSolutionData(this.props.solutionBoardState) : [];
+    this._timerId = null;
   }
 
   _getSolutionData(solutionBoardState) {
@@ -92,6 +95,12 @@ export default class BitBoard extends Component {
     return bits;
   }
 
+  _killTimer() {
+    if (this._timerId) {
+      TimerMixin.clearInterval(this._timerId);
+    }
+  }
+
   updateBoardState(rowIndex, colIndex, colorChar) {
     if (this._isMounted && this.props.playable) {
       this.setState(previousState => {
@@ -101,9 +110,7 @@ export default class BitBoard extends Component {
 
         // If the solution has been met, fire the callback.
         if (checkBits.percentCorrect == 100) {
-          if(this.state.timerId) {
-            TimerMixin.clearInterval(this.state.timerId);
-          }
+          this._killtimer();
           this.props.onPlayOver(checkBits)
         }
 
@@ -117,18 +124,12 @@ export default class BitBoard extends Component {
   componentDidMount() {
     if (this.props.playable) {
       // Initialize our timer.
-      let timerId = TimerMixin.setTimeout(() => {
+      this._timerId = TimerMixin.setTimeout(() => {
         if (this._isMounted) {
           let checkBits = this._checkBits(this.state.currentBoardState);
           this.props.onPlayOver(checkBits);
         }
       }, this.props.playSeconds * 1000);
-      // Save a reference to it so we can later invalidate it if we have to.
-      this.setState(previousState => {
-        return {timerId: timerId};
-      });
-      // Data we'll use for score calculations.
-      this._solutionData = this._getSolutionData(this.props.solutionBoardState);
     }
 
     this._isMounted = true;
@@ -141,20 +142,62 @@ export default class BitBoard extends Component {
   render() {
     let items = this.state.currentBoardState;
 
-    return (
-      <View style={styles.bitBoardContainer}>
-        <SquareGrid
-          rows={gc.BitBoard.numRows}
-          columns={gc.BitBoard.numCols}
-          items={this._getBits(items)}
-          renderItem={(item) => {return (item);}}
-        />
-      </View>
+    if (this.props.playable) {
+      return (
+        <View>
+          <Grid style={styles.HUD}>
+            <Col style={styles.HUDButtonWrapper}>
+              <Button
+                backgroundColor={gc.green}
+                buttonStyle={gc.button}
+                fontWeight={'bold'}
+                onPress={() => {this._killTimer(); this.props.onLevelSelect();}}
+                title={gc.levelSelect} />
+            </Col>
+            <Col style={styles.HUDButtonWrapper}>
+              <Button
+                backgroundColor={gc.blue}
+                buttonStyle={gc.button}
+                fontWeight={'bold'}
+                onPress={() => {this._killTimer(); this.props.onLevelRestart();}}
+                title={gc.restartGame} />
+            </Col>
+          </Grid>
+          <View style={styles.bitBoardContainer}>
+            <SquareGrid
+              rows={this.props.numRows ? this.props.numRows : gc.BitBoard.numRows}
+              columns={this.props.numCols? this.props.numCols : gc.BitBoard.numCols}
+              items={this._getBits(items)}
+              renderItem={(item) => {return (item);}}
+            />
+          </View>
+        </View>
+        );
+    } else {
+      return (
+        <View style={styles.bitBoardContainer}>
+          <SquareGrid
+            rows={this.props.numRows ? this.props.numRows : gc.BitBoard.numRows}
+            columns={this.props.numCols? this.props.numCols : gc.BitBoard.numCols}
+            items={this._getBits(items)}
+            renderItem={(item) => {return (item);}}
+          />
+        </View>
       );
-   }
+    }
+  }
 }
 
 const styles = StyleSheet.create({
+  HUDButtonWrapper: {
+    height: 40,
+    paddingTop: 15
+  },
+  HUD: {
+    marginTop: '5%',
+    marginBottom: 10,
+    padding: 5
+  },
   bitBoardContainer: {
     marginTop: '15%',
     marginLeft: '10%',

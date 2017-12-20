@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import Level from '../game/Level';
-import { resetNavigation } from '../../utils'
+import gc from '../../config/game-config';
+import { initialBoardState } from '../../utils.js';
 
 export default class Level1 extends Component {
   static id = 1;
   static solutionBoardState = [
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W']
+    ['G', 'G', 'R', 'G', 'G'],
+    ['G', 'G', 'R', 'G', 'G'],
+    ['G', 'G', 'R', 'G', 'G'],
+    ['G', 'G', 'R', 'G', 'G'],
+    ['G', 'G', 'R', 'G', 'G'],
+    ['G', 'G', 'R', 'G', 'G'],
+    ['G', 'G', 'R', 'G', 'G']
   ];
 
   constructor(props) {
@@ -20,10 +22,8 @@ export default class Level1 extends Component {
     this._onLevelSelect = this._onLevelSelect.bind(this);
   }
 
-  // TODO should probably create some sort
-  // of class to describe this object.
   _onLevelOver(scoreResults) {
-    alert(scoreResults.percentCorrect);
+    alert(scoreResults.percentCorrect + '%');
     this.props.navigation.navigate('Home');
   }
 
@@ -36,18 +36,10 @@ export default class Level1 extends Component {
   }
 
   render() {
-    let initialBoardState = [
-      ['W', 'W', 'W', 'W', 'W'],
-      ['W', 'W', 'W', 'W', 'W'],
-      ['W', 'W', 'W', 'W', 'W'],
-      ['W', 'W', 'W', 'W', 'W'],
-      ['W', 'W', 'W', 'W', 'W'],
-      ['W', 'W', 'W', 'W', 'W']
-    ];
     return (
       <Level
-        levelTimeSeconds={5}
-        initialBoardState={initialBoardState}
+        levelTimeSeconds={gc.level1Time}
+        initialBoardState={initialBoardState()}
         solutionBoardState={Level1.solutionBoardState}
         onLevelOver={this._onLevelOver}
         onLevelRestart={this._onLevelRestart}

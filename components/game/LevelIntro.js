@@ -4,7 +4,6 @@ import { Button } from 'react-native-elements'
 import TimerMixin from 'react-timer-mixin';
 import PropTypes from 'prop-types';
 import BitBoard from '../game/BitBoard';
-import FadeView from 'react-native-fade-view';
 import gc from '../../config/game-config';
 
 export default class LevelIntro extends Component {
@@ -13,7 +12,7 @@ export default class LevelIntro extends Component {
     super(props);
 
     this.state = {
-      levelStartMillis: this.props.levelStartMillis,
+      levelStartMillis: this.props.levelStartMillis ? this.props.levelStartMillis : gc.LevelIntro.defaultLevelStartMillis,
       timerId: null
     }
   }

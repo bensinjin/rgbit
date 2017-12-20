@@ -13,9 +13,15 @@ export default {
   colorStateRed: 'red',
   colorStateWhite: 'white',
   levelStartBtn: 'Begin',
-  level1Title: 'The Thin Red Line',
   restartGame: 'Restart',
   levelSelect:  'Level Select',
+  // Levels
+  level1Title: 'The Thin Red Line',
+  level1Time: 8,
+  level2Title: 'Red Green Blue',
+  level2Time: 10,
+  level3Title: 'The Scepter On A Hill',
+  level3Time: 12,
   // Css colors
   blue: '#02BCD4',
   green: '#77DD77',
@@ -25,6 +31,10 @@ export default {
   white: 'white',
   // UI Styles
   button: {
+    height: 30,
+  },
+  homeButton: {
+    marginTop: 5,
     height: 30,
   },
   buttonText: {
@@ -39,7 +49,10 @@ export default {
   },
   // Components
   BitBoard: {
-    numRows: 6,
+    numRows: 7,
     numCols: 5,
   },
+  LevelIntro: {
+    defaultLevelStartMillis: 3000
+  }
 }

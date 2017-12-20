@@ -14,11 +14,25 @@ export default class Home extends Component {
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            buttonStyle={gc.button}
+            buttonStyle={gc.homeButton}
             fontWeight={'bold'}
             backgroundColor={gc.red}
             onPress={() => this.props.navigation.navigate('Level1Intro')}
             title={gc.level1Title}
+          />
+          <Button
+            buttonStyle={gc.homeButton}
+            fontWeight={'bold'}
+            backgroundColor={gc.blue}
+            onPress={() => this.props.navigation.navigate('Level2Intro')}
+            title={gc.level2Title}
+          />
+          <Button
+            buttonStyle={gc.homeButton}
+            fontWeight={'bold'}
+            backgroundColor={gc.green}
+            onPress={() => this.props.navigation.navigate('Level3Intro')}
+            title={gc.level3Title}
           />
         </View>
       </View>

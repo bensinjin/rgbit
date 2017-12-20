@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements'
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import CountdownCircle from 'react-native-countdown-circle'
-import { Col, Row, Grid } from "react-native-easy-grid";
 import BitBoard from '../game/BitBoard';
 import gc from '../../config/game-config';
 
@@ -12,30 +10,17 @@ export default class Level extends Component {
   render() {
     return (
       <View>
-        <Grid style={styles.levelHUD}>
-          <Col style={styles.levelHUDButtonWrapper}>
-            <Button
-              backgroundColor={gc.green}
-              buttonStyle={gc.button}
-              fontWeight={'bold'}
-              onPress={this.props.onLevelSelect}
-              title={gc.levelSelect} />
-          </Col>
-          <Col style={styles.levelHUDButtonWrapper}>
-            <Button
-              backgroundColor={gc.blue}
-              buttonStyle={gc.button}
-              fontWeight={'bold'}
-              onPress={this.props.onLevelRestart}
-              title={gc.restartGame} />
-          </Col>
-        </Grid>
         <BitBoard
           initialBoardState={this.props.initialBoardState}
           solutionBoardState={this.props.solutionBoardState}
+          numRows={this.props.numRows}
+          numCols={this.props.numCols}
           playable={true}
           onPlayOver={this.props.onLevelOver}
-          playSeconds={this.props.levelTimeSeconds}/>
+          playSeconds={this.props.levelTimeSeconds}
+          onLevelSelect={this.props.onLevelSelect}
+          onLevelRestart={this.props.onLevelRestart}
+          />
         <View style={gc.centered}>
             <CountdownCircle
                 seconds={this.props.levelTimeSeconds}
@@ -44,6 +29,8 @@ export default class Level extends Component {
                 color={gc.red}
                 bgColor={gc.greyDark}
                 textStyle={{ fontSize: 20, color: gc.white, fontWeight: 'bold' }} />
+                {/* We just use the timer as a visual aid, the bitboard actually
+                    fires a callback (onPlayOver) when either the time is up or the score is 100%
                 {/*onTimeElapsed={() => {}} />*/}
         </View>
       </View>
@@ -51,21 +38,11 @@ export default class Level extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  levelHUDButtonWrapper: {
-    height: 40,
-    paddingTop: 15
-  },
-  levelHUD: {
-    marginTop: '5%',
-    marginBottom: 10,
-    padding: 5
-  }
-});
-
 Level.propTypes = {
   levelTimeSeconds: PropTypes.number,
   initialBoardState: PropTypes.array,
+  numRows: PropTypes.number,
+  numCols: PropTypes.number,
   solutionBoardState: PropTypes.array,
   onLevelOver: PropTypes.func,
   onLevelRestart: PropTypes.func,
