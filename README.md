@@ -2,7 +2,7 @@
 
 ### OSX development environment set up
 
-Follow instructions to set up React Native see https://facebook.github.io/react-native/docs/getting-started.html choose "Building Projects with Native Code" tab and target IOS.
+Follow instructions to set up React Native see https://facebook.github.io/react-native/docs/getting-started.html choose "Building Projects with Native Code" tab and target IOS. Only the "Installing dependencies" step is required.
 
 Clone
 ```
