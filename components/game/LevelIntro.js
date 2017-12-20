@@ -20,22 +20,26 @@ export default class LevelIntro extends Component {
 
   _styleTimer(secondsRemaining) {
     let color = gc.white,
+        backgroundColor = gc.red,
         text = secondsRemaining > 0 ? secondsRemaining : 'Go!';
 
     switch (secondsRemaining) {
       case 3:
         color = gc.red;
+        backgroundColor = gc.green;
         break;
       case 2:
         color = gc.green;
+        backgroundColor = gc.blue;
         break;
       case 1:
         color = gc.blue;
+        backgroundColor = gc.white;
         break;
     }
 
     return (
-      <View style={styles.timerNumberWrapper}>
+      <View style={[{backgroundColor: backgroundColor}, styles.timerNumberWrapper]}>
         <Text style={[{color: color}, styles.timerNumber]}>{text}</Text>
       </View>
     );
@@ -77,8 +81,7 @@ export default class LevelIntro extends Component {
   render() {
     return (
       <View>
-        <Text style={[{color: gc.greyDark}, styles.levelIntroTitle]}>{this.props.levelTitle}</Text>
-        <BitBoard initialBoardState={this.props.levelSolution} playable={false} styles={styles}/>
+        <BitBoard initialBoardState={this.props.solutionBoardState} playable={false} />
         <View style={gc.centered}>
           <Text style={styles.timerText}>Remember the pattern!</Text>
           {this._styleTimer(this.state.levelStartMillis / 1000)}
@@ -90,11 +93,9 @@ export default class LevelIntro extends Component {
 
 const styles = StyleSheet.create({
   levelIntroTitle: {
-    fontSize: 30,
+    color: gc.greyDark,
     fontWeight: 'bold',
-    marginTop: '5%',
-    textAlign: 'center',
-    width: '100%'
+    fontSize: 25,
   },
   timerText: {
     color: gc.greyDark,
@@ -103,25 +104,17 @@ const styles = StyleSheet.create({
   },
   timerNumber: {
     fontWeight: 'bold',
-    fontSize: 35,
+    fontSize: 30,
   },
   timerNumberWrapper: {
-    backgroundColor: gc.greyDark,
-    borderRadius: 50,
-    padding: 10,
+    marginTop: '5%',
+    borderRadius: 100,
+    padding: 15,
   },
-  bitBoardContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '10%',
-    marginLeft: '10%',
-    marginRight: '10%',
-    height: 400,
-  }
 });
 
 LevelIntro.propTypes = {
   levelTitle: PropTypes.string,
-  solution: PropTypes.array,
+  solutionBoardState: PropTypes.array,
   startLevel: PropTypes.func
 };

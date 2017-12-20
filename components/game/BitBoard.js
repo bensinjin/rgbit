@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import SquareGrid from 'react-native-square-grid';
+import TimerMixin from 'react-timer-mixin';
 import gc from '../../config/game-config';
 import Bit from './Bit';
 
@@ -11,25 +12,45 @@ export default class BitBoard extends Component {
     super(props);
     this.state = {
       currentBoardState: this.props.initialBoardState,
+      timerId: null
     };
     this.updateBoardState = this.updateBoardState.bind(this);
   }
 
-  _checkBits(currentBoardState, solutionBoardState) {
-    let bitsRemaining = gc.BitBoard.numRows * gc.BitBoard.numCols;
-
-    for (rowIndex in currentBoardState) {
-      for (colIndex in currentBoardState[rowIndex]) {
-        let colorChar = currentBoardState[rowIndex][colIndex],
-            solutionColorChar = solutionBoardState[rowIndex][colIndex];
-        if (colorChar == solutionColorChar) {
-          bitsRemaining -= 1;
+  _getSolutionData(solutionBoardState) {
+    let solutionData = [];
+    for (rowI in solutionBoardState) {
+      for (colI in solutionBoardState[rowI]) {
+        let colChar = solutionBoardState[rowI][colI];
+        // We're interested in the indexes of all
+        // bits that are colored. White bits are excluded.
+        if (colChar != 'W') {
+          solutionData.push({rowIndex: rowI, colIndex: colI, colorChar: colChar});
         }
       }
     }
 
-    return bitsRemaining;
+    return solutionData;
   }
+
+  _checkBits(currentBoardState) {
+    let bitsToFlip = this._solutionData.length,
+        correctlyFlipped = 0;
+
+    for (index in this._solutionData) {
+      let entry = this._solutionData[index];
+      if (entry.colorChar == currentBoardState[entry.rowIndex][entry.colIndex]) {
+        correctlyFlipped += 1;
+      }
+    }
+
+    return {
+      'bitsToFlip': bitsToFlip,
+      'bitsCorrectlyFlipped': correctlyFlipped,
+      'percentCorrect': correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
+    };
+  }
+
 
   _getBits(boardState) {
     let bits = [];
@@ -72,27 +93,56 @@ export default class BitBoard extends Component {
   }
 
   updateBoardState(rowIndex, colIndex, colorChar) {
-    this.setState(previousState => {
-      let updatedBoardState = previousState.currentBoardState;
+    if (this._isMounted && this.props.playable) {
+      this.setState(previousState => {
+        let updatedBoardState = previousState.currentBoardState;
+        updatedBoardState[rowIndex][colIndex] = colorChar;
+        let checkBits = this._checkBits(updatedBoardState);
 
-      updatedBoardState[rowIndex][colIndex] = colorChar;
-      let checkBits = this._checkBits(updatedBoardState, this.props.solutionBoardState);
+        // If the solution has been met, fire the callback.
+        if (checkBits.percentCorrect == 100) {
+          if(this.state.timerId) {
+            TimerMixin.clearInterval(this.state.timerId);
+          }
+          this.props.onPlayOver(checkBits)
+        }
 
-      if (checkBits == 0) {
-        alert("Victory!");
-      }
-      return {
-        currentBoardState: updatedBoardState
-      }
-    });
+        return {
+          currentBoardState: updatedBoardState
+        }
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.playable) {
+      // Initialize our timer.
+      let timerId = TimerMixin.setTimeout(() => {
+        if (this._isMounted) {
+          let checkBits = this._checkBits(this.state.currentBoardState);
+          this.props.onPlayOver(checkBits);
+        }
+      }, this.props.playSeconds * 1000);
+      // Save a reference to it so we can later invalidate it if we have to.
+      this.setState(previousState => {
+        return {timerId: timerId};
+      });
+      // Data we'll use for score calculations.
+      this._solutionData = this._getSolutionData(this.props.solutionBoardState);
+    }
+
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
-    let items = this.state.currentBoardState,
-        ss = this.props.styles ? this.props.styles : styles;
+    let items = this.state.currentBoardState;
 
     return (
-      <View style={ss.bitBoardContainer}>
+      <View style={styles.bitBoardContainer}>
         <SquareGrid
           rows={gc.BitBoard.numRows}
           columns={gc.BitBoard.numCols}
@@ -106,8 +156,6 @@ export default class BitBoard extends Component {
 
 const styles = StyleSheet.create({
   bitBoardContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: '15%',
     marginLeft: '10%',
     marginRight: '10%',
@@ -119,5 +167,6 @@ BitBoard.propTypes = {
   initialBoardState: PropTypes.array,
   solutionBoardState: PropTypes.array,
   playable: PropTypes.bool,
-  styles: PropTypes.object
+  onPlayOver: PropTypes.func,
+  playSeconds: PropTypes.number
 };

@@ -1,3 +1,9 @@
+// This file is for configuration.
+// Configuration should ONLY exist here if it's:
+//
+// 1) Reusable
+// 2) Required across more than one file
+// 3) A public facing string
 export default {
   // Shared config
   // Strings
@@ -11,45 +17,27 @@ export default {
   restartGame: 'Restart',
   levelSelect:  'Level Select',
   // Css colors
-  blue: '#02bcd4',
-  green: '#77dd77',
+  blue: '#02BCD4',
+  green: '#77DD77',
   grey: '#9E9E9E',
   greyDark: '#2B333B',
   red: '#ff6960',
   white: 'white',
-  cream: '#F0EBD5',
   // UI Styles
+  button: {
+    height: 30,
+  },
+  buttonText: {
+  },
   centered: {
     alignItems: 'center',
     flexDirection: 'column',
   },
-  buttonSmall: {
-    borderRadius: 4,
-    width: 100,
-  },
-  buttonThinWide: {
-    height: 30,
-    borderRadius: 5,
-  },
-  buttonInGame: {
-    borderRadius: 5,
-  },
   countDownCircle: {
-    radius: 30,
-    borderWidth: 8
+    radius: 40,
+    borderWidth: 15
   },
-  levelHUD: {
-    marginTop: 5,
-    flexDirection: 'row'
-  },
-  levelHudTimer: {
-    flex: 1
-  },
-  levelHUDButtons: {
-    flex: 1,
-    alignItems: 'flex-end'
-  },
-  // Game components
+  // Components
   BitBoard: {
     numRows: 6,
     numCols: 5,

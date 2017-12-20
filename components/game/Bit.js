@@ -73,7 +73,7 @@ export default class Bit extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.bitWrapper}>
         <TouchableWithoutFeedback onPress={this._onPress}>
           <View
             style={[{backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, styles.bit]}
@@ -85,12 +85,15 @@ export default class Bit extends Component {
 }
 
 const styles = StyleSheet.create({
+  bitWrapper: {
+		alignSelf: "stretch",
+    flex: 1,
+		padding: 5
+  },
   bit: {
-      borderColor: gc.greyDark,
-      borderRadius: 4,
-      borderWidth: 1.75,
-      height: 50,
-      width: 50,
+    flex: 1,
+    alignItems: 'center',
+		justifyContent: 'center'
   },
 });
 

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements'
-import CountdownCircle from 'react-native-countdown-circle'
-import BitBoard from '../game/BitBoard';
-import gc from '../../config/game-config';
+import Level from '../game/Level';
+import { resetNavigation } from '../../utils'
 
 export default class Level1 extends Component {
   static id = 1;
-  static solution = [
+  static solutionBoardState = [
     ['W', 'W', 'R', 'W', 'W'],
     ['W', 'W', 'R', 'W', 'W'],
     ['W', 'W', 'R', 'W', 'W'],
@@ -16,8 +13,30 @@ export default class Level1 extends Component {
     ['W', 'W', 'R', 'W', 'W']
   ];
 
+  constructor(props) {
+    super(props);
+    this._onLevelOver = this._onLevelOver.bind(this);
+    this._onLevelRestart = this._onLevelRestart.bind(this);
+    this._onLevelSelect = this._onLevelSelect.bind(this);
+  }
+
+  // TODO should probably create some sort
+  // of class to describe this object.
+  _onLevelOver(scoreResults) {
+    alert(scoreResults.percentCorrect);
+    this.props.navigation.navigate('Home');
+  }
+
+  _onLevelRestart() {
+    this.props.navigation.navigate('Level1Intro');
+  }
+
+  _onLevelSelect() {
+    this.props.navigation.navigate('Home');
+  }
+
   render() {
-    let initial = [
+    let initialBoardState = [
       ['W', 'W', 'W', 'W', 'W'],
       ['W', 'W', 'W', 'W', 'W'],
       ['W', 'W', 'W', 'W', 'W'],
@@ -26,29 +45,13 @@ export default class Level1 extends Component {
       ['W', 'W', 'W', 'W', 'W']
     ];
     return (
-      <View>
-        <View style={gc.levelHUD}>
-          <View style={gc.levelHUDTimer}>
-            <CountdownCircle
-                seconds={10}
-                radius={gc.countDownCircle.radius}
-                borderWidth={gc.countDownCircle.borderWidth}
-                color={gc.blue}
-                bgColor={gc.greyDark}
-                textStyle={{ fontSize: 20, color: gc.white }}
-                onTimeElapsed={() => console.warn('Elapsed!')} />
-          </View>
-          <View style={gc.levelHUDButtons}>
-            <Button
-              buttonStyle={gc.buttonThinWide}
-              title={gc.restartGame} />
-            <Button
-              buttonStyle={gc.buttonThinWide}
-              title={gc.levelSelect} />
-          </View>
-        </View>
-        <BitBoard initialBoardState={initial} solutionBoardState={Level1.solution} playable={true}/>
-      </View>
+      <Level
+        levelTimeSeconds={5}
+        initialBoardState={initialBoardState}
+        solutionBoardState={Level1.solutionBoardState}
+        onLevelOver={this._onLevelOver}
+        onLevelRestart={this._onLevelRestart}
+        onLevelSelect={this._onLevelSelect} />
     );
   }
 }

@@ -11,8 +11,7 @@ export default class Level1Intro extends Component {
   render() {
     return (
       <LevelIntro
-        levelTitle={gc.level1Title}
-        levelSolution={Level1.solution}
+        solutionBoardState={Level1.solutionBoardState}
         startLevel={() => {resetNavigation('Level1', this.props.navigation)}}
         levelStartMillis={3000}
       />
