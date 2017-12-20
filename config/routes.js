@@ -10,7 +10,10 @@ import gc from './game-config';
 
 const Routes = StackNavigator({
   Home: {
-    screen: Home
+    screen: Home,
+    navigationOptions: {
+      headerLeft: null
+    }
   },
   Level1Intro: {
     screen: Level1Intro
