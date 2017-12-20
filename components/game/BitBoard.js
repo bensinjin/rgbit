@@ -48,6 +48,9 @@ export default class BitBoard extends Component {
     }
 
     return {
+      'levelID': this.props.levelID,
+      // TODO
+      //'time':
       'bitsToFlip': bitsToFlip,
       'bitsCorrectlyFlipped': correctlyFlipped,
       'percentCorrect': correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
@@ -211,5 +214,6 @@ BitBoard.propTypes = {
   solutionBoardState: PropTypes.array,
   playable: PropTypes.bool,
   onPlayOver: PropTypes.func,
-  playSeconds: PropTypes.number
+  playSeconds: PropTypes.number,
+  levelID: PropTypes.number
 };

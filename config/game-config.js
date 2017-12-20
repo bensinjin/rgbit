@@ -56,5 +56,7 @@ export default {
   },
   LevelIntro: {
     defaultLevelStartMillis: 3000
-  }
+  },
+  // Misc
+  storeKeyPrefix: 'key_'
 }

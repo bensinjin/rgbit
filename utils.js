@@ -5,6 +5,11 @@ import store from 'react-native-simple-store';
 // General level functionality
 export function onLevelOver(scoreData) {
   alert('Your score:' + scoreData.percentCorrect + '%');
+  updateScoreData(scoreData);
+}
+
+export function getKey(id){
+  return gc.storeKeyPrefix + id;
 }
 
 export function onLevelRestart(navigation, route) {
@@ -29,12 +34,27 @@ export function initialBoardState() {
   return initialBS;
 }
 
-export function updateScoreData(levelId, scoreData){
-  store.update(levelId, scoreData);
+export function updateScoreData(scoreData){
+  let key = getKey(scoreData.levelID);
+
+  if (key) {
+    store.get(key)
+      .then(res => {
+        if (!res) {
+          store.save(key, scoreData);
+        } else {
+          store.update(key, scoreData);
+        }
+      })
+      .catch(error => {
+        console.error(error.message);
+      });
+  }
+  console.warn(store.get(key));
 }
 
-export function getScoreData(levelId) {
-  store.get(levelId);
+export function getScoreData(key) {
+  return store.get(key);
 }
 
 // Misc

@@ -20,6 +20,7 @@ export default class Level extends Component {
           playSeconds={this.props.levelTimeSeconds}
           onLevelSelect={this.props.onLevelSelect}
           onLevelRestart={this.props.onLevelRestart}
+          levelID={this.props.levelID}
           />
         <View style={gc.centered}>
             <CountdownCircle
@@ -46,5 +47,6 @@ Level.propTypes = {
   solutionBoardState: PropTypes.array,
   onLevelOver: PropTypes.func,
   onLevelRestart: PropTypes.func,
-  onLevelSelect: PropTypes.func
+  onLevelSelect: PropTypes.func,
+  levelID: PropTypes.number
 };

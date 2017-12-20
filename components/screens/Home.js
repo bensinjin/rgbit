@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements'
-import gc from '../../config/game-config'
+import { Button } from 'react-native-elements';
+import {Level1, Level2, Level3, Level4} from './LevelsBeginner';
+import gc from '../../config/game-config';
+import { getScoreData, getKey } from '../../utils';
 
 export default class Home extends Component {
   render() {
+    // TODO
+    //let data = getScoreData(getKey(Level1.id));
+    //let l1P = data.percentScore;
+    console.warn(store);
     return (
       <View style={styles.container}>
         <View style={styles.banner}>

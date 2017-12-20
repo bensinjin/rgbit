@@ -23,7 +23,8 @@ export class Level1 extends Component {
         solutionBoardState={Level1.solutionBoardState}
         onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
         onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level1Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}} />
+        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        levelID={Level1.id}/>
     );
   }
 }
@@ -48,7 +49,8 @@ export class Level2 extends Component {
         solutionBoardState={Level2.solutionBoardState}
         onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
         onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level2Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}} />
+        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        levelID={Level2.id}/>
     );
   }
 }
@@ -73,7 +75,8 @@ export class Level3 extends Component {
         solutionBoardState={Level3.solutionBoardState}
         onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
         onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level3Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}} />
+        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        levelID={Level3.id}/>
     );
   }
 }
@@ -98,7 +101,8 @@ export class Level4 extends Component {
         solutionBoardState={Level4.solutionBoardState}
         onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
         onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level4Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}} />
+        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        levelID={Level4.id}/>
     );
   }
 }
