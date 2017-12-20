@@ -17,11 +17,11 @@ Alternatively, install dependencies with npm, see https://www.npmjs.com/get-npm
 ```
 npm install
 ```
-Run on Ios
+Run on IOS (if you targetted IOS)
 ```
 react-native run-ios
 ```
-Run on Andriod
+Run on Android (if you targetted Android)
 ```
 /Users/<your-name>/Library/Android/sdk/tools/emulator -list-avds
 /Users/<your-name>/Library/Android/sdk/tools/emulator -avd <your-avd> -netdelay none -netspeed full
