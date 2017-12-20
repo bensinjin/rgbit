@@ -3,9 +3,8 @@ import gc from './config/game-config';
 import store from 'react-native-simple-store';
 
 // General level functionality
-export function onLevelOver(scoreData, navigation, route) {
-  alert(scoreData.percentCorrect + '%');
-  navigation.navigate(route);
+export function onLevelOver(scoreData) {
+  alert('Your score:' + scoreData.percentCorrect + '%');
 }
 
 export function onLevelRestart(navigation, route) {
