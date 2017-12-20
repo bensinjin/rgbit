@@ -13,10 +13,6 @@ Install deps. with yarn, see https://yarnpkg.com/en/docs/install
 ```
 yarn
 ```
-Alternatively, install dependencies with npm, see https://www.npmjs.com/get-npm
-```
-npm install
-```
 Run on IOS (if you targetted IOS)
 ```
 react-native run-ios
