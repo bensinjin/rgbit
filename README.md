@@ -9,9 +9,13 @@ Clone
 git clone https://github.com/bensinjin/rgbit.git
 cd rgbit
 ```
-Install deps. with yarn, see https://yarnpkg.com/en/ alternatively you can npm install
+Install deps. with yarn, see https://yarnpkg.com/en/docs/install
 ```
 yarn
+```
+Alternatively, install dependencies with npm, see https://www.npmjs.com/get-npm
+```
+npm install
 ```
 Run on Ios
 ```
