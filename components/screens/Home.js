@@ -10,7 +10,6 @@ export default class Home extends Component {
     // TODO
     //let data = getScoreData(getKey(Level1.id));
     //let l1P = data.percentScore;
-    console.warn(store);
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
