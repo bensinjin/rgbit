@@ -77,3 +77,28 @@ export class Level3 extends Component {
     );
   }
 }
+
+export class Level4 extends Component {
+  static id = 4;
+  static solutionBoardState = [
+    ['B', 'W', 'G', 'W', 'R'],
+    ['B', 'W', 'G', 'W', 'R'],
+    ['B', 'W', 'G', 'W', 'R'],
+    ['B', 'W', 'G', 'W', 'R'],
+    ['B', 'W', 'G', 'W', 'R'],
+    ['B', 'W', 'G', 'W', 'R'],
+    ['B', 'W', 'G', 'W', 'R']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={gc.level4Time}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level4.solutionBoardState}
+        onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
+        onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level4Intro');}}
+        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}} />
+    );
+  }
+}

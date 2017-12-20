@@ -22,6 +22,8 @@ export default {
   level2Time: 10,
   level3Title: 'The Scepter On A Hill',
   level3Time: 15,
+  level4Title: 'The Test',
+  level4Time: 15,
   // Css colors
   blue: '#02BCD4',
   green: '#77DD77',

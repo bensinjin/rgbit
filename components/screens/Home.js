@@ -34,6 +34,13 @@ export default class Home extends Component {
             onPress={() => this.props.navigation.navigate('Level3Intro')}
             title={gc.level3Title}
           />
+          <Button
+            buttonStyle={gc.homeButton}
+            fontWeight={'bold'}
+            backgroundColor={gc.red}
+            onPress={() => this.props.navigation.navigate('Level4Intro')}
+            title={gc.level4Title}
+          />
         </View>
       </View>
     );
