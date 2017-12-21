@@ -21,9 +21,8 @@ export class Level1 extends Component {
         levelTimeSeconds={gc.level1Time}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level1.solutionBoardState}
-        onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
-        onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level1Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        navigation={this.props.navigation}
+        introRoute={'Level1Intro'}
         levelID={Level1.id}/>
     );
   }
@@ -47,9 +46,8 @@ export class Level2 extends Component {
         levelTimeSeconds={gc.level2Time}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level2.solutionBoardState}
-        onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
-        onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level2Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        navigation={this.props.navigation}
+        introRoute={'Level2Intro'}
         levelID={Level2.id}/>
     );
   }
@@ -73,9 +71,8 @@ export class Level3 extends Component {
         levelTimeSeconds={gc.level3Time}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level3.solutionBoardState}
-        onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
-        onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level3Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        navigation={this.props.navigation}
+        introRoute={'Level3Intro'}
         levelID={Level3.id}/>
     );
   }
@@ -99,9 +96,8 @@ export class Level4 extends Component {
         levelTimeSeconds={gc.level4Time}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level4.solutionBoardState}
-        onLevelOver={(scoreData) => {onLevelOver(scoreData); this.props.navigation.navigate('Home');}}
-        onLevelRestart={() => {onLevelRestart(this.props.navigation, 'Level4Intro');}}
-        onLevelSelect={() => {onLevelSelect(this.props.navigation,'Home');}}
+        navigation={this.props.navigation}
+        introRoute={'Level4Intro'}
         levelID={Level4.id}/>
     );
   }

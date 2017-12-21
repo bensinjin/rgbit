@@ -2,10 +2,51 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import CountdownCircle from 'react-native-countdown-circle'
+import store from 'react-native-simple-store';
 import BitBoard from '../game/BitBoard';
 import gc from '../../config/game-config';
+import {getKey} from '../../utils.js';
+
 
 export default class Level extends Component {
+
+  _onLevelOver(scoreData) {
+    let key = getKey(scoreData.levelID);
+    if (key) {
+      store.get(key)
+        .then(res => {
+         // New score.
+          if (!res) {
+            store.save(key, scoreData)
+              .then(() => {
+                this.props.navigation.navigate('Home');
+              });
+          }
+          // New high score.
+          else if (res.percentCorrect < scoreData.percentCorrect) {
+            store.update(key, scoreData)
+              .then(() => {
+                this.props.navigation.navigate('Home');
+              });
+          }
+          // New score but not higher than high score.
+          else {
+            this.props.navigation.navigate('Home');
+          }
+        })
+        .catch(error => {
+          console.error(error.message);
+        });
+    }
+  }
+
+  _onLevelRestart() {
+    this.props.navigation.navigate(this.props.introRoute);
+  }
+
+  _onLevelSelect() {
+    this.props.navigation.navigate('Home');
+  }
 
   render() {
     return (
@@ -13,13 +54,12 @@ export default class Level extends Component {
         <BitBoard
           initialBoardState={this.props.initialBoardState}
           solutionBoardState={this.props.solutionBoardState}
-          numRows={this.props.numRows}
-          numCols={this.props.numCols}
           playable={true}
-          onPlayOver={this.props.onLevelOver}
+          navigation={this.props.navigation}
           playSeconds={this.props.levelTimeSeconds}
-          onLevelSelect={this.props.onLevelSelect}
-          onLevelRestart={this.props.onLevelRestart}
+          onPlayOver={(scoreData) => {this._onLevelOver(scoreData)}}
+          onLevelSelect={() => {this._onLevelSelect();}}
+          onLevelRestart={() => {this._onLevelRestart();}}
           levelID={this.props.levelID}
           />
         <View style={gc.centered}>
@@ -42,11 +82,8 @@ export default class Level extends Component {
 Level.propTypes = {
   levelTimeSeconds: PropTypes.number,
   initialBoardState: PropTypes.array,
-  numRows: PropTypes.number,
-  numCols: PropTypes.number,
   solutionBoardState: PropTypes.array,
-  onLevelOver: PropTypes.func,
-  onLevelRestart: PropTypes.func,
-  onLevelSelect: PropTypes.func,
-  levelID: PropTypes.number
+  navigation: PropTypes.object,
+  introRoute: PropTypes.string,
+  levelID: PropTypes.number,
 };

@@ -48,12 +48,12 @@ export default class BitBoard extends Component {
     }
 
     return {
-      'levelID': this.props.levelID,
+      levelID: this.props.levelID,
       // TODO
-      //'time':
-      'bitsToFlip': bitsToFlip,
-      'bitsCorrectlyFlipped': correctlyFlipped,
-      'percentCorrect': correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
+      //time:
+      bitsToFlip: bitsToFlip,
+      bitsCorrectlyFlipped: correctlyFlipped,
+      percentCorrect: correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
     };
   }
 

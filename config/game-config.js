@@ -17,7 +17,7 @@ export default {
   levelSelect:  'Level Select',
   // Levels
   level1Title: 'The Thin Red Line',
-  level1Time: 10,
+  level1Time: 5,
   level2Title: 'Red Green Blue',
   level2Time: 10,
   level3Title: 'The Scepter On A Hill',

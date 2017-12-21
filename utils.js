@@ -1,24 +1,7 @@
 import { NavigationActions } from 'react-navigation';
 import gc from './config/game-config';
+import {Level1, Level2, Level3, Level4} from './components/screens/LevelsBeginner';
 import store from 'react-native-simple-store';
-
-// General level functionality
-export function onLevelOver(scoreData) {
-  alert('Your score:' + scoreData.percentCorrect + '%');
-  updateScoreData(scoreData);
-}
-
-export function getKey(id){
-  return gc.storeKeyPrefix + id;
-}
-
-export function onLevelRestart(navigation, route) {
-  navigation.navigate(route);
-}
-
-export function onLevelSelect(navigation, route) {
-  navigation.navigate(route);
-}
 
 export function initialBoardState() {
   // Funny right?
@@ -34,27 +17,31 @@ export function initialBoardState() {
   return initialBS;
 }
 
-export function updateScoreData(scoreData){
-  let key = getKey(scoreData.levelID);
-
-  if (key) {
-    store.get(key)
-      .then(res => {
-        if (!res) {
-          store.save(key, scoreData);
-        } else {
-          store.update(key, scoreData);
-        }
-      })
-      .catch(error => {
-        console.error(error.message);
-      });
-  }
-  console.warn(store.get(key));
+// Store related
+export function getKey(id){
+  return gc.storeKeyPrefix + id;
 }
 
-export function getScoreData(key) {
-  return store.get(key);
+export function getScoreData() {
+  let keys = [getKey(Level1.id), getKey(Level2.id), getKey(Level3.id), getKey(Level4.id)],
+      data = {};
+
+  for (let key in keys) {
+    data[keys[key]] = store.get(keys[key]);
+  }
+
+  return data;
+}
+
+export function deleteScoreData() {
+  let keys = [getKey(Level1.id), getKey(Level2.id), getKey(Level3.id), getKey(Level4.id)],
+      data = {};
+
+  for (let key in keys) {
+    data[keys[key]] = store.delete(keys[key]);
+  }
+
+  return data;
 }
 
 // Misc
