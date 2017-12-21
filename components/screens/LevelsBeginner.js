@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Level from '../game/Level';
 import gc from '../../config/game-config';
-import { initialBoardState, onLevelOver, onLevelRestart, onLevelSelect } from '../../utils.js';
+import { initialBoardState, onLevelOver, onLevelRestart, onLevelSelect, calculateLevelSeconds } from '../../utils.js';
 
 export class Level1 extends Component {
   static id = 1;
@@ -18,7 +18,7 @@ export class Level1 extends Component {
   render() {
     return (
       <Level
-        levelTimeSeconds={gc.level1Time}
+        levelTimeSeconds={calculateLevelSeconds(Level1.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level1.solutionBoardState}
         navigation={this.props.navigation}
@@ -43,7 +43,7 @@ export class Level2 extends Component {
   render() {
     return (
       <Level
-        levelTimeSeconds={gc.level2Time}
+        levelTimeSeconds={calculateLevelSeconds(Level2.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level2.solutionBoardState}
         navigation={this.props.navigation}
@@ -68,7 +68,7 @@ export class Level3 extends Component {
   render() {
     return (
       <Level
-        levelTimeSeconds={gc.level3Time}
+        levelTimeSeconds={calculateLevelSeconds(Level3.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level3.solutionBoardState}
         navigation={this.props.navigation}
@@ -81,19 +81,19 @@ export class Level3 extends Component {
 export class Level4 extends Component {
   static id = 4;
   static solutionBoardState = [
-    ['B', 'W', 'G', 'W', 'R'],
-    ['B', 'W', 'G', 'W', 'R'],
-    ['B', 'W', 'G', 'W', 'R'],
-    ['B', 'W', 'G', 'W', 'R'],
-    ['B', 'W', 'G', 'W', 'R'],
-    ['B', 'W', 'G', 'W', 'R'],
-    ['B', 'W', 'G', 'W', 'R']
+    ['B', 'W', 'B', 'W', 'B'],
+    ['B', 'B', 'B', 'B', 'B'],
+    ['R', 'B', 'R', 'B', 'R'],
+    ['R', 'R', 'R', 'R', 'R'],
+    ['G', 'R', 'G', 'R', 'G'],
+    ['G', 'G', 'G', 'G', 'G'],
+    ['W', 'G', 'W', 'G', 'W']
   ];
 
   render() {
     return (
       <Level
-        levelTimeSeconds={gc.level4Time}
+        levelTimeSeconds={calculateLevelSeconds(Level4.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level4.solutionBoardState}
         navigation={this.props.navigation}

@@ -113,7 +113,7 @@ export default class BitBoard extends Component {
 
         // If the solution has been met, fire the callback.
         if (checkBits.percentCorrect == 100) {
-          this._killtimer();
+          this._killTimer();
           this.props.onPlayOver(checkBits)
         }
 

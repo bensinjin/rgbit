@@ -17,13 +17,10 @@ export default {
   levelSelect:  'Level Select',
   // Levels
   level1Title: 'The Thin Red Line',
-  level1Time: 5,
   level2Title: 'Red Green Blue',
-  level2Time: 10,
-  level3Title: 'The Scepter On A Hill',
-  level3Time: 15,
+  level3Title:  'The Scepter',
   level4Title: 'The Test',
-  level4Time: 15,
+  beginnerLevelDivisor: 2.5,
   // Css colors
   blue: '#02BCD4',
   green: '#77DD77',

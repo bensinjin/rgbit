@@ -3,6 +3,30 @@ import gc from './config/game-config';
 import {Level1, Level2, Level3, Level4} from './components/screens/LevelsBeginner';
 import store from 'react-native-simple-store';
 
+// Level related
+
+export function calculateLevelSeconds(boardState, divisor) {
+  let taps = 0;
+
+  for (rowIndex in boardState) {
+    for (colIndex in boardState[rowIndex]) {
+      switch (boardState[rowIndex][colIndex]) {
+        case 'R':
+          taps += 1;
+          break;
+        case 'G':
+          taps += 2;
+          break;
+        case 'B':
+          taps += 3;
+          break;
+      }
+    }
+  }
+
+  return Math.round(taps / divisor);
+}
+
 export function initialBoardState() {
   // Funny right?
   let initialBS = [];

@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
   },
   timerNumberWrapper: {
     marginTop: '5%',
-    borderRadius: 100,
-    padding: 15,
+    borderRadius: 40,
+    padding: 20,
   },
 });
 
