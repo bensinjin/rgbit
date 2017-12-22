@@ -8,7 +8,7 @@ export default class Bit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colorState: this.props.colorState
+      colorState: this.props.colorState,
     };
     this._onPress = this._onPress.bind(this);
   }

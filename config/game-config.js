@@ -28,14 +28,17 @@ export default {
   // Css colors
   blue: '#02BCD4',
   green: '#77DD77',
-  grey: '#9E9E9E',
+  grey: '#797979',
   greyDark: '#2B333B',
   red: '#FF6960',
   white: 'white',
+  yellow: '#FFC107',
+  yellowLight: '#f9EB70',
   // UI Styles
   button: {
     height: 30,
     borderRadius: 5,
+    margin: 5,
   },
   wrapper: {
     margin: 5
