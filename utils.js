@@ -1,6 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 import gc from './config/game-config';
-import {Level1, Level2, Level3, Level4} from './components/screens/LevelsBeginner';
+import { Level1, Level2, Level3, Level4, Level5 } from './components/screens/LevelsBeginner';
 import store from 'react-native-simple-store';
 
 // Level related
@@ -47,7 +47,13 @@ export function getKey(id){
 }
 
 export function getScoreData() {
-  let keys = [getKey(Level1.id), getKey(Level2.id), getKey(Level3.id), getKey(Level4.id)],
+  let keys = [
+        getKey(Level1.id),
+        getKey(Level2.id),
+        getKey(Level3.id),
+        getKey(Level4.id),
+        getKey(Level5.id)
+      ],
       data = {};
 
   for (let key in keys) {
@@ -58,7 +64,13 @@ export function getScoreData() {
 }
 
 export function deleteScoreData() {
-  let keys = [getKey(Level1.id), getKey(Level2.id), getKey(Level3.id), getKey(Level4.id)],
+  let keys = [
+        getKey(Level1.id),
+        getKey(Level2.id),
+        getKey(Level3.id),
+        getKey(Level4.id),
+        getKey(Level5.id)
+      ],
       data = {};
 
   for (let key in keys) {

@@ -151,7 +151,7 @@ export default class BitBoard extends Component {
           <Grid style={styles.HUD}>
             <Col style={styles.HUDButtonWrapper}>
               <Button
-                backgroundColor={gc.green}
+                backgroundColor={gc.red}
                 buttonStyle={gc.button}
                 fontWeight={'bold'}
                 onPress={() => {this._killTimer(); this.props.onLevelSelect();}}
@@ -159,7 +159,7 @@ export default class BitBoard extends Component {
             </Col>
             <Col style={styles.HUDButtonWrapper}>
               <Button
-                backgroundColor={gc.blue}
+                backgroundColor={gc.green}
                 buttonStyle={gc.button}
                 fontWeight={'bold'}
                 onPress={() => {this._killTimer(); this.props.onLevelRestart();}}

@@ -51,7 +51,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={gc.wrapper}>
         <TouchableWithoutFeedback onPress={this._onBannerPress}>
           <View style={styles.banner}>
             <Text style={styles.title}>
@@ -70,14 +70,14 @@ export default class Home extends Component {
           <Button
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
-            backgroundColor={gc.blue}
+            backgroundColor={gc.green}
             onPress={() => this.props.navigation.navigate('Level2Intro')}
             title={this.state.level2Score ? gc.level2Title + ' - ' + this.state.level2Score.percentCorrect + '% complete': gc.level2Title}
           />
           <Button
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
-            backgroundColor={gc.green}
+            backgroundColor={gc.blue}
             onPress={() => this.props.navigation.navigate('Level3Intro')}
             title={this.state.level3Score ? gc.level3Title + ' - ' + this.state.level3Score.percentCorrect + '% complete': gc.level3Title}
           />
@@ -87,6 +87,13 @@ export default class Home extends Component {
             backgroundColor={gc.red}
             onPress={() => this.props.navigation.navigate('Level4Intro')}
             title={this.state.level4Score ? gc.level4Title + ' - ' + this.state.level4Score.percentCorrect + '% complete': gc.level4Title}
+          />
+          <Button
+            buttonStyle={gc.homeButton}
+            fontWeight={'bold'}
+            backgroundColor={gc.green}
+            onPress={() => this.props.navigation.navigate('Level5Intro')}
+            title={this.state.level5Score ? gc.level5Title + ' - ' + this.state.level5Score.percentCorrect + '% complete': gc.level5Title}
           />
         </View>
       </View>
@@ -106,9 +113,6 @@ const styles = StyleSheet.create({
   },
   b: {
     color: gc.blue
-  },
-  container: {
-    marginTop: '5%'
   },
   title: {
     color: gc.greyDark,

@@ -102,3 +102,28 @@ export class Level4 extends Component {
     );
   }
 }
+
+export class Level5 extends Component {
+  static id = 5;
+  static solutionBoardState = [
+    ['B', 'R', 'G', 'R', 'B'],
+    ['W', 'B', 'R', 'B', 'W'],
+    ['W', 'W', 'B', 'W', 'W'],
+    ['W', 'W', 'R', 'W', 'W'],
+    ['W', 'W', 'G', 'W', 'W'],
+    ['W', 'G', 'B', 'G', 'W'],
+    ['G', 'B', 'R', 'B', 'G']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={calculateLevelSeconds(Level5.solutionBoardState, gc.intermediateLevelDivisor)}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level5.solutionBoardState}
+        navigation={this.props.navigation}
+        introRoute={'Level5Intro'}
+        levelID={Level5.id}/>
+    );
+  }
+}

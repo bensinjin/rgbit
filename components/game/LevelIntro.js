@@ -79,10 +79,10 @@ export default class LevelIntro extends Component {
 
   render() {
     return (
-      <View>
+      <View style={gc.wrapper}>
         <BitBoard initialBoardState={this.props.solutionBoardState} playable={false} />
         <View style={gc.centered}>
-          <Text style={styles.timerText}>Remember the pattern!</Text>
+          <Text style={styles.timerText}>{gc.levelInstructions}</Text>
           {this._styleTimer(this.state.levelStartMillis / 1000)}
         </View>
       </View>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   timerNumberWrapper: {
     marginTop: '5%',
     borderRadius: 40,
-    padding: 20,
+    padding: 10,
   },
 });
 

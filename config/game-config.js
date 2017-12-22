@@ -18,9 +18,12 @@ export default {
   // Levels
   level1Title: 'The Thin Red Line',
   level2Title: 'Red Green Blue',
-  level3Title:  'The Scepter',
+  level3Title: 'The Scepter',
   level4Title: 'The Test',
-  beginnerLevelDivisor: 2.5,
+  level5Title: 'Lynsey\'s Trap',
+  levelInstructions: 'Remeber the pattern!',
+  beginnerLevelDivisor: 2,
+  intermediateLevelDivisor: 2.5,
   // Css colors
   blue: '#02BCD4',
   green: '#77DD77',
@@ -37,6 +40,9 @@ export default {
     height: 30,
   },
   buttonText: {
+  },
+  wrapper: {
+    margin: 5,
   },
   centered: {
     alignItems: 'center',

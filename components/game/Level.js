@@ -50,7 +50,7 @@ export default class Level extends Component {
 
   render() {
     return (
-      <View>
+      <View style={gc.wrapper}>
         <BitBoard
           initialBoardState={this.props.initialBoardState}
           solutionBoardState={this.props.solutionBoardState}
@@ -67,7 +67,7 @@ export default class Level extends Component {
                 seconds={this.props.levelTimeSeconds}
                 radius={gc.countDownCircle.radius}
                 borderWidth={gc.countDownCircle.borderWidth}
-                color={gc.red}
+                color={gc.blue}
                 bgColor={gc.greyDark}
                 textStyle={{ fontSize: 20, color: gc.white, fontWeight: 'bold' }} />
                 {/* We just use the timer as a visual aid, the bitboard actually

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LevelIntro from '../game/LevelIntro';
-import { Level1, Level2, Level3, Level4 } from './LevelsBeginner';
+import { Level1, Level2, Level3, Level4, Level5 } from './LevelsBeginner';
 import gc from '../../config/game-config';
 import {resetNavigation} from '../../utils'
 
@@ -43,6 +43,17 @@ export class Level4Intro extends Component {
       <LevelIntro
         solutionBoardState={Level4.solutionBoardState}
         startLevel={() => {resetNavigation('Level4', this.props.navigation)}}
+      />
+    );
+  }
+}
+
+export class Level5Intro extends Component {
+  render() {
+    return (
+      <LevelIntro
+        solutionBoardState={Level5.solutionBoardState}
+        startLevel={() => {resetNavigation('Level5', this.props.navigation)}}
       />
     );
   }
