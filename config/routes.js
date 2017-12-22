@@ -12,7 +12,10 @@ const Routes = StackNavigator({
     }
   },
   Level1Intro: {
-    screen: Level1Intro
+    screen: Level1Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
   },
   Level1: {
     screen: Level1,
@@ -21,7 +24,10 @@ const Routes = StackNavigator({
     }
   },
   Level2Intro: {
-    screen: Level2Intro
+    screen: Level2Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
   },
   Level2: {
     screen: Level2,
@@ -30,7 +36,10 @@ const Routes = StackNavigator({
     }
   },
   Level3Intro: {
-    screen: Level3Intro
+    screen: Level3Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
   },
   Level3: {
     screen: Level3,
@@ -39,7 +48,10 @@ const Routes = StackNavigator({
     }
   },
   Level4Intro: {
-    screen: Level4Intro
+    screen: Level4Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
   },
   Level4: {
     screen: Level4,
@@ -48,7 +60,10 @@ const Routes = StackNavigator({
     }
   },
   Level5Intro: {
-    screen: Level5Intro
+    screen: Level5Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
   },
   Level5: {
     screen: Level5,

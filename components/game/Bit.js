@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import gc from '../../config/game-config';
 
 export default class Bit extends Component {
@@ -16,7 +16,6 @@ export default class Bit extends Component {
   _onPress() {
     if (this.props.updateBoardState) {
       this.setState(previousState => {
-        // Should this be done in here? I think probably?
         let nextColorState = this._nextColorState(previousState.colorState);
 
         this.props.updateBoardState(
@@ -73,29 +72,16 @@ export default class Bit extends Component {
 
   render() {
     return (
-      <View style={styles.bitWrapper}>
+      <View style={gc.wrapperBit}>
         <TouchableWithoutFeedback onPress={this._onPress}>
           <View
-            style={[{backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, styles.bit]}
+            style={[{backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, gc.bit]}
           />
         </TouchableWithoutFeedback>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  bitWrapper: {
-		alignSelf: "stretch",
-    flex: 1,
-		padding: 5
-  },
-  bit: {
-    flex: 1,
-    alignItems: 'center',
-		justifyContent: 'center'
-  },
-});
 
 Bit.propTypes = {
   rowIndex: PropTypes.string,

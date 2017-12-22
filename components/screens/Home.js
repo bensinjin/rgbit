@@ -5,6 +5,7 @@ import {Level1, Level2, Level3, Level4} from './LevelsBeginner';
 import gc from '../../config/game-config';
 import { getScoreData, deleteScoreData } from '../../utils';
 import store from 'react-native-simple-store';
+import {resetNavigation} from '../../utils'
 
 export default class Home extends Component {
 
@@ -64,35 +65,35 @@ export default class Home extends Component {
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
             backgroundColor={gc.red}
-            onPress={() => this.props.navigation.navigate('Level1Intro')}
+            onPress={() => resetNavigation('Level1Intro', this.props.navigation)}
             title={this.state.level1Score ? gc.level1Title + ' - ' + this.state.level1Score.percentCorrect + '% complete': gc.level1Title}
           />
           <Button
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
             backgroundColor={gc.green}
-            onPress={() => this.props.navigation.navigate('Level2Intro')}
+            onPress={() => resetNavigation('Level2Intro', this.props.navigation)}
             title={this.state.level2Score ? gc.level2Title + ' - ' + this.state.level2Score.percentCorrect + '% complete': gc.level2Title}
           />
           <Button
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
             backgroundColor={gc.blue}
-            onPress={() => this.props.navigation.navigate('Level3Intro')}
+            onPress={() => resetNavigation('Level3Intro', this.props.navigation)}
             title={this.state.level3Score ? gc.level3Title + ' - ' + this.state.level3Score.percentCorrect + '% complete': gc.level3Title}
           />
           <Button
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
             backgroundColor={gc.red}
-            onPress={() => this.props.navigation.navigate('Level4Intro')}
+            onPress={() => resetNavigation('Level4Intro', this.props.navigation)}
             title={this.state.level4Score ? gc.level4Title + ' - ' + this.state.level4Score.percentCorrect + '% complete': gc.level4Title}
           />
           <Button
             buttonStyle={gc.homeButton}
             fontWeight={'bold'}
             backgroundColor={gc.green}
-            onPress={() => this.props.navigation.navigate('Level5Intro')}
+            onPress={() => resetNavigation('Level5Intro', this.props.navigation)}
             title={this.state.level5Score ? gc.level5Title + ' - ' + this.state.level5Score.percentCorrect + '% complete': gc.level5Title}
           />
         </View>

@@ -10,7 +10,6 @@
     "prop-types": "^15.6.0",
     "react": "16.0.0",
     "react-native": "0.51.0",
-    "react-native-countdown-circle": "^2.0.0",
     "react-native-easy-grid": "^0.1.15",
     "react-native-elements": "^0.18.5",
     "react-native-fade-view": "^0.3.0",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import SquareGrid from 'react-native-square-grid';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Button } from 'react-native-elements'
@@ -17,7 +17,16 @@ export default class BitBoard extends Component {
     };
     this.updateBoardState = this.updateBoardState.bind(this);
     this._solutionData = this.props.playable ? this._getSolutionData(this.props.solutionBoardState) : [];
-    this._timerId = null;
+    // Initialize our timer.
+    if (this.props.playable) {
+      this._timeoutTimerId = TimerMixin.setTimeout(() => {
+        if (this._isMounted && this.props.onPlayOver) {
+          this.componentWillUnmount();
+          let checkBits = this._checkBits(this.state.currentBoardState);
+          this.props.onPlayOver(checkBits);
+        }
+      }, this.props.playSeconds * 1000);
+    }
   }
 
   _getSolutionData(solutionBoardState) {
@@ -99,8 +108,8 @@ export default class BitBoard extends Component {
   }
 
   _killTimer() {
-    if (this._timerId) {
-      TimerMixin.clearInterval(this._timerId);
+    if (this._timeoutTimerId) {
+      TimerMixin.clearTimeout(this._timeoutTimerId);
     }
   }
 
@@ -113,7 +122,7 @@ export default class BitBoard extends Component {
 
         // If the solution has been met, fire the callback.
         if (checkBits.percentCorrect == 100) {
-          this._killTimer();
+          this.componentWillUnmount();
           this.props.onPlayOver(checkBits)
         }
 
@@ -125,20 +134,11 @@ export default class BitBoard extends Component {
   }
 
   componentDidMount() {
-    if (this.props.playable) {
-      // Initialize our timer.
-      this._timerId = TimerMixin.setTimeout(() => {
-        if (this._isMounted) {
-          let checkBits = this._checkBits(this.state.currentBoardState);
-          this.props.onPlayOver(checkBits);
-        }
-      }, this.props.playSeconds * 1000);
-    }
-
     this._isMounted = true;
   }
 
   componentWillUnmount() {
+    this._killTimer();
     this._isMounted = false;
   }
 
@@ -148,25 +148,25 @@ export default class BitBoard extends Component {
     if (this.props.playable) {
       return (
         <View>
-          <Grid style={styles.HUD}>
-            <Col style={styles.HUDButtonWrapper}>
+          <Grid style={gc.wrapperHUD}>
+            <Col>
               <Button
                 backgroundColor={gc.red}
                 buttonStyle={gc.button}
                 fontWeight={'bold'}
-                onPress={() => {this._killTimer(); this.props.onLevelSelect();}}
+                onPress={() => {this.componentWillUnmount(); this.props.onLevelSelect();}}
                 title={gc.levelSelect} />
             </Col>
-            <Col style={styles.HUDButtonWrapper}>
+            <Col>
               <Button
                 backgroundColor={gc.green}
                 buttonStyle={gc.button}
                 fontWeight={'bold'}
-                onPress={() => {this._killTimer(); this.props.onLevelRestart();}}
+                onPress={() => {this.componentWillUnmount(); this.props.onLevelRestart();}}
                 title={gc.restartGame} />
             </Col>
           </Grid>
-          <View style={styles.bitBoardContainer}>
+          <View style={gc.wrapperBitBoard}>
             <SquareGrid
               rows={this.props.numRows ? this.props.numRows : gc.BitBoard.numRows}
               columns={this.props.numCols? this.props.numCols : gc.BitBoard.numCols}
@@ -178,7 +178,7 @@ export default class BitBoard extends Component {
         );
     } else {
       return (
-        <View style={styles.bitBoardContainer}>
+        <View style={gc.wrapperBitBoard}>
           <SquareGrid
             rows={this.props.numRows ? this.props.numRows : gc.BitBoard.numRows}
             columns={this.props.numCols? this.props.numCols : gc.BitBoard.numCols}
@@ -190,24 +190,6 @@ export default class BitBoard extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  HUDButtonWrapper: {
-    height: 40,
-    paddingTop: 15
-  },
-  HUD: {
-    marginTop: '5%',
-    marginBottom: 10,
-    padding: 5
-  },
-  bitBoardContainer: {
-    marginTop: '15%',
-    marginLeft: '10%',
-    marginRight: '10%',
-    height: 400,
-  }
-});
 
 BitBoard.propTypes = {
   initialBoardState: PropTypes.array,

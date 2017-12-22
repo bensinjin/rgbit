@@ -21,9 +21,10 @@ export default {
   level3Title: 'The Scepter',
   level4Title: 'The Test',
   level5Title: 'Lynsey\'s Trap',
-  levelInstructions: 'Remeber the pattern!',
+  levelInstructions: 'Remember the pattern!',
   beginnerLevelDivisor: 2,
   intermediateLevelDivisor: 2.5,
+  // TODO styles should be moved to their own file.
   // Css colors
   blue: '#02BCD4',
   green: '#77DD77',
@@ -33,20 +34,60 @@ export default {
   white: 'white',
   // UI Styles
   button: {
-    height: 30,
+    height: 30
   },
   homeButton: {
     marginTop: 5,
-    height: 30,
-  },
-  buttonText: {
+    height: 30
   },
   wrapper: {
-    margin: 5,
+    margin: 5
   },
+  wrapperLevel: {
+    marginBottom: '10%'
+  },
+  wrapperHUD: {
+    marginTop: '5%',
+    marginBottom: 10,
+    padding: 5
+  },
+  wrapperTimer:  {
+    marginTop: '5%'
+  },
+  wrapperTimerTime:  {
+    alignItems: 'center',
+    backgroundColor: '#2B333B',
+    borderRadius: 70,
+    height: 70,
+    justifyContent: 'center',
+    width: 70
+  },
+  timerText: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+  wrapperBitBoard: {
+    marginTop: '10%',
+    marginLeft: '10%',
+    marginRight: '10%',
+    height: 400,
+    width: '80%'
+  },
+  wrapperBit: {
+		alignSelf: "stretch",
+    flex: 1,
+		padding: 5
+  },
+  bit: {
+    flex: 1,
+    alignItems: 'center',
+		justifyContent: 'center'
+  },
+  // Misc
   centered: {
     alignItems: 'center',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   countDownCircle: {
     radius: 40,
@@ -55,10 +96,10 @@ export default {
   // Components
   BitBoard: {
     numRows: 7,
-    numCols: 5,
+    numCols: 5
   },
   LevelIntro: {
-    defaultLevelStartMillis: 3000
+    levelStartSeconds: 3
   },
   // Misc
   storeKeyPrefix: 'key_'

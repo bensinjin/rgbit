@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-import CountdownCircle from 'react-native-countdown-circle'
 import store from 'react-native-simple-store';
 import BitBoard from '../game/BitBoard';
+import Timer from '../game/Timer';
 import gc from '../../config/game-config';
 import {getKey} from '../../utils.js';
 
 
 export default class Level extends Component {
+  // TODO fix the hardcoded values in this component.
 
   _onLevelOver(scoreData) {
     let key = getKey(scoreData.levelID);
@@ -50,7 +51,7 @@ export default class Level extends Component {
 
   render() {
     return (
-      <View style={gc.wrapper}>
+      <View style={gc.wrapperLevel}>
         <BitBoard
           initialBoardState={this.props.initialBoardState}
           solutionBoardState={this.props.solutionBoardState}
@@ -62,17 +63,8 @@ export default class Level extends Component {
           onLevelRestart={() => {this._onLevelRestart();}}
           levelID={this.props.levelID}
           />
-        <View style={gc.centered}>
-            <CountdownCircle
-                seconds={this.props.levelTimeSeconds}
-                radius={gc.countDownCircle.radius}
-                borderWidth={gc.countDownCircle.borderWidth}
-                color={gc.blue}
-                bgColor={gc.greyDark}
-                textStyle={{ fontSize: 20, color: gc.white, fontWeight: 'bold' }} />
-                {/* We just use the timer as a visual aid, the bitboard actually
-                    fires a callback (onPlayOver) when either the time is up or the score is 100%
-                {/*onTimeElapsed={() => {}} />*/}
+        <View style={[gc.centered, gc.wrapperTimer]}>
+          <Timer timeLeftSeconds={this.props.levelTimeSeconds} />
         </View>
       </View>
     );
