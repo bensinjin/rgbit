@@ -62,35 +62,35 @@ export default class Home extends Component {
         </TouchableWithoutFeedback>
         <View style={styles.buttonContainer}>
           <Button
-            buttonStyle={gc.homeButton}
+            buttonStyle={gc.button}
             fontWeight={'bold'}
             backgroundColor={gc.red}
             onPress={() => resetNavigation('Level1Intro', this.props.navigation)}
             title={this.state.level1Score ? gc.level1Title + ' - ' + this.state.level1Score.percentCorrect + '% complete': gc.level1Title}
           />
           <Button
-            buttonStyle={gc.homeButton}
+            buttonStyle={gc.button}
             fontWeight={'bold'}
             backgroundColor={gc.green}
             onPress={() => resetNavigation('Level2Intro', this.props.navigation)}
             title={this.state.level2Score ? gc.level2Title + ' - ' + this.state.level2Score.percentCorrect + '% complete': gc.level2Title}
           />
           <Button
-            buttonStyle={gc.homeButton}
+            buttonStyle={gc.button}
             fontWeight={'bold'}
             backgroundColor={gc.blue}
             onPress={() => resetNavigation('Level3Intro', this.props.navigation)}
             title={this.state.level3Score ? gc.level3Title + ' - ' + this.state.level3Score.percentCorrect + '% complete': gc.level3Title}
           />
           <Button
-            buttonStyle={gc.homeButton}
+            buttonStyle={gc.button}
             fontWeight={'bold'}
             backgroundColor={gc.red}
             onPress={() => resetNavigation('Level4Intro', this.props.navigation)}
             title={this.state.level4Score ? gc.level4Title + ' - ' + this.state.level4Score.percentCorrect + '% complete': gc.level4Title}
           />
           <Button
-            buttonStyle={gc.homeButton}
+            buttonStyle={gc.button}
             fontWeight={'bold'}
             backgroundColor={gc.green}
             onPress={() => resetNavigation('Level5Intro', this.props.navigation)}

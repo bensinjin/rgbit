@@ -17,16 +17,6 @@ export default class BitBoard extends Component {
     };
     this.updateBoardState = this.updateBoardState.bind(this);
     this._solutionData = this.props.playable ? this._getSolutionData(this.props.solutionBoardState) : [];
-    // Initialize our timer.
-    if (this.props.playable) {
-      this._timeoutTimerId = TimerMixin.setTimeout(() => {
-        if (this._isMounted && this.props.onPlayOver) {
-          this.componentWillUnmount();
-          let checkBits = this._checkBits(this.state.currentBoardState);
-          this.props.onPlayOver(checkBits);
-        }
-      }, this.props.playSeconds * 1000);
-    }
   }
 
   _getSolutionData(solutionBoardState) {
@@ -122,7 +112,7 @@ export default class BitBoard extends Component {
 
         // If the solution has been met, fire the callback.
         if (checkBits.percentCorrect == 100) {
-          this.componentWillUnmount();
+          this._killTimer();
           this.props.onPlayOver(checkBits)
         }
 
@@ -134,6 +124,16 @@ export default class BitBoard extends Component {
   }
 
   componentDidMount() {
+    // Initialize the timer.
+    if (this.props.playable) {
+      this._timeoutTimerId = TimerMixin.setTimeout(() => {
+        if (this._isMounted && this.props.onPlayOver) {
+          this._killTimer();
+          let checkBits = this._checkBits(this.state.currentBoardState);
+          this.props.onPlayOver(checkBits);
+        }
+      }, this.props.playSeconds * 1000);
+    }
     this._isMounted = true;
   }
 
@@ -154,7 +154,7 @@ export default class BitBoard extends Component {
                 backgroundColor={gc.red}
                 buttonStyle={gc.button}
                 fontWeight={'bold'}
-                onPress={() => {this.componentWillUnmount(); this.props.onLevelSelect();}}
+                onPress={() => {this._killTimer(); this.props.onLevelSelect();}}
                 title={gc.levelSelect} />
             </Col>
             <Col>
@@ -162,7 +162,7 @@ export default class BitBoard extends Component {
                 backgroundColor={gc.green}
                 buttonStyle={gc.button}
                 fontWeight={'bold'}
-                onPress={() => {this.componentWillUnmount(); this.props.onLevelRestart();}}
+                onPress={() => {this._killTimer(); this.props.onLevelRestart();}}
                 title={gc.restartGame} />
             </Col>
           </Grid>

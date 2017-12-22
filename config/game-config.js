@@ -30,15 +30,12 @@ export default {
   green: '#77DD77',
   grey: '#9E9E9E',
   greyDark: '#2B333B',
-  red: '#ff6960',
+  red: '#FF6960',
   white: 'white',
   // UI Styles
   button: {
-    height: 30
-  },
-  homeButton: {
-    marginTop: 5,
-    height: 30
+    height: 30,
+    borderRadius: 5,
   },
   wrapper: {
     margin: 5
@@ -56,15 +53,15 @@ export default {
   },
   wrapperTimerTime:  {
     alignItems: 'center',
-    backgroundColor: '#2B333B',
+    borderWidth: 8,
     borderRadius: 70,
     height: 70,
     justifyContent: 'center',
+    padding: 1,
     width: 70
   },
   timerText: {
-    color: 'white',
-    fontSize: 30,
+    fontSize: 31,
     fontWeight: 'bold'
   },
   wrapperBitBoard: {
@@ -82,16 +79,12 @@ export default {
   bit: {
     flex: 1,
     alignItems: 'center',
-		justifyContent: 'center'
+    justifyContent: 'center'
   },
   // Misc
   centered: {
     alignItems: 'center',
     flexDirection: 'column'
-  },
-  countDownCircle: {
-    radius: 40,
-    borderWidth: 15
   },
   // Components
   BitBoard: {

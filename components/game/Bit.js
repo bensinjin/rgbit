@@ -75,7 +75,7 @@ export default class Bit extends Component {
       <View style={gc.wrapperBit}>
         <TouchableWithoutFeedback onPress={this._onPress}>
           <View
-            style={[{backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, gc.bit]}
+            style={[{borderRadius: 5, backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, gc.bit]}
           />
         </TouchableWithoutFeedback>
       </View>

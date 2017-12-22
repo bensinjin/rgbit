@@ -28,7 +28,6 @@ export function calculateLevelSeconds(boardState, divisor) {
 }
 
 export function initialBoardState() {
-  // Funny right?
   let initialBS = [];
   for (let x = 0; x < gc.BitBoard.numRows; x++) {
     let row = [];

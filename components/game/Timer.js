@@ -10,23 +10,6 @@ export default class Timer extends Component {
     this.state =  {
       timeLeftSeconds: this.props.timeLeftSeconds
     };
-    // Call our cb after time elapsed.
-    this._timeoutTimerId = TimerMixin.setTimeout(() => {
-      if (this._isMounted && this.props.timeElapsedCB) {
-        this.componentWillUnmount();
-        this.props.timeElapsedCB();
-      }
-    }, this.props.timeLeftSeconds * 1000);
-    // Update our timer visuals every second.
-    this._intervalTimerId = TimerMixin.setInterval(() => {
-      this.setState(previousState => {
-        if (this._isMounted) {
-          return {
-            timeLeftSeconds: previousState.timeLeftSeconds - 1
-          };
-        }
-      });
-    }, 1000);
   }
 
   _killTimers() {
@@ -40,6 +23,23 @@ export default class Timer extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    // Update our timer visuals every second.
+    this._intervalTimerId = TimerMixin.setInterval(() => {
+      this.setState(previousState => {
+        if (this._isMounted) {
+          return {
+            timeLeftSeconds: previousState.timeLeftSeconds - 1
+          };
+        }
+      });
+    }, 1000);
+    // Call our cb after time elapsed.
+    this._timeoutTimerId = TimerMixin.setTimeout(() => {
+      if (this._isMounted && this.props.timeElapsedCB) {
+        this._killTimers();
+        this.props.timeElapsedCB();
+      }
+    }, this.props.timeLeftSeconds * 1000);
   }
 
   componentWillUnmount() {
@@ -48,10 +48,10 @@ export default class Timer extends Component {
   }
 
   render() {
-    let text = this.state.timeLeftSeconds == 0 ? '-' : this.state.timeLeftSeconds
+    let text = this.state.timeLeftSeconds <= 0 ? '--' : this.state.timeLeftSeconds
     return (
-      <View style={gc.wrapperTimerTime}>
-        <Text style={gc.timerText}>{text}</Text>
+      <View style={[{borderColor: gc.red, backgroundColor: gc.greyDark}, gc.wrapperTimerTime]}>
+        <Text style={[{color: gc.blue}, gc.timerText]}>{text}</Text>
       </View>
     );
   }
