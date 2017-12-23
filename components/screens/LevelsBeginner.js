@@ -23,6 +23,7 @@ export class Level1 extends Component {
         solutionBoardState={Level1.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level1Intro'}
+        levelOverRoute={'BeginnerLevelSelect'}
         levelID={Level1.id}/>
     );
   }
@@ -48,6 +49,7 @@ export class Level2 extends Component {
         solutionBoardState={Level2.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level2Intro'}
+        levelOverRoute={'BeginnerLevelSelect'}
         levelID={Level2.id}/>
     );
   }
@@ -73,6 +75,7 @@ export class Level3 extends Component {
         solutionBoardState={Level3.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level3Intro'}
+        levelOverRoute={'BeginnerLevelSelect'}
         levelID={Level3.id}/>
     );
   }
@@ -98,6 +101,7 @@ export class Level4 extends Component {
         solutionBoardState={Level4.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level4Intro'}
+        levelOverRoute={'BeginnerLevelSelect'}
         levelID={Level4.id}/>
     );
   }
@@ -123,6 +127,7 @@ export class Level5 extends Component {
         solutionBoardState={Level5.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level5Intro'}
+        levelOverRoute={'BeginnerLevelSelect'}
         levelID={Level5.id}/>
     );
   }

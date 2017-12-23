@@ -20,19 +20,19 @@ export default class Level extends Component {
           if (!res) {
             store.save(key, scoreData)
               .then(() => {
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate(this.props.levelOverRoute);
               });
           }
           // New high score.
           else if (res.percentCorrect < scoreData.percentCorrect) {
             store.update(key, scoreData)
               .then(() => {
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate(this.props.levelOverRoute);
               });
           }
           // New score but not higher than high score.
           else {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate(this.props.levelOverRoute);
           }
         })
         .catch(error => {
@@ -77,5 +77,6 @@ Level.propTypes = {
   solutionBoardState: PropTypes.array,
   navigation: PropTypes.object,
   introRoute: PropTypes.string,
+  levelOverRoute: PropTypes.string,
   levelID: PropTypes.number,
 };
