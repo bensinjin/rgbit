@@ -46,7 +46,7 @@ export default class Level extends Component {
   }
 
   _onLevelSelect() {
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('BeginnerLevelSelect');
   }
 
   render() {

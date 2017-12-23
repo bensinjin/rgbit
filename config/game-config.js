@@ -16,6 +16,7 @@ export default {
   restartGame: 'Restart',
   levelSelect:  'Level Select',
   // Levels
+  beginnerLevelSelectTitle: 'Beginner',
   level1Title: 'The Thin Red Line',
   level2Title: 'Red Green Blue',
   level3Title: 'The Scepter',
@@ -35,6 +36,9 @@ export default {
   yellow: '#FFC107',
   yellowLight: '#f9EB70',
   // UI Styles
+  buttonContainer: {
+    marginTop: '10%'
+  },
   button: {
     height: 30,
     borderRadius: 5,

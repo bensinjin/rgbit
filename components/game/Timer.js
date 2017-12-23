@@ -50,8 +50,8 @@ export default class Timer extends Component {
   render() {
     let text = this.state.timeLeftSeconds <= 0 ? '--' : this.state.timeLeftSeconds
     return (
-      <View style={[{borderColor: gc.red, backgroundColor: gc.greyDark}, gc.wrapperTimerTime]}>
-        <Text style={[{color: gc.blue}, gc.timerText]}>{text}</Text>
+      <View style={[{borderColor: gc.blue, backgroundColor: gc.greyDark}, gc.wrapperTimerTime]}>
+        <Text style={[{color: gc.white}, gc.timerText]}>{text}</Text>
       </View>
     );
   }

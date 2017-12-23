@@ -1,5 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import Home from '../components/screens/Home';
+import BeginnerLevelSelect from '../components/screens/BeginnerLevelSelect';
 import { Level1Intro, Level2Intro, Level3Intro, Level4Intro, Level5Intro } from '../components/screens/LevelIntros';
 import { Level1, Level2, Level3, Level4, Level5 } from '../components/screens/LevelsBeginner';
 import gc from './game-config';
@@ -7,6 +8,12 @@ import gc from './game-config';
 const Routes = StackNavigator({
   Home: {
     screen: Home,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
+  BeginnerLevelSelect: {
+    screen: BeginnerLevelSelect,
     navigationOptions: {
       headerLeft: null
     }
