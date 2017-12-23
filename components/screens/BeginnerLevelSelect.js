@@ -52,7 +52,7 @@ export default class BeginnerLevelSelect extends Component {
   render() {
     return (
       <View style={gc.wrapper}>
-        <Banner onBannerPress={this._onBannerPress} />
+        <Banner onBannerPress={this._onBannerPress} subTitle={gc.beginnerLevelSelectTitle} />
         <View style={gc.buttonContainer}>
           <Button
             buttonStyle={gc.button}
