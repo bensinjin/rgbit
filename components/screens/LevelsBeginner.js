@@ -6,13 +6,13 @@ import { initialBoardState, onLevelOver, onLevelRestart, onLevelSelect, calculat
 export class Level1 extends Component {
   static id = 1;
   static solutionBoardState = [
-    ['W', 'G', 'R', 'G', 'W'],
-    ['W', 'G', 'R', 'G', 'W'],
-    ['W', 'G', 'R', 'G', 'W'],
-    ['W', 'G', 'R', 'G', 'W'],
-    ['W', 'G', 'R', 'G', 'W'],
-    ['W', 'G', 'R', 'G', 'W'],
-    ['W', 'G', 'R', 'G', 'W']
+    ['W', 'W', 'W', 'B', 'R'],
+    ['W', 'W', 'B', 'R', 'R'],
+    ['W', 'B', 'R', 'R', 'R'],
+    ['B', 'R', 'R', 'R', 'B'],
+    ['R', 'R', 'R', 'B', 'W'],
+    ['R', 'R', 'B', 'W', 'W'],
+    ['R', 'B', 'W', 'W', 'W']
   ];
 
   render() {
@@ -32,13 +32,13 @@ export class Level1 extends Component {
 export class Level2 extends Component {
   static id = 2;
   static solutionBoardState = [
-    ['W', 'R', 'G', 'B', 'W'],
-    ['W', 'R', 'G', 'B', 'W'],
-    ['W', 'R', 'G', 'B', 'W'],
-    ['W', 'R', 'G', 'B', 'W'],
-    ['W', 'R', 'G', 'B', 'W'],
-    ['W', 'R', 'G', 'B', 'W'],
-    ['W', 'R', 'G', 'B', 'W']
+    ['R', 'R', 'G', 'B', 'B'],
+    ['G', 'R', 'G', 'B', 'G'],
+    ['G', 'R', 'G', 'B', 'G'],
+    ['R', 'R', 'G', 'B', 'B'],
+    ['G', 'R', 'G', 'B', 'G'],
+    ['G', 'R', 'G', 'B', 'G'],
+    ['R', 'R', 'G', 'B', 'B']
   ];
 
   render() {
