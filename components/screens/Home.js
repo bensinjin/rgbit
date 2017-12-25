@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import {Level1, Level2, Level3, Level4} from './LevelsBeginner';
+import {Level1, Level2, Level3, Level4} from './TheReds1';
 import gc from '../../config/game-config';
 import { getScoreData, deleteScoreData } from '../../utils';
 import Banner from '../misc/Banner';
@@ -30,8 +30,8 @@ export default class Home extends Component {
             fontWeight={'bold'}
             backgroundColor={gc.red}
             color={gc.white}
-            onPress={() => resetNavigation('BeginnerLevelSelect', this.props.navigation)}
-            title={gc.beginnerLevelSelectTitle}
+            onPress={() => this.props.navigation.navigate('TheReds1LevelSelect')}
+            title={gc.theReds1title}
           />
         </View>
       </View>

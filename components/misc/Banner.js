@@ -7,10 +7,11 @@ export default class Banner extends Component {
   render() {
     return (
       <TouchableWithoutFeedback onPress={this.props.onBannerPress}>
-        <View style={styles.banner}>
+        <View style={[gc.centered, styles.banner]}>
           <Text style={styles.title}>
             <Text style={styles.r}>R</Text><Text style={styles.g}>G</Text><Text style={styles.b}>B</Text>it
           </Text>
+          <Text style={styles.subTitle}>{this.props.subTitle}</Text>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -36,10 +37,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   },
+  subtitle: {
+    color: gc.greyDark,
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  }
 });
 
 Banner.propTypes = {
-  rowIndex: PropTypes.string,
-  colIndex: PropTypes.string,
-  updateBoardState: PropTypes.func
+  subTitle: PropTypes.string
 };

@@ -45,7 +45,7 @@ export default class Level extends Component {
   }
 
   _onLevelSelect() {
-    this.props.navigation.navigate('BeginnerLevelSelect');
+    this.props.navigation.navigate(this.props.levelSelectRoute);
   }
 
   render() {
@@ -73,6 +73,7 @@ Level.propTypes = {
   solutionBoardState: PropTypes.array,
   navigation: PropTypes.object,
   introRoute: PropTypes.string,
+  levelSelectRoute: PropTypes.string,
   levelOverRoute: PropTypes.string,
   levelID: PropTypes.number,
 };

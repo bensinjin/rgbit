@@ -116,6 +116,7 @@ export default class BitBoard extends Component {
   _killTimer() {
     if (this._timeoutTimerId) {
       TimerMixin.clearTimeout(this._timeoutTimerId);
+      this._timeoutTimerId = null;
     }
   }
 
@@ -135,7 +136,7 @@ export default class BitBoard extends Component {
         let checkBits = this._checkBits(updatedBoardState);
 
         // If the solution has been met, fire the callback.
-        if (checkBits.percentCorrect == 100) {
+        if (checkBits.percentCorrect == 100 && this._timeoutTimerId) {
           this._killTimer();
           this.props.onPlayOver(checkBits)
         }

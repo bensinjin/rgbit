@@ -1,6 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 import gc from './config/game-config';
-import { Level1, Level2, Level3, Level4, Level5 } from './components/screens/LevelsBeginner';
+import { Level1, Level2, Level3, Level4, Level5 } from './components/screens/TheReds1';
 import store from 'react-native-simple-store';
 
 // Level related
@@ -15,10 +15,10 @@ export function calculateLevelSeconds(boardState, divisor) {
           taps += 1;
           break;
         case 'G':
-          taps += 2;
+          taps += 1.1;
           break;
         case 'B':
-          taps += 3;
+          taps += 1.2;
           break;
       }
     }

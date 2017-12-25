@@ -23,7 +23,8 @@ export class Level1 extends Component {
         solutionBoardState={Level1.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level1Intro'}
-        levelOverRoute={'BeginnerLevelSelect'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
         levelID={Level1.id}/>
     );
   }
@@ -49,7 +50,8 @@ export class Level2 extends Component {
         solutionBoardState={Level2.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level2Intro'}
-        levelOverRoute={'BeginnerLevelSelect'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
         levelID={Level2.id}/>
     );
   }
@@ -75,7 +77,8 @@ export class Level3 extends Component {
         solutionBoardState={Level3.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level3Intro'}
-        levelOverRoute={'BeginnerLevelSelect'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
         levelID={Level3.id}/>
     );
   }
@@ -101,7 +104,8 @@ export class Level4 extends Component {
         solutionBoardState={Level4.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level4Intro'}
-        levelOverRoute={'BeginnerLevelSelect'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
         levelID={Level4.id}/>
     );
   }
@@ -127,7 +131,35 @@ export class Level5 extends Component {
         solutionBoardState={Level5.solutionBoardState}
         navigation={this.props.navigation}
         introRoute={'Level5Intro'}
-        levelOverRoute={'BeginnerLevelSelect'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
+        levelID={Level5.id}/>
+    );
+  }
+}
+
+export class Level6 extends Component {
+  static id = 6;
+  static solutionBoardState = [
+    ['B', 'R', 'G', 'R', 'B'],
+    ['W', 'B', 'R', 'B', 'W'],
+    ['W', 'W', 'B', 'W', 'W'],
+    ['W', 'W', 'R', 'W', 'W'],
+    ['W', 'W', 'G', 'W', 'W'],
+    ['W', 'G', 'B', 'G', 'W'],
+    ['G', 'B', 'R', 'B', 'G']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={calculateLevelSeconds(Level6.solutionBoardState, gc.intermediateLevelDivisor)}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level6.solutionBoardState}
+        navigation={this.props.navigation}
+        introRoute={'Level6Intro'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
         levelID={Level5.id}/>
     );
   }

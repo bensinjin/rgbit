@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LevelIntro from '../game/LevelIntro';
-import { Level1, Level2, Level3, Level4, Level5 } from './LevelsBeginner';
+import { Level1, Level2, Level3, Level4, Level5 } from './TheReds1';
 import gc from '../../config/game-config';
 import {resetNavigation} from '../../utils'
 

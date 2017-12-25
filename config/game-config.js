@@ -16,7 +16,7 @@ export default {
   restartGame: 'Restart',
   levelSelect:  'Menu',
   // Levels
-  beginnerLevelSelectTitle: 'Beginner',
+  theReds1title: 'The Reds 1.0',
   level1Title: 'The Thin Red Line',
   level2Title: 'Red Green Blue',
   level3Title: 'The Scepter',
@@ -24,7 +24,8 @@ export default {
   level5Title: 'Lynsey\'s Trap',
   levelInstructions: 'Remember the pattern!',
   beginnerLevelDivisor: 2.0,
-  intermediateLevelDivisor: 2.0,
+  intermediateLevelDivisor: 2.5,
+  expertLevelDivisor: 3.0,
   // TODO styles should be moved to their own file.
   // Css colors
   blue: '#02BCD4',
@@ -58,14 +59,14 @@ export default {
   },
   wrapperHUD: {
     alignItems: 'center',
-    marginTop: '15%',
-    marginBottom: '5%',
+    marginTop: '11%',
+    marginBottom: '2.5%',
     justifyContent: 'center'
   },
   wrapperBitHUD: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5
+    marginBottom: '10%'
   },
   wrapperTimer:  {
     marginTop: 10

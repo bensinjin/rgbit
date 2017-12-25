@@ -1,8 +1,21 @@
 import { StackNavigator } from 'react-navigation';
 import Home from '../components/screens/Home';
-import BeginnerLevelSelect from '../components/screens/BeginnerLevelSelect';
-import { Level1Intro, Level2Intro, Level3Intro, Level4Intro, Level5Intro } from '../components/screens/LevelIntros';
-import { Level1, Level2, Level3, Level4, Level5 } from '../components/screens/LevelsBeginner';
+import TheReds1 from '../components/screens/TheReds1';
+import TheReds1LevelSelect from '../components/screens/TheReds1LevelSelect';
+import {
+   Level1,
+   Level2,
+   Level3,
+   Level4,
+   Level5
+  } from '../components/screens/TheReds1';
+import {
+   Level1Intro,
+   Level2Intro,
+   Level3Intro,
+   Level4Intro,
+   Level5Intro
+  } from '../components/screens/TheReds1LevelIntros';
 import gc from './game-config';
 
 const Routes = StackNavigator({
@@ -12,11 +25,8 @@ const Routes = StackNavigator({
       headerLeft: null
     }
   },
-  BeginnerLevelSelect: {
-    screen: BeginnerLevelSelect,
-    navigationOptions: {
-      headerLeft: null
-    }
+  TheReds1LevelSelect: {
+    screen: TheReds1LevelSelect
   },
   Level1Intro: {
     screen: Level1Intro,
