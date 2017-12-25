@@ -23,8 +23,8 @@ export default {
   level4Title: 'The Test',
   level5Title: 'Lynsey\'s Trap',
   levelInstructions: 'Remember the pattern!',
-  beginnerLevelDivisor: 2.75,
-  intermediateLevelDivisor: 2.5,
+  beginnerLevelDivisor: 2.0,
+  intermediateLevelDivisor: 2.0,
   // TODO styles should be moved to their own file.
   // Css colors
   blue: '#02BCD4',
@@ -65,10 +65,10 @@ export default {
   wrapperBitHUD: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5,
+    padding: 5
   },
   wrapperTimer:  {
-    marginTop: 5
+    marginTop: 10
   },
   wrapperTimerTime:  {
     alignItems: 'center',

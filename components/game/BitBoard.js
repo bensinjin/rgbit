@@ -26,7 +26,7 @@ export default class BitBoard extends Component {
   }
 
   _getColorButtonStyle(colorState) {
-    let activeBorderColor = gc.greyDark,
+    let activeBorderColor = gc.grey,
         activeBorderWidth = 5;
 
     return this.state.boardColorState == colorState ?
