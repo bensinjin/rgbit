@@ -205,12 +205,6 @@ export default class BitBoard extends Component {
             <Grid style={gc.wrapperBitHUD}>
               <Col>
                 <Button
-                  backgroundColor={gc.white}
-                  buttonStyle={this._getColorButtonStyle(gc.colorStateWhite)}
-                  onPress={() => {this._updateBoardColorState(gc.colorStateWhite);}} />
-              </Col>
-              <Col>
-                <Button
                   backgroundColor={gc.red}
                   buttonStyle={this._getColorButtonStyle(gc.colorStateRed)}
                   onPress={() => {this._updateBoardColorState(gc.colorStateRed);}} />
@@ -226,6 +220,12 @@ export default class BitBoard extends Component {
                   backgroundColor={gc.blue}
                   buttonStyle={this._getColorButtonStyle(gc.colorStateBlue)}
                   onPress={() => {this._updateBoardColorState(gc.colorStateBlue);}} />
+              </Col>
+              <Col>
+                <Button
+                  backgroundColor={gc.white}
+                  buttonStyle={this._getColorButtonStyle(gc.colorStateWhite)}
+                  onPress={() => {this._updateBoardColorState(gc.colorStateWhite);}} />
               </Col>
             </Grid>
         </View>

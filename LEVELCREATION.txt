@@ -1,2 +1,5 @@
-1) Create a level in Levels<some-identifier>.js
-2) 
+1) Create a level in TheReds1.js or whatever "world" your building for. Ensure the levelID is correct.
+2) Open routes.js add an intro route and a level route.
+3) Open <your-world>LevelIntros.js, add an entry for your intro.
+4) Open <your-world>LevelSelect.js, add an entry for your level button.
+5) Add your level title to game-config.js

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Level from '../game/Level';
 import gc from '../../config/game-config';
-import { initialBoardState, onLevelOver, onLevelRestart, onLevelSelect, calculateLevelSeconds } from '../../utils.js';
+import { initialBoardState, calculateLevelSeconds } from '../../utils.js';
 
 export class Level1 extends Component {
   static id = 1;
@@ -141,13 +141,13 @@ export class Level5 extends Component {
 export class Level6 extends Component {
   static id = 6;
   static solutionBoardState = [
-    ['B', 'R', 'G', 'R', 'B'],
-    ['W', 'B', 'R', 'B', 'W'],
-    ['W', 'W', 'B', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'G', 'W', 'W'],
-    ['W', 'G', 'B', 'G', 'W'],
-    ['G', 'B', 'R', 'B', 'G']
+    ['B', 'W', 'R', 'W', 'G'],
+    ['W', 'R', 'W', 'B', 'W'],
+    ['B', 'W', 'R', 'W', 'G'],
+    ['W', 'B', 'W', 'G', 'W'],
+    ['B', 'W', 'R', 'W', 'G'],
+    ['W', 'G', 'W', 'R', 'W'],
+    ['B', 'W', 'R', 'W', 'G']
   ];
 
   render() {
@@ -160,7 +160,7 @@ export class Level6 extends Component {
         introRoute={'Level6Intro'}
         levelSelectRoute={'TheReds1LevelSelect'}
         levelOverRoute={'TheReds1LevelSelect'}
-        levelID={Level5.id}/>
+        levelID={Level6.id}/>
     );
   }
 }

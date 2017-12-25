@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
-import {Level1, Level2, Level3, Level4} from './TheReds1';
 import gc from '../../config/game-config';
-import { getScoreData, deleteScoreData } from '../../utils';
+import { getScoreData } from '../../utils';
 import Banner from '../misc/Banner';
-import store from 'react-native-simple-store';
 import {resetNavigation} from '../../utils'
 
 export default class TheReds1LevelSelect extends Component {
@@ -32,6 +30,18 @@ export default class TheReds1LevelSelect extends Component {
     this._onBannerPress = this._onBannerPress.bind(this);
   }
 
+  _getBgColor(scoreProp) {
+    return this.state[scoreProp] && this.state[scoreProp].percentCorrect >= 100 ? gc.red : gc.greyDark;
+  }
+
+  _getTitle(scoreProp, title) {
+    return this.state[scoreProp] ? title + ' - ' + this.state[scoreProp].percentCorrect + '% complete' : title;
+  }
+
+  _onPress(route) {
+    resetNavigation(route, this.props.navigation);
+  }
+
   _onBannerPress() {
     this.props.navigation.navigate('Home');
   }
@@ -52,42 +62,50 @@ export default class TheReds1LevelSelect extends Component {
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
-            backgroundColor={this.state.level1Score && this.state.level1Score.percentCorrect >= 100 ? gc.red : gc.greyDark}
+            backgroundColor={this._getBgColor('level1Score')}
             color={gc.white}
-            onPress={() => resetNavigation('Level1Intro', this.props.navigation)}
-            title={this.state.level1Score ? gc.level1Title + ' - ' + this.state.level1Score.percentCorrect + '% complete': gc.level1Title}
+            onPress={() => {this._onPress('Level1Intro')}}
+            title={this._getTitle('level1Score', gc.level1Title)}
           />
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
-            backgroundColor={this.state.level2Score && this.state.level2Score.percentCorrect >= 100 ? gc.green : gc.greyDark}
+            backgroundColor={this._getBgColor('level2Score')}
             color={gc.white}
-            onPress={() => resetNavigation('Level2Intro', this.props.navigation)}
-            title={this.state.level2Score ? gc.level2Title + ' - ' + this.state.level2Score.percentCorrect + '% complete': gc.level2Title}
+            onPress={() => {this._onPress('Level2Intro')}}
+            title={this._getTitle('level2Score', gc.level2Title)}
           />
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
-            backgroundColor={this.state.level3Score && this.state.level3Score.percentCorrect >= 100 ? gc.blue : gc.greyDark}
+            backgroundColor={this._getBgColor('level3Score')}
             color={gc.white}
-            onPress={() => resetNavigation('Level3Intro', this.props.navigation)}
-            title={this.state.level3Score ? gc.level3Title + ' - ' + this.state.level3Score.percentCorrect + '% complete': gc.level3Title}
+            onPress={() => {this._onPress('Level3Intro')}}
+            title={this._getTitle('level3Score', gc.level3Title)}
           />
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
-            backgroundColor={this.state.level4Score && this.state.level4Score.percentCorrect >= 100 ? gc.red : gc.greyDark}
+            backgroundColor={this._getBgColor('level4Score')}
             color={gc.white}
-            onPress={() => resetNavigation('Level4Intro', this.props.navigation)}
-            title={this.state.level4Score ? gc.level4Title + ' - ' + this.state.level4Score.percentCorrect + '% complete': gc.level4Title}
+            onPress={() => {this._onPress('Level4Intro')}}
+            title={this._getTitle('level4Score', gc.level4Title)}
           />
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
-            backgroundColor={this.state.level5Score && this.state.level5Score.percentCorrect >= 100 ? gc.green : gc.greyDark}
+            backgroundColor={this._getBgColor('level5Score')}
             color={gc.white}
-            onPress={() => resetNavigation('Level5Intro', this.props.navigation)}
-            title={this.state.level5Score ? gc.level5Title + ' - ' + this.state.level5Score.percentCorrect + '% complete': gc.level5Title}
+            onPress={() => {this._onPress('Level5Intro')}}
+            title={this._getTitle('level5Score', gc.level5Title)}
+          />
+          <Button
+            buttonStyle={gc.button}
+            fontWeight={'bold'}
+            backgroundColor={this._getBgColor('level6Score')}
+            color={gc.white}
+            onPress={() => {this._onPress('Level6Intro')}}
+            title={this._getTitle('level6Score', gc.level6Title)}
           />
         </View>
       </View>
