@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import store from 'react-native-simple-store';
 import BitBoard from '../game/BitBoard';
-import Timer from '../game/Timer';
 import gc from '../../config/game-config';
 import {getKey} from '../../utils.js';
 
@@ -63,9 +62,6 @@ export default class Level extends Component {
           onLevelRestart={() => {this._onLevelRestart();}}
           levelID={this.props.levelID}
           />
-        <View style={[gc.centered, gc.wrapperTimer]}>
-          <Timer timeLeftSeconds={this.props.levelTimeSeconds} />
-        </View>
       </View>
     );
   }

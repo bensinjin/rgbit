@@ -7,16 +7,31 @@ import { Button } from 'react-native-elements'
 import TimerMixin from 'react-timer-mixin';
 import gc from '../../config/game-config';
 import Bit from './Bit';
+import Timer from './Timer';
 
 export default class BitBoard extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      currentBoardState: this.props.initialBoardState
+      currentBoardState: this.props.initialBoardState,
+      boardColorState: gc.colorStateRed
     };
     this.updateBoardState = this.updateBoardState.bind(this);
     this._solutionData = this.props.playable ? this._getSolutionData(this.props.solutionBoardState) : [];
+  }
+
+  _getColorButtonValue() {
+    return this._activeColorButtonValue;
+  }
+
+  _getColorButtonStyle(colorState) {
+    let activeBorderColor = gc.greyDark,
+        activeBorderWidth = 5;
+
+    return this.state.boardColorState == colorState ?
+      [{borderWidth: activeBorderWidth , borderColor: activeBorderColor}, gc.colorButton] :
+      gc.colorButton;
   }
 
   _getSolutionData(solutionBoardState) {
@@ -85,7 +100,8 @@ export default class BitBoard extends Component {
                 colorState={colorState}
                 rowIndex={rowIndex}
                 colIndex={colIndex}
-                updateBoardState={this.updateBoardState} />
+                updateBoardState={this.updateBoardState}
+                boardColorState={this.state.boardColorState} />
             );
           } else {
             bits.push(<Bit colorState={colorState}/>);
@@ -101,6 +117,14 @@ export default class BitBoard extends Component {
     if (this._timeoutTimerId) {
       TimerMixin.clearTimeout(this._timeoutTimerId);
     }
+  }
+
+  _updateBoardColorState(colorState) {
+    this.setState(previousState => {
+      return {
+        boardColorState: colorState
+      }
+    });
   }
 
   updateBoardState(rowIndex, colIndex, colorChar) {
@@ -149,7 +173,7 @@ export default class BitBoard extends Component {
       return (
         <View>
           <Grid style={gc.wrapperHUD}>
-            <Col>
+            <Col size={2}>
               <Button
                 backgroundColor={gc.red}
                 buttonStyle={gc.button}
@@ -157,7 +181,10 @@ export default class BitBoard extends Component {
                 onPress={() => {this._killTimer(); this.props.onLevelSelect();}}
                 title={gc.levelSelect} />
             </Col>
-            <Col>
+            <Col size={1}>
+              <Timer timeLeftSeconds={this.props.playSeconds} />
+            </Col>
+            <Col size={2}>
               <Button
                 backgroundColor={gc.green}
                 buttonStyle={gc.button}
@@ -174,6 +201,32 @@ export default class BitBoard extends Component {
               renderItem={(item) => {return (item);}}
             />
           </View>
+            <Grid style={gc.wrapperBitHUD}>
+              <Col>
+                <Button
+                  backgroundColor={gc.white}
+                  buttonStyle={this._getColorButtonStyle(gc.colorStateWhite)}
+                  onPress={() => {this._updateBoardColorState(gc.colorStateWhite);}} />
+              </Col>
+              <Col>
+                <Button
+                  backgroundColor={gc.red}
+                  buttonStyle={this._getColorButtonStyle(gc.colorStateRed)}
+                  onPress={() => {this._updateBoardColorState(gc.colorStateRed);}} />
+              </Col>
+              <Col>
+                <Button
+                  backgroundColor={gc.green}
+                  buttonStyle={this._getColorButtonStyle(gc.colorStateGreen)}
+                  onPress={() => {this._updateBoardColorState(gc.colorStateGreen);}} />
+              </Col>
+              <Col>
+                <Button
+                  backgroundColor={gc.blue}
+                  buttonStyle={this._getColorButtonStyle(gc.colorStateBlue)}
+                  onPress={() => {this._updateBoardColorState(gc.colorStateBlue);}} />
+              </Col>
+            </Grid>
         </View>
         );
     } else {

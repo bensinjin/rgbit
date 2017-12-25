@@ -14,7 +14,7 @@ export default {
   colorStateWhite: 'white',
   levelStartBtn: 'Begin',
   restartGame: 'Restart',
-  levelSelect:  'Level Select',
+  levelSelect:  'Menu',
   // Levels
   beginnerLevelSelectTitle: 'Beginner',
   level1Title: 'The Thin Red Line',
@@ -42,18 +42,30 @@ export default {
   button: {
     height: 30,
     borderRadius: 5,
-    margin: 5,
+    margin: 5
   },
-  wrapper: {
+  colorButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    margin: 5
+  },
+ wrapper: {
     margin: 5
   },
   wrapperLevel: {
     marginBottom: 10
   },
   wrapperHUD: {
-    marginTop: '5%',
-    marginBottom: 10,
-    padding: 5
+    alignItems: 'center',
+    marginTop: '15%',
+    marginBottom: '5%',
+    justifyContent: 'center'
+  },
+  wrapperBitHUD: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
   },
   wrapperTimer:  {
     marginTop: 5

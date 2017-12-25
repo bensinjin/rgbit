@@ -14,33 +14,17 @@ export default class Bit extends Component {
   }
 
   _onPress() {
-    if (this.props.updateBoardState) {
+    if (this.props.updateBoardState && this.props.boardColorState) {
       this.setState(previousState => {
-        let nextColorState = this._nextColorState(previousState.colorState);
-
         this.props.updateBoardState(
           this.props.rowIndex,
           this.props.colIndex,
-          this._colorStateToCharacter(nextColorState)
+          this._colorStateToCharacter(this.props.boardColorState)
         );
-
         return {
-          colorState: nextColorState
+          colorState: this.props.boardColorState
         };
       });
-    }
-  }
-
-  _nextColorState(colorState) {
-    switch (colorState) {
-      case gc.colorStateRed:
-        return gc.colorStateGreen;
-      case gc.colorStateGreen:
-        return gc.colorStateBlue;
-      case gc.colorStateBlue:
-        return gc.colorStateWhite;
-      case gc.colorStateWhite:
-        return gc.colorStateRed;
     }
   }
 
@@ -86,5 +70,6 @@ export default class Bit extends Component {
 Bit.propTypes = {
   rowIndex: PropTypes.string,
   colIndex: PropTypes.string,
-  updateBoardState: PropTypes.func
+  updateBoardState: PropTypes.func,
+  boardColorState: PropTypes.string
 };
