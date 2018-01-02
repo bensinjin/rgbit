@@ -8,7 +8,6 @@ import {getKey} from '../../utils.js';
 
 
 export default class Level extends Component {
-  // TODO fix the hardcoded values in this component.
 
   _onLevelOver(scoreData) {
     let key = getKey(scoreData.levelID);

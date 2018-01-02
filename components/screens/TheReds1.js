@@ -6,13 +6,13 @@ import { initialBoardState, calculateLevelSeconds } from '../../utils.js';
 export class Level1 extends Component {
   static id = 1;
   static solutionBoardState = [
-    ['W', 'W', 'W', 'B', 'R'],
-    ['W', 'W', 'B', 'R', 'R'],
-    ['W', 'B', 'R', 'R', 'R'],
-    ['B', 'R', 'R', 'R', 'B'],
-    ['R', 'R', 'R', 'B', 'W'],
-    ['R', 'R', 'B', 'W', 'W'],
-    ['R', 'B', 'W', 'W', 'W']
+    ['W', 'W', 'W', 'G', 'G'],
+    ['W', 'R', 'G', 'R', 'W'],
+    ['R', 'R', 'R', 'R', 'R'],
+    ['R', 'R', 'R', 'R', 'R'],
+    ['R', 'R', 'R', 'R', 'R'],
+    ['R', 'R', 'R', 'R', 'R'],
+    ['W', 'R', 'R', 'R', 'W']
   ];
 
   render() {
@@ -33,13 +33,13 @@ export class Level1 extends Component {
 export class Level2 extends Component {
   static id = 2;
   static solutionBoardState = [
-    ['R', 'R', 'G', 'B', 'B'],
-    ['G', 'R', 'G', 'B', 'G'],
-    ['G', 'R', 'G', 'B', 'G'],
-    ['R', 'R', 'G', 'B', 'B'],
-    ['G', 'R', 'G', 'B', 'G'],
-    ['G', 'R', 'G', 'B', 'G'],
-    ['R', 'R', 'G', 'B', 'B']
+    ['R', 'R', 'W', 'B', 'B'],
+    ['R', 'W', 'B', 'B', 'W'],
+    ['W', 'B', 'B', 'W', 'R'],
+    ['B', 'B', 'W', 'R', 'R'],
+    ['B', 'W', 'R', 'R', 'W'],
+    ['W', 'R', 'R', 'W', 'B'],
+    ['R', 'R', 'W', 'B', 'B']
   ];
 
   render() {
@@ -60,13 +60,13 @@ export class Level2 extends Component {
 export class Level3 extends Component {
   static id = 3;
   static solutionBoardState = [
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'R', 'B', 'R', 'W'],
-    ['R', 'B', 'G', 'B', 'R'],
-    ['W', 'R', 'B', 'R', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'G', 'R', 'G', 'W'],
-    ['G', 'G', 'G', 'G', 'G']
+    ['W', 'W', 'W', 'W', 'W'],
+    ['B', 'R', 'R', 'R', 'B'],
+    ['B', 'R', 'R', 'R', 'B'],
+    ['B', 'R', 'R', 'R', 'B'],
+    ['B', 'B', 'R', 'B', 'B'],
+    ['W', 'B', 'B', 'B', 'W'],
+    ['W', 'W', 'B', 'W', 'W']
   ];
 
   render() {
