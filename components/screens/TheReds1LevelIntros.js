@@ -69,3 +69,14 @@ export class Level6Intro extends Component {
     );
   }
 }
+
+export class Level7Intro extends Component {
+  render() {
+    return (
+      <LevelIntro
+        solutionBoardState={TR1.Level7.solutionBoardState}
+        startLevel={() => {resetNavigation('Level7', this.props.navigation)}}
+      />
+    );
+  }
+}

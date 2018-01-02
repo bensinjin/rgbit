@@ -64,9 +64,9 @@ export class Level3 extends Component {
     ['B', 'R', 'R', 'R', 'B'],
     ['B', 'R', 'R', 'R', 'B'],
     ['B', 'R', 'R', 'R', 'B'],
-    ['B', 'B', 'R', 'B', 'B'],
-    ['W', 'B', 'B', 'B', 'W'],
-    ['W', 'W', 'B', 'W', 'W']
+    ['W', 'B', 'R', 'B', 'W'],
+    ['W', 'W', 'B', 'W', 'W'],
+    ['W', 'B', 'B', 'B', 'W']
   ];
 
   render() {
@@ -87,13 +87,13 @@ export class Level3 extends Component {
 export class Level4 extends Component {
   static id = 4;
   static solutionBoardState = [
-    ['B', 'W', 'B', 'W', 'B'],
-    ['B', 'B', 'B', 'B', 'B'],
-    ['R', 'B', 'R', 'B', 'R'],
-    ['R', 'R', 'R', 'R', 'R'],
-    ['G', 'R', 'G', 'R', 'G'],
-    ['G', 'G', 'G', 'G', 'G'],
-    ['W', 'G', 'W', 'G', 'W']
+    ['R', 'R', 'R', 'W', 'W'],
+    ['R', 'R', 'R', 'W', 'W'],
+    ['R', 'R', 'G', 'W', 'W'],
+    ['W', 'W', 'W', 'G', 'W'],
+    ['G', 'W', 'G', 'W', 'W'],
+    ['W', 'G', 'G', 'G', 'W'],
+    ['G', 'W', 'W', 'W', 'W']
   ];
 
   render() {
@@ -114,19 +114,19 @@ export class Level4 extends Component {
 export class Level5 extends Component {
   static id = 5;
   static solutionBoardState = [
-    ['B', 'R', 'G', 'R', 'B'],
-    ['W', 'B', 'R', 'B', 'W'],
-    ['W', 'W', 'B', 'W', 'W'],
-    ['W', 'W', 'R', 'W', 'W'],
-    ['W', 'W', 'G', 'W', 'W'],
-    ['W', 'G', 'B', 'G', 'W'],
-    ['G', 'B', 'R', 'B', 'G']
+    ['W', 'W', 'W', 'W', 'W'],
+    ['W', 'B', 'B', 'B', 'W'],
+    ['B', 'G', 'G', 'G', 'B'],
+    ['B', 'G', 'R', 'G', 'B'],
+    ['B', 'G', 'G', 'G', 'B'],
+    ['W', 'B', 'B', 'B', 'W'],
+    ['W', 'W', 'W', 'W', 'W']
   ];
 
   render() {
     return (
       <Level
-        levelTimeSeconds={calculateLevelSeconds(Level5.solutionBoardState, gc.intermediateLevelDivisor)}
+        levelTimeSeconds={calculateLevelSeconds(Level5.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level5.solutionBoardState}
         navigation={this.props.navigation}
@@ -141,19 +141,19 @@ export class Level5 extends Component {
 export class Level6 extends Component {
   static id = 6;
   static solutionBoardState = [
-    ['B', 'W', 'R', 'W', 'G'],
-    ['W', 'R', 'W', 'B', 'W'],
-    ['B', 'W', 'R', 'W', 'G'],
-    ['W', 'B', 'W', 'G', 'W'],
-    ['B', 'W', 'R', 'W', 'G'],
-    ['W', 'G', 'W', 'R', 'W'],
-    ['B', 'W', 'R', 'W', 'G']
+    ['W', 'W', 'R', 'W', 'W'],
+    ['B', 'R', 'R', 'R', 'G'],
+    ['B', 'B', 'R', 'G', 'G'],
+    ['B', 'B', 'R', 'G', 'G'],
+    ['G', 'B', 'R', 'G', 'B'],
+    ['G', 'G', 'R', 'B', 'B'],
+    ['G', 'G', 'R', 'B', 'B']
   ];
 
   render() {
     return (
       <Level
-        levelTimeSeconds={calculateLevelSeconds(Level6.solutionBoardState, gc.intermediateLevelDivisor)}
+        levelTimeSeconds={calculateLevelSeconds(Level6.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level6.solutionBoardState}
         navigation={this.props.navigation}
@@ -161,6 +161,33 @@ export class Level6 extends Component {
         levelSelectRoute={'TheReds1LevelSelect'}
         levelOverRoute={'TheReds1LevelSelect'}
         levelID={Level6.id}/>
+    );
+  }
+}
+
+export class Level7 extends Component {
+  static id = 7;
+  static solutionBoardState = [
+    ['B', 'R', 'B', 'B', 'R'],
+    ['R', 'B', 'R', 'R', 'B'],
+    ['B', 'R', 'B', 'B', 'R'],
+    ['B', 'B', 'B', 'B', 'R'],
+    ['B', 'R', 'R', 'R', 'R'],
+    ['B', 'R', 'R', 'R', 'R'],
+    ['R', 'B', 'R', 'B', 'R']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={calculateLevelSeconds(Level7.solutionBoardState, gc.beginnerLevelDivisor)}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level7.solutionBoardState}
+        navigation={this.props.navigation}
+        introRoute={'Level7Intro'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
+        levelID={Level7.id}/>
     );
   }
 }

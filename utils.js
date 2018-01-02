@@ -5,26 +5,30 @@ import store from 'react-native-simple-store';
 
 // Level related
 
+/**
+ * The logic to determine how many seconds are allotted to complete a level.
+ * We're interested in three things:
+ *  1. How many colored squares are in the puzzle?
+ *  3. How difficult should this puzzle be? (Some divisor to the sum of the previous two questions).
+ *
+ * @param {*} boardState
+ * @param {*} divisor
+ */
 export function calculateLevelSeconds(boardState, divisor) {
-  let taps = 0;
+  let time = 0;
 
   for (rowIndex in boardState) {
     for (colIndex in boardState[rowIndex]) {
-      switch (boardState[rowIndex][colIndex]) {
-        case 'R':
-          taps += 1;
-          break;
-        case 'G':
-          taps += 1.1;
-          break;
-        case 'B':
-          taps += 1.2;
-          break;
+      currentColor = boardState[rowIndex][colIndex];
+      // We are only interested in none white squares.
+      if (currentColor != 'W') {
+        // Accomodate for a tap.
+        time += 1;
       }
     }
   }
 
-  return Math.round(taps / divisor);
+  return time == 0 ? time : Math.round(time / divisor);
 }
 
 export function initialBoardState() {
@@ -52,7 +56,8 @@ export function getScoreData() {
         getKey(TR1.Level3.id),
         getKey(TR1.Level4.id),
         getKey(TR1.Level5.id),
-        getKey(TR1.Level6.id)
+        getKey(TR1.Level6.id),
+        getKey(TR1.Level7.id),
       ],
       data = {};
 
@@ -70,7 +75,8 @@ export function deleteScoreData() {
         getKey(TR1.Level3.id),
         getKey(TR1.Level4.id),
         getKey(TR1.Level5.id),
-        getKey(TR1.Level6.id)
+        getKey(TR1.Level6.id),
+        getKey(TR1.Level7.id)
       ],
       data = {};
 

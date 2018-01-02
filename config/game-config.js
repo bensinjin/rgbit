@@ -1,9 +1,3 @@
-// This file is for configuration.
-// Configuration should ONLY exist here if it's:
-//
-// 1) Reusable
-// 2) Required across more than one file
-// 3) A public facing string
 export default {
   // Shared config
   // Strings
@@ -16,15 +10,16 @@ export default {
   restartGame: 'Restart',
   levelSelect:  'Menu',
   // Levels
-  theReds1title: 'The Reds 1.0',
+  theReds1title: 'The Reds 1',
   level1Title: 'The Apple',
   level2Title: 'Barber Shop',
   level3Title: 'Red Red Wine',
   level4Title: 'Roses are Red',
-  level5Title: 'TODO',
-  level6Title: 'TODO',
+  level5Title: 'Bull\'s Eye',
+  level6Title: 'Dagger',
+  level7Title: 'Blood In The Water',
   levelInstructions: 'Remember the pattern!',
-  beginnerLevelDivisor: 2.0,
+  beginnerLevelDivisor: 1.5,
   intermediateLevelDivisor: 2.5,
   expertLevelDivisor: 3.0,
   // TODO styles should be moved to their own file.
