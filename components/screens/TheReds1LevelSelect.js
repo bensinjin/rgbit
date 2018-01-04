@@ -115,6 +115,30 @@ export default class TheReds1LevelSelect extends Component {
             onPress={() => {this._onPress('Level7Intro')}}
             title={this._getTitle('level7Score', gc.level7Title)}
           />
+          <Button
+            buttonStyle={gc.button}
+            fontWeight={'bold'}
+            backgroundColor={this._getBgColor('level8Score')}
+            color={gc.white}
+            onPress={() => {this._onPress('Level8Intro')}}
+            title={this._getTitle('level8Score', gc.level8Title)}
+          />
+          <Button
+            buttonStyle={gc.button}
+            fontWeight={'bold'}
+            backgroundColor={this._getBgColor('level9Score')}
+            color={gc.white}
+            onPress={() => {this._onPress('Level9Intro')}}
+            title={this._getTitle('level9Score', gc.level9Title)}
+          />
+          <Button
+            buttonStyle={gc.button}
+            fontWeight={'bold'}
+            backgroundColor={this._getBgColor('level10Score')}
+            color={gc.white}
+            onPress={() => {this._onPress('Level10Intro')}}
+            title={this._getTitle('level10Score', gc.level10Title)}
+          />
         </View>
       </View>
     );

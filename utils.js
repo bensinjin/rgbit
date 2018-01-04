@@ -14,29 +14,43 @@ import store from 'react-native-simple-store';
  * @param {*} boardState
  * @param {*} divisor
  */
-export function calculateLevelSeconds(boardState, divisor) {
+export function calculateLevelSeconds(solutionBoardState, divisor, initialBoardState = null) {
   let time = 0;
-
-  for (rowIndex in boardState) {
-    for (colIndex in boardState[rowIndex]) {
-      currentColor = boardState[rowIndex][colIndex];
-      // We are only interested in none white squares.
-      if (currentColor != 'W') {
-        // Accomodate for a tap.
-        time += 1;
+  let getColoredSquareCount = function (boardState) {
+    let count = 0;
+    for (rowIndex in boardState) {
+      for (colIndex in boardState[rowIndex]) {
+        currentColor = boardState[rowIndex][colIndex];
+        // We are only interested in none white squares.
+        if (currentColor != 'W') {
+          // Accomodate for a tap.
+          count += 1;
+        }
       }
     }
+
+    return count;
+  };
+
+  if (solutionBoardState) {
+    time += getColoredSquareCount(solutionBoardState);
   }
+
+  // TODO add real support for initial board states other than white.
+  //if (initialBoardState) {
+  //  time += getColoredSquareCount(initialBoardState);
+  //}
 
   return time == 0 ? time : Math.round(time / divisor);
 }
 
-export function initialBoardState() {
+export function initialBoardState(colorCharacter = 'W') {
   let initialBS = [];
+
   for (let x = 0; x < gc.BitBoard.numRows; x++) {
     let row = [];
     for (y = 0; y < gc.BitBoard.numCols; y++) {
-      row.push('W');
+      row.push(colorCharacter);
     }
     initialBS.push(row);
   }
@@ -58,6 +72,9 @@ export function getScoreData() {
         getKey(TR1.Level5.id),
         getKey(TR1.Level6.id),
         getKey(TR1.Level7.id),
+        getKey(TR1.Level8.id),
+        getKey(TR1.Level9.id),
+        getKey(TR1.Level10.id),
       ],
       data = {};
 
@@ -76,7 +93,10 @@ export function deleteScoreData() {
         getKey(TR1.Level4.id),
         getKey(TR1.Level5.id),
         getKey(TR1.Level6.id),
-        getKey(TR1.Level7.id)
+        getKey(TR1.Level7.id),
+        getKey(TR1.Level8.id),
+        getKey(TR1.Level9.id),
+        getKey(TR1.Level10.id),
       ],
       data = {};
 

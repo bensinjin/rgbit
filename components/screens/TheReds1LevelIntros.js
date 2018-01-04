@@ -80,3 +80,36 @@ export class Level7Intro extends Component {
     );
   }
 }
+
+export class Level8Intro extends Component {
+  render() {
+    return (
+      <LevelIntro
+        solutionBoardState={TR1.Level8.solutionBoardState}
+        startLevel={() => {resetNavigation('Level8', this.props.navigation)}}
+      />
+    );
+  }
+}
+
+export class Level9Intro extends Component {
+  render() {
+    return (
+      <LevelIntro
+        solutionBoardState={TR1.Level9.solutionBoardState}
+        startLevel={() => {resetNavigation('Level9', this.props.navigation)}}
+      />
+    );
+  }
+}
+
+export class Level10Intro extends Component {
+  render() {
+    return (
+      <LevelIntro
+        solutionBoardState={TR1.Level10.solutionBoardState}
+        startLevel={() => {resetNavigation('Level10', this.props.navigation)}}
+      />
+    );
+  }
+}

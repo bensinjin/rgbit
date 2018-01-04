@@ -99,6 +99,42 @@ const Routes = StackNavigator({
     navigationOptions: {
       headerLeft: null
     }
+  },
+  Level8Intro: {
+    screen: TR1I.Level8Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
+  Level8: {
+    screen: TR1.Level8,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
+  Level9Intro: {
+    screen: TR1I.Level9Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
+  Level9: {
+    screen: TR1.Level9,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
+  Level10Intro: {
+    screen: TR1I.Level10Intro,
+    navigationOptions: {
+      headerLeft: null
+    }
+  },
+  Level10: {
+    screen: TR1.Level10,
+    navigationOptions: {
+      headerLeft: null
+    }
   }
 });
 

@@ -191,3 +191,84 @@ export class Level7 extends Component {
     );
   }
 }
+
+export class Level8 extends Component {
+  static id = 8;
+  static solutionBoardState = [
+    ['B', 'B', 'R', 'B', 'B'],
+    ['R', 'B', 'R', 'B', 'R'],
+    ['B', 'R', 'B', 'R', 'B'],
+    ['R', 'B', 'R', 'B', 'R'],
+    ['B', 'R', 'R', 'R', 'B'],
+    ['B', 'B', 'R', 'B', 'B'],
+    ['B', 'G', 'G', 'G', 'B']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={calculateLevelSeconds(Level8.solutionBoardState, gc.beginnerLevelDivisor)}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level8.solutionBoardState}
+        navigation={this.props.navigation}
+        introRoute={'Level8Intro'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
+        levelID={Level8.id}/>
+    );
+  }
+}
+
+export class Level9 extends Component {
+  static id = 9;
+  static solutionBoardState = [
+    ['B', 'B', 'B', 'R', 'R'],
+    ['R', 'R', 'B', 'R', 'R'],
+    ['R', 'R', 'B', 'G', 'B'],
+    ['G', 'B', 'R', 'R', 'G'],
+    ['B', 'G', 'R', 'R', 'G'],
+    ['B', 'G', 'B', 'G', 'B'],
+    ['G', 'B', 'B', 'B', 'G']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={calculateLevelSeconds(Level9.solutionBoardState, gc.beginnerLevelDivisor)}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level9.solutionBoardState}
+        navigation={this.props.navigation}
+        introRoute={'Level9Intro'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
+        levelID={Level9.id}/>
+    );
+  }
+}
+
+export class Level10 extends Component {
+  static id = 10;
+  static solutionBoardState = [
+    ['W', 'W', 'R', 'W', 'W'],
+    ['W', 'W', 'R', 'W', 'R'],
+    ['G', 'W', 'G', 'W', 'G'],
+    ['G', 'G', 'G', 'W', 'G'],
+    ['G', 'G', 'G', 'W', 'G'],
+    ['B', 'B', 'B', 'W', 'B'],
+    ['B', 'B', 'B', 'B', 'B']
+  ];
+
+  render() {
+    return (
+      <Level
+        levelTimeSeconds={calculateLevelSeconds(Level10.solutionBoardState, gc.beginnerLevelDivisor)}
+        initialBoardState={initialBoardState()}
+        solutionBoardState={Level10.solutionBoardState}
+        navigation={this.props.navigation}
+        introRoute={'Level10Intro'}
+        levelSelectRoute={'TheReds1LevelSelect'}
+        levelOverRoute={'TheReds1LevelSelect'}
+        levelID={Level10.id}/>
+    );
+  }
+}
