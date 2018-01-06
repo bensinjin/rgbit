@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableWithoutFeedback, View } from 'react-native';
+import { View } from 'react-native';
 import gc from '../../config/game-config';
 
 export default class Bit extends Component {
@@ -54,14 +54,31 @@ export default class Bit extends Component {
     }
   }
 
+  _onResponderMove(event) {
+    // TODO would be nice to support dragging to fill squares...
+  }
+
+  _onResponderRelease(event) {
+    if (this.props.updateBoardState && this.props.boardColorState) {
+      this.setState(previousState => {
+        this.props.updateBoardState(
+          this.props.rowIndex,
+          this.props.colIndex,
+          this._colorStateToCharacter(this.props.boardColorState)
+        );
+        return {
+          colorState: this.props.boardColorState
+        };
+      });
+    }
+  }
+
   render() {
     return (
-      <View style={gc.wrapperBit}>
-        <TouchableWithoutFeedback onPress={this._onPress}>
-          <View
-            style={[{borderRadius: 5, backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, gc.bit]}
-          />
-        </TouchableWithoutFeedback>
+      <View style={gc.wrapperBit}
+        onStartShouldSetResponder={(event) => true}
+        onResponderRelease={(event) => this._onResponderRelease(event)}>
+        <View style={[{borderRadius: 5, backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, gc.bit]} />
       </View>
     );
   }

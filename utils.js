@@ -36,7 +36,7 @@ export function calculateLevelSeconds(solutionBoardState, divisor, initialBoardS
     time += getColoredSquareCount(solutionBoardState);
   }
 
-  // TODO add real support for initial board states other than white.
+  // TODO add support for initial board states other than white.
   //if (initialBoardState) {
   //  time += getColoredSquareCount(initialBoardState);
   //}
