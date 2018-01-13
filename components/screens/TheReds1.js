@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Level from '../game/Level';
 import gc from '../../config/game-config';
 import { initialBoardState, calculateLevelSeconds } from '../../utils.js';
+import LevelContainer from '../../containers/LevelContainer';
 
 export class Level1 extends Component {
   static id = 1;
@@ -17,7 +18,7 @@ export class Level1 extends Component {
 
   render() {
     return (
-      <Level
+      <LevelContainer
         levelTimeSeconds={calculateLevelSeconds(Level1.solutionBoardState, gc.beginnerLevelDivisor)}
         initialBoardState={initialBoardState()}
         solutionBoardState={Level1.solutionBoardState}

@@ -87,6 +87,7 @@ export default class Bit extends Component {
 Bit.propTypes = {
   rowIndex: PropTypes.string,
   colIndex: PropTypes.string,
+  colorState: PropTypes.string,
   updateBoardState: PropTypes.func,
   boardColorState: PropTypes.string
 };

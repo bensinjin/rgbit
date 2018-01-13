@@ -1,10 +1,8 @@
 import { StackNavigator } from 'react-navigation';
 import Home from '../components/screens/Home';
-import TheReds1 from '../components/screens/TheReds1';
 import TheReds1LevelSelect from '../components/screens/TheReds1LevelSelect';
 import * as TR1 from '../components/screens/TheReds1';
 import * as TR1I from '../components/screens/TheReds1LevelIntros';
-import gc from './game-config';
 
 const Routes = StackNavigator({
   Home: {

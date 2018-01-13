@@ -6,7 +6,7 @@ import gc from '../../config/game-config';
 import { getScoreData, deleteScoreData } from '../../utils';
 import Banner from '../misc/Banner';
 import store from 'react-native-simple-store';
-import {resetNavigation} from '../../utils'
+import {resetNavigation} from '../../utils';
 
 export default class Home extends Component {
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import SquareGrid from 'react-native-square-grid';
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Col, Grid } from "react-native-easy-grid";
 import { Button } from 'react-native-elements'
 import TimerMixin from 'react-timer-mixin';
 import gc from '../../config/game-config';
@@ -26,8 +26,8 @@ export default class BitBoard extends Component {
   }
 
   _getColorButtonStyle(colorState) {
-    let activeBorderColor = gc.grey,
-        activeBorderWidth = 5;
+    const activeBorderColor = gc.grey,
+          activeBorderWidth = 5;
 
     return this.state.boardColorState == colorState ?
       [{borderWidth: activeBorderWidth , borderColor: activeBorderColor}, gc.colorButton] :
@@ -35,10 +35,10 @@ export default class BitBoard extends Component {
   }
 
   _getSolutionData(solutionBoardState) {
-    let solutionData = [];
-    for (rowI in solutionBoardState) {
-      for (colI in solutionBoardState[rowI]) {
-        let colChar = solutionBoardState[rowI][colI];
+    const solutionData = [];
+    for (const rowI in solutionBoardState) {
+      for (const colI in solutionBoardState[rowI]) {
+        const colChar = solutionBoardState[rowI][colI];
         // We're interested in the indexes of all
         // bits that are colored. White bits are excluded.
         if (colChar != 'W') {
@@ -51,11 +51,11 @@ export default class BitBoard extends Component {
   }
 
   _checkBits(currentBoardState) {
-    let bitsToFlip = this._solutionData.length,
-        correctlyFlipped = 0;
+    const bitsToFlip = this._solutionData.length;
+    let correctlyFlipped = 0;
 
-    for (index in this._solutionData) {
-      let entry = this._solutionData[index];
+    for (const index in this._solutionData) {
+      const entry = this._solutionData[index];
       if (entry.colorChar == currentBoardState[entry.rowIndex][entry.colIndex]) {
         correctlyFlipped += 1;
       }
@@ -73,9 +73,9 @@ export default class BitBoard extends Component {
 
 
   _getBits(boardState) {
-    let bits = [];
-    for (rowIndex in boardState) {
-      for (colIndex in boardState[rowIndex]) {
+    const bits = [];
+    for (const rowIndex in boardState) {
+      for (const colIndex in boardState[rowIndex]) {
         let colorState = null;
         switch (boardState[rowIndex][colIndex]) {
           case 'R':
@@ -131,9 +131,9 @@ export default class BitBoard extends Component {
   updateBoardState(rowIndex, colIndex, colorChar) {
     if (this._isMounted && this.props.playable) {
       this.setState(previousState => {
-        let updatedBoardState = previousState.currentBoardState;
+        const updatedBoardState = previousState.currentBoardState;
         updatedBoardState[rowIndex][colIndex] = colorChar;
-        let checkBits = this._checkBits(updatedBoardState);
+        const checkBits = this._checkBits(updatedBoardState);
 
         // If the solution has been met, fire the callback.
         if (checkBits.percentCorrect == 100 && this._timeoutTimerId) {
@@ -154,7 +154,7 @@ export default class BitBoard extends Component {
       this._timeoutTimerId = TimerMixin.setTimeout(() => {
         if (this._isMounted && this.props.onPlayOver) {
           this._killTimer();
-          let checkBits = this._checkBits(this.state.currentBoardState);
+          const checkBits = this._checkBits(this.state.currentBoardState);
           this.props.onPlayOver(checkBits);
         }
       }, this.props.playSeconds * 1000);
@@ -168,7 +168,7 @@ export default class BitBoard extends Component {
   }
 
   render() {
-    let items = this.state.currentBoardState;
+    const items = this.state.currentBoardState;
 
     if (this.props.playable) {
       return (
@@ -248,8 +248,12 @@ export default class BitBoard extends Component {
 BitBoard.propTypes = {
   initialBoardState: PropTypes.array,
   solutionBoardState: PropTypes.array,
+  onLevelSelect: PropTypes.func,
+  onLevelRestart: PropTypes.func,
   playable: PropTypes.bool,
   onPlayOver: PropTypes.func,
   playSeconds: PropTypes.number,
-  levelID: PropTypes.number
+  levelID: PropTypes.number,
+  numRows: PropTypes.number,
+  numCols: PropTypes.number
 };
