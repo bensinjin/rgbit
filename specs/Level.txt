@@ -1,0 +1,51 @@
+Container component: LevelContainer
+Child components: Level HUD, BitBoard, Timer
+
+State props:
+  levelInProgress:
+    A boolean that indicates the level is currently in play. This is useful for various, probably generally child components, to be
+    able to judge whether they should perform particular actions.
+
+Dispatch props:
+  setLevelInProgress:
+    Allows the setting of levelInProgress.
+
+Other props (And what components require them):
+  levelID (Level):
+    A unique identifier for the level. Primarily for persisting scores.
+
+  levelOverRoute (Level):
+    The route to navigate to when the level is over.
+
+  levelRestartRoute (LevelHUD):
+    The route to navigate to when the level is restarted.
+
+  levelExitRoute (LevelHUD):
+    The route to navigate to when the level is "exited" (usually like a level select screen)
+
+  levelTimeSeconds (Timer):
+    The time for the timer.
+
+  navigation (Level, Level HUD):
+    For navigation to various routes.
+
+  currentBoardState (BitBoard)
+    Represents the configuration of the level's BitBoard
+
+  solutionBoardState (Level):
+    Passed to _calculateSolution in componentWillMount. Result should be saved on the component.
+
+Methods:
+  _persistScore(scoreObject)
+    Persist a score to the persistent store.
+
+  _calculateScore(currentBoardState, solutionBoardState)
+    Compare currentBoardState with the result from _calculateSolution to calculate a score for this level.
+
+  _calculateSolution(solutionBoardState)
+    This will create a solution array from the solution board state.
+
+  onLevelOver(reason, currentBoardState, solutionBoardState):
+    Child components should call this either when time is up or a solution is met.
+    It should _persistScore and navigate.
+

@@ -67,6 +67,7 @@ export default class TheReds1LevelSelect extends Component {
             onPress={() => {this._onPress('Level1Intro')}}
             title={this._getTitle('level1Score', gc.level1Title)}
           />
+        {/*
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
@@ -139,6 +140,7 @@ export default class TheReds1LevelSelect extends Component {
             onPress={() => {this._onPress('Level10Intro')}}
             title={this._getTitle('level10Score', gc.level10Title)}
           />
+        */}
         </View>
       </View>
     );

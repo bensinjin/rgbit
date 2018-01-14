@@ -66,15 +66,15 @@ export function getKey(id){
 export function getScoreData() {
   let keys = [
         getKey(TR1.Level1.id),
-        getKey(TR1.Level2.id),
-        getKey(TR1.Level3.id),
-        getKey(TR1.Level4.id),
-        getKey(TR1.Level5.id),
-        getKey(TR1.Level6.id),
-        getKey(TR1.Level7.id),
-        getKey(TR1.Level8.id),
-        getKey(TR1.Level9.id),
-        getKey(TR1.Level10.id),
+//        getKey(TR1.Level2.id),
+//        getKey(TR1.Level3.id),
+//        getKey(TR1.Level4.id),
+//        getKey(TR1.Level5.id),
+//        getKey(TR1.Level6.id),
+//        getKey(TR1.Level7.id),
+//        getKey(TR1.Level8.id),
+//        getKey(TR1.Level9.id),
+//        getKey(TR1.Level10.id),
       ],
       data = {};
 
@@ -88,15 +88,15 @@ export function getScoreData() {
 export function deleteScoreData() {
   let keys = [
         getKey(TR1.Level1.id),
-        getKey(TR1.Level2.id),
-        getKey(TR1.Level3.id),
-        getKey(TR1.Level4.id),
-        getKey(TR1.Level5.id),
-        getKey(TR1.Level6.id),
-        getKey(TR1.Level7.id),
-        getKey(TR1.Level8.id),
-        getKey(TR1.Level9.id),
-        getKey(TR1.Level10.id),
+//        getKey(TR1.Level2.id),
+//        getKey(TR1.Level3.id),
+//        getKey(TR1.Level4.id),
+//        getKey(TR1.Level5.id),
+//        getKey(TR1.Level6.id),
+//        getKey(TR1.Level7.id),
+//        getKey(TR1.Level8.id),
+//        getKey(TR1.Level9.id),
+//        getKey(TR1.Level10.id),
       ],
       data = {};
 

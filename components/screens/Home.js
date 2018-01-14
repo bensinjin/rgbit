@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-elements';
-import {Level1, Level2, Level3, Level4} from './TheReds1';
 import gc from '../../config/game-config';
-import { getScoreData, deleteScoreData } from '../../utils';
+import { deleteScoreData } from '../../utils';
 import Banner from '../misc/Banner';
-import store from 'react-native-simple-store';
-import {resetNavigation} from '../../utils';
 
 export default class Home extends Component {
 
   _onBannerPress() {
-    data = deleteScoreData();
-    for (let index in data) {
-      scoreDataPromise = data[index];
+    const data = deleteScoreData();
+    for (const index in data) {
+      const scoreDataPromise = data[index];
       scoreDataPromise.then(result => {
         console.warn("Results deleted restart application");
       });
-    };
+    }
   }
 
   render() {
