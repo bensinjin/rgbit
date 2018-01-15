@@ -24,7 +24,7 @@ export default class Level extends Component {
     if (key) {
       persistentStore.get(key)
         .then(res => {
-         // New score.
+          // New score.
           if (!res) {
             return persistentStore.save(key, calculatedScore)
           }
@@ -45,13 +45,13 @@ export default class Level extends Component {
 
   _calculateSolution() {
     const calculatedSolution = [];
-    for (const rowI in this.props.levelSolutionBoardState) {
-      for (const colI in this.props.levelSolutionBoardState[rowI]) {
-        const colChar = this.props.levelSolutionBoardState[rowI][colI];
+    for (const rowIndex in this.props.levelSolutionBoardState) {
+      for (const colIndex in this.props.levelSolutionBoardState[rowIndex]) {
+        const colChar = this.props.levelSolutionBoardState[rowIndex][colIndex];
         // We're interested in the indexes of all
         // bits that are colored. White bits are excluded.
         if (colChar != 'W') {
-          calculatedSolution.push({rowIndex: rowI, colIndex: colI, colorChar: colChar});
+          calculatedSolution.push({rowIndex: rowIndex, colIndex: colIndex, colorChar: colChar});
         }
       }
     }
@@ -60,14 +60,13 @@ export default class Level extends Component {
   }
 
   calculateScore() {
-    const levelCurrentBoardState = this.props.levelCurrentBoardState,
-          calculatedSolution = this._calculateSolution(),
+    const calculatedSolution = this._calculateSolution(),
           bitsToFlip = calculatedSolution.length;
     let correctlyFlipped = 0;
 
-    for (const index in this._solutionData) {
-      const entry = this._solutionData[index];
-      if (entry.colorChar == levelCurrentBoardState[entry.rowIndex][entry.colIndex]) {
+    for (const index in calculatedSolution) {
+      const entry = calculatedSolution[index];
+      if (entry.colorChar == this.props.levelCurrentBoardState[entry.rowIndex][entry.colIndex]) {
         correctlyFlipped += 1;
       }
     }
@@ -84,17 +83,7 @@ export default class Level extends Component {
     this.props.setLevelInProgress(false);
     const calculatedScore = this.calculateScore();
 
-    // These are currently the same but in the future with different
-    // types of levels they will be different.
-    if (reason == levelOverReasons.LEVEL_SOLUTION_MET) {
-      const ps = this._persistScore(calculatedScore);
-      if (ps) {
-        ps.then(() => this.props.navigation.navigate(this.props.levelOverRoute));
-      } else {
-        this.props.navigation.navigate(this.props.levelOverRoute);
-      }
-    }
-    else if (reason == levelOverReasons.LEVEL_TIME_ELAPSED) {
+    if (reason == levelOverReasons.LEVEL_SOLUTION_MET || reason == levelOverReasons.LEVEL_TIME_ELAPSED) {
       const ps = this._persistScore(calculatedScore);
       if (ps) {
         ps.then(() => this.props.navigation.navigate(this.props.levelOverRoute));

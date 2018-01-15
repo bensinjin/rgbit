@@ -1,6 +1,5 @@
 import { NavigationActions } from 'react-navigation';
 import gc from './config/game-config';
-import * as TR1 from './components/screens/TheReds1';
 import store from 'react-native-simple-store';
 
 // Level related
@@ -68,8 +67,8 @@ export function getKey(id){
 }
 
 export function getScoreData() {
-  let keys = [
-        getKey(TR1.Level1.id),
+  const keys = [
+        getKey(gc.level1ID),
 //        getKey(TR1.Level2.id),
 //        getKey(TR1.Level3.id),
 //        getKey(TR1.Level4.id),
@@ -82,7 +81,7 @@ export function getScoreData() {
       ],
       data = {};
 
-  for (let key in keys) {
+  for (const key in keys) {
     data[keys[key]] = store.get(keys[key]);
   }
 
@@ -90,8 +89,8 @@ export function getScoreData() {
 }
 
 export function deleteScoreData() {
-  let keys = [
-        getKey(TR1.Level1.id),
+  const keys = [
+        getKey(gc.level1ID),
 //        getKey(TR1.Level2.id),
 //        getKey(TR1.Level3.id),
 //        getKey(TR1.Level4.id),
@@ -104,7 +103,7 @@ export function deleteScoreData() {
       ],
       data = {};
 
-  for (let key in keys) {
+  for (const key in keys) {
     data[keys[key]] = store.delete(keys[key]);
   }
 

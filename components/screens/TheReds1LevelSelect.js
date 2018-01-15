@@ -13,13 +13,13 @@ export default class TheReds1LevelSelect extends Component {
     this.state = {};
     // Populate state from score data.
     const data = getScoreData();
-    for (let index in data) {
+    for (const index in data) {
       const scoreDataPromise = data[index];
       scoreDataPromise.then(result => {
         if (result && result.levelID && this._isMounted){
           this.setState(previousState => {
-            let key = 'level' + result.levelID + 'Score',
-                obj = {};
+            const key = 'level' + result.levelID + 'Score',
+                  obj = {};
             obj[key] = result;
             return obj;
           });

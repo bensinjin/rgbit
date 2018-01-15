@@ -7,7 +7,7 @@ export class Level1Intro extends Component {
   render() {
     return (
       <LevelIntro
-        levelSolutionBoardState={sbs.l1}
+        levelSolutionBoardState={sbs.level1}
         startLevel={() => {resetNavigation('Level1', this.props.navigation)}}
       />
     );

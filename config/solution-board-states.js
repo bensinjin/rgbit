@@ -1,5 +1,5 @@
 export default {
-  l1: [
+  level1: [
     ['W', 'W', 'W', 'G', 'G'],
     ['W', 'R', 'G', 'R', 'W'],
     ['R', 'R', 'R', 'R', 'R'],

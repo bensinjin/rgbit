@@ -25,10 +25,11 @@ const sharedRenderer = (component) => {
 export class Level1 extends Component {
   constructor(props) {
     super(props);
-    this.id = 1;
+    this.id = gc.level1ID;
     this.levelRestartRoute = 'Level1Intro';
-    this.levelSolutionBoardState = sbs.l1;
+    this.levelSolutionBoardState = sbs.level1;
   }
+
   render() {
     return sharedRenderer(this);
   }

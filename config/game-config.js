@@ -9,9 +9,10 @@ export default {
   levelStartBtn: 'Begin',
   restartGame: 'Restart',
   levelSelect:  'Menu',
-  // Levels
+  // Level Data
   theReds1title: 'The Reds 1',
   level1Title: 'The Apple',
+  level1ID: 1,
   level2Title: 'Barber Shop',
   level3Title: 'Red Red Wine',
   level4Title: 'Roses are Red',
