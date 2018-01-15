@@ -18,9 +18,9 @@ export function calculateLevelSeconds(solutionBoardState, divisor, initialBoardS
   let time = 0;
   let getColoredSquareCount = function (boardState) {
     let count = 0;
-    for (rowIndex in boardState) {
-      for (colIndex in boardState[rowIndex]) {
-        currentColor = boardState[rowIndex][colIndex];
+    for (const rowIndex in boardState) {
+      for (const colIndex in boardState[rowIndex]) {
+        const currentColor = boardState[rowIndex][colIndex];
         // We are only interested in none white squares.
         if (currentColor != 'W') {
           // Accomodate for a tap.
@@ -44,7 +44,7 @@ export function calculateLevelSeconds(solutionBoardState, divisor, initialBoardS
   return time == 0 ? time : Math.round(time / divisor);
 }
 
-export function initialBoardState(colorCharacter = 'W') {
+export function newLevelBoardState(colorCharacter = 'W') {
   let initialBS = [];
 
   for (let x = 0; x < gc.BitBoard.numRows; x++) {
@@ -56,6 +56,10 @@ export function initialBoardState(colorCharacter = 'W') {
   }
 
   return initialBS;
+}
+
+export function newLevelBoardColorState() {
+  return gc.colorStateRed;
 }
 
 // Store related

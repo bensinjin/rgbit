@@ -3,11 +3,21 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import persistentStore from 'react-native-simple-store';
 import BitBoard from '../game/BitBoard';
+import LevelHUDTop from '../game/LevelHUDTop';
+import LevelHUDBottom from '../game/LevelHUDBottom';
 import gc from '../../config/game-config';
 import {getKey} from '../../utils.js';
 
 
 export default class Level extends Component {
+
+  constructor(props) {
+    super(props);
+    this._persistScore = this._persistScore.bind(this);
+    this.onLevelOver = this.onLevelOver.bind(this);
+    this.onLevelExit = this.onLevelExit.bind(this);
+    this.onLevelRestart = this.onLevelRestart.bind(this);
+  }
 
   _persistScore(calculatedScore) {
     const key = getKey(calculatedScore.levelID);
@@ -33,33 +43,11 @@ export default class Level extends Component {
     }
   }
 
-  _calculateScore(currentBoardState, solutionBoardState) {
-    const calculatedSolution = this._calculateSolution(solutionBoardState),
-          bitsToFlip = calculatedSolution.length;
-    let correctlyFlipped = 0;
-
-    for (const index in this._solutionData) {
-      const entry = this._solutionData[index];
-      if (entry.colorChar == currentBoardState[entry.rowIndex][entry.colIndex]) {
-        correctlyFlipped += 1;
-      }
-    }
-
-    return {
-      levelID: this.props.levelID,
-      // TODO
-      //time:
-      bitsToFlip: bitsToFlip,
-      bitsCorrectlyFlipped: correctlyFlipped,
-      percentCorrect: correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
-    };
-  }
-
-  _calculateSolution(solutionBoardState) {
+  _calculateSolution() {
     const calculatedSolution = [];
-    for (const rowI in solutionBoardState) {
-      for (const colI in solutionBoardState[rowI]) {
-        const colChar = solutionBoardState[rowI][colI];
+    for (const rowI in this.props.levelSolutionBoardState) {
+      for (const colI in this.props.levelSolutionBoardState[rowI]) {
+        const colChar = this.props.levelSolutionBoardState[rowI][colI];
         // We're interested in the indexes of all
         // bits that are colored. White bits are excluded.
         if (colChar != 'W') {
@@ -71,34 +59,92 @@ export default class Level extends Component {
     return calculatedSolution;
   }
 
-  onLevelOver(reason, currentBoardState, solutionBoardState) {
-    const calculatedScore = this._calculateScore(currentBoardState, solutionBoardState);
+  calculateScore() {
+    const levelCurrentBoardState = this.props.levelCurrentBoardState,
+          calculatedSolution = this._calculateSolution(),
+          bitsToFlip = calculatedSolution.length;
+    let correctlyFlipped = 0;
+
+    for (const index in this._solutionData) {
+      const entry = this._solutionData[index];
+      if (entry.colorChar == levelCurrentBoardState[entry.rowIndex][entry.colIndex]) {
+        correctlyFlipped += 1;
+      }
+    }
+    return {
+      levelID: this.props.levelID,
+      //time:
+      bitsToFlip: bitsToFlip,
+      bitsCorrectlyFlipped: correctlyFlipped,
+      percentCorrect: correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
+    };
+  }
+
+  onLevelOver(reason = null) {
+    this.props.setLevelInProgress(false);
+    const calculatedScore = this.calculateScore();
+
+    // These are currently the same but in the future with different
+    // types of levels they will be different.
     if (reason == levelOverReasons.LEVEL_SOLUTION_MET) {
-      this._persistScore(calculatedScore)
-        .then(() => this.props.navigation.navigate(this.props.levelOverRoute));
+      const ps = this._persistScore(calculatedScore);
+      if (ps) {
+        ps.then(() => this.props.navigation.navigate(this.props.levelOverRoute));
+      } else {
+        this.props.navigation.navigate(this.props.levelOverRoute);
+      }
     }
     else if (reason == levelOverReasons.LEVEL_TIME_ELAPSED) {
-      this._persistScore(calculatedScore)
-        .then(() => this.props.navigation.navigate(this.props.levelOverRoute));
+      const ps = this._persistScore(calculatedScore);
+      if (ps) {
+        ps.then(() => this.props.navigation.navigate(this.props.levelOverRoute));
+      } else {
+        this.props.navigation.navigate(this.props.levelOverRoute);
+      }
     }
     else {
-      this.props.navigation.navigate(this.props.levelOverRoute)
+      this.props.navigation.navigate(this.props.levelOverRoute);
     }
+  }
+
+  onLevelExit() {
+    this.props.setLevelInProgress(false);
+    this.props.navigation.navigate(this.props.levelExitRoute);
+  }
+
+  onLevelRestart() {
+    this.props.setLevelInProgress(false);
+    this.props.navigation.navigate(this.props.levelRestartRoute);
+  }
+
+  componentDidMount() {
+    this.props.resetLevelCurrentBoardState();
+    this.props.setLevelInProgress(true);
   }
 
   render() {
     return (
       <View style={gc.wrapperLevel}>
+        <LevelHUDTop
+          levelTimeSeconds={this.props.levelTimeSeconds}
+          onLevelOver={this.onLevelOver}
+          onLevelExit={this.onLevelExit}
+          onLevelRestart={this.onLevelRestart}
+          levelInProgress={this.props.levelInProgress}
+        />
         <BitBoard
-          initialBoardState={this.props.initialBoardState}
-          solutionBoardState={this.props.solutionBoardState}
           playable={true}
-          playSeconds={this.props.levelTimeSeconds}
-          onPlayOver={(calculatedScore) => {this._onLevelOver(calculatedScore)}}
-          onLevelSelect={() => {this._onLevelSelect();}}
-          onLevelRestart={() => {this._onLevelRestart();}}
-          levelID={this.props.levelID}
-          />
+          calculateScore={this.calculateScore}
+          onLevelOver={this.onLevelOver}
+          levelInProgress={this.props.levelInProgress}
+          levelCurrentBoardState={this.props.levelCurrentBoardState}
+          levelCurrentBoardColorState={this.props.levelCurrentBoardColorState}
+          updateLevelCurrentBoardState={this.props.updateLevelCurrentBoardState}
+        />
+        <LevelHUDBottom
+          updateLevelCurrentBoardColorState={this.props.updateLevelCurrentBoardColorState}
+          levelCurrentBoardColorState={this.props.levelCurrentBoardColorState}
+        />
       </View>
     );
   }
@@ -110,9 +156,17 @@ Level.propTypes = {
   levelRestartRoute: PropTypes.string,
   levelExitRoute: PropTypes.string,
   levelTimeSeconds: PropTypes.number,
+  levelSolutionBoardState: PropTypes.array,
   navigation: PropTypes.object,
-  currentBoardState: PropTypes.array,
-  solutionBoardState: PropTypes.array
+  // Store props (state)
+  levelInProgress: PropTypes.bool,
+  levelCurrentBoardState: PropTypes.array,
+  levelCurrentBoardColorState: PropTypes.string,
+  // Store props (dispatch)
+  setLevelInProgress: PropTypes.func,
+  resetLevelCurrentBoardState: PropTypes.func,
+  updateLevelCurrentBoardState: PropTypes.func,
+  updateLevelCurrentBoardColorState: PropTypes.func
 };
 
 export const levelOverReasons = {

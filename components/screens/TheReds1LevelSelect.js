@@ -12,13 +12,13 @@ export default class TheReds1LevelSelect extends Component {
     super(props);
     this.state = {};
     // Populate state from score data.
-    data = getScoreData();
+    const data = getScoreData();
     for (let index in data) {
-      scoreDataPromise = data[index];
+      const scoreDataPromise = data[index];
       scoreDataPromise.then(result => {
         if (result && result.levelID && this._isMounted){
           this.setState(previousState => {
-            let key = 'level' + result.levelID + 'Score'
+            let key = 'level' + result.levelID + 'Score',
                 obj = {};
             obj[key] = result;
             return obj;
@@ -26,7 +26,6 @@ export default class TheReds1LevelSelect extends Component {
         }
       })
     }
-    this._levels = [];
     this._onBannerPress = this._onBannerPress.bind(this);
   }
 

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import gc from '../../config/game-config';
 import sbs from '../../config/solution-board-states';
-import { initialBoardState, calculateLevelSeconds } from '../../utils.js';
+import { calculateLevelSeconds } from '../../utils.js';
 import LevelContainer from '../../containers/LevelContainer';
 
 const sharedLevelConfig = {
-  levelOverRoute: 'TheRedsLevel1Select',
-  levelExitRoute: 'TheRedsLevel1Select',
-  currentBoardState: initialBoardState(),
+  levelOverRoute: 'TheReds1LevelSelect',
+  levelExitRoute: 'TheReds1LevelSelect'
 }
 
 const sharedRenderer = (component) => {
@@ -15,8 +14,8 @@ const sharedRenderer = (component) => {
     <LevelContainer
       levelID={component.id}
       levelRestartRoute={component.levelRestartRoute}
-      solutionBoardState={component.solutionBoardState}
-      levelTimeSeconds = {calculateLevelSeconds(component.solutionBoardState, gc.beginnerLevelDivisor)}
+      levelSolutionBoardState={component.levelSolutionBoardState}
+      levelTimeSeconds = {calculateLevelSeconds(component.levelSolutionBoardState, gc.beginnerLevelDivisor)}
       navigation={component.props.navigation}
       {...sharedLevelConfig}
       />
@@ -28,7 +27,7 @@ export class Level1 extends Component {
     super(props);
     this.id = 1;
     this.levelRestartRoute = 'Level1Intro';
-    this.solutionBoardState = sbs.l1;
+    this.levelSolutionBoardState = sbs.l1;
   }
   render() {
     return sharedRenderer(this);

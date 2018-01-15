@@ -12,21 +12,11 @@ export default class Timer extends Component {
     };
   }
 
-  _killTimers() {
-    if (this._timeoutTimerId) {
-      TimerMixin.clearTimeout(this._timeoutTimerId);
-    }
-    if (this._intervalTimerId) {
-      TimerMixin.clearInterval(this._intervalTimerId);
-    }
-  }
-
   componentDidMount() {
-    this._isMounted = true;
     // Update our timer visuals every second.
     this._intervalTimerId = TimerMixin.setInterval(() => {
       this.setState(previousState => {
-        if (this._isMounted) {
+        if (this.props.timerInView) {
           return {
             timeLeftSeconds: previousState.timeLeftSeconds - 1
           };
@@ -35,16 +25,19 @@ export default class Timer extends Component {
     }, 1000);
     // Call our cb after time elapsed.
     this._timeoutTimerId = TimerMixin.setTimeout(() => {
-      if (this._isMounted && this.props.timeElapsedCB) {
-        this._killTimers();
+      if (this.props.timerInView && this.props.timeElapsedCB) {
         this.props.timeElapsedCB();
       }
     }, this.props.timeLeftSeconds * 1000);
   }
 
   componentWillUnmount() {
-    this._killTimers();
-    this._isMounted = false;
+    if (this._timeoutTimerId) {
+      TimerMixin.clearTimeout(this._timeoutTimerId);
+    }
+    if (this._intervalTimerId) {
+      TimerMixin.clearInterval(this._intervalTimerId);
+    }
   }
 
   render() {
@@ -59,5 +52,6 @@ export default class Timer extends Component {
 
 Timer.propTypes = {
   timeLeftSeconds: PropTypes.number,
-  timeElapsedCB: PropTypes.func
+  timeElapsedCB: PropTypes.func,
+  timerInView: PropTypes.bool
 };

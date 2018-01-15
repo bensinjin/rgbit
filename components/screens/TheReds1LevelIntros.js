@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LevelIntro from '../game/LevelIntro';
-import * as TR1 from './TheReds1';
 import sbs from '../../config/solution-board-states';
 import {resetNavigation} from '../../utils'
 
@@ -8,7 +7,7 @@ export class Level1Intro extends Component {
   render() {
     return (
       <LevelIntro
-        solutionBoardState={sbs.l1}
+        levelSolutionBoardState={sbs.l1}
         startLevel={() => {resetNavigation('Level1', this.props.navigation)}}
       />
     );

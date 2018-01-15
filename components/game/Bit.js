@@ -5,43 +5,20 @@ import gc from '../../config/game-config';
 
 export default class Bit extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      colorState: this.props.colorState,
-    };
-    this._onPress = this._onPress.bind(this);
-  }
-
-  _onPress() {
-    if (this.props.updateBoardState && this.props.boardColorState) {
-      this.setState(previousState => {
-        this.props.updateBoardState(
-          this.props.rowIndex,
-          this.props.colIndex,
-          this._colorStateToCharacter(this.props.boardColorState)
-        );
-        return {
-          colorState: this.props.boardColorState
-        };
-      });
-    }
-  }
-
-  _colorStateToCSSColor(colorState) {
-    switch (colorState) {
-      case gc.colorStateRed:
+  _colorCharacterToCSSColor(colorCharacter) {
+    switch (colorCharacter) {
+      case 'R':
         return gc.red;
-      case gc.colorStateGreen:
+      case 'G':
         return gc.green;
-      case gc.colorStateBlue:
-        return gc.blue
-      case gc.colorStateWhite:
+      case 'B':
+        return gc.blue;
+      case 'W':
         return gc.white;
     }
   }
 
-  _colorStateToCharacter(colorState) {
+  _colorStateToColorCharacter(colorState) {
     switch (colorState) {
       case gc.colorStateRed:
         return 'R';
@@ -59,35 +36,35 @@ export default class Bit extends Component {
   }
 
   _onResponderRelease(event) {
-    if (this.props.updateBoardState && this.props.boardColorState) {
-      this.setState(previousState => {
-        this.props.updateBoardState(
-          this.props.rowIndex,
-          this.props.colIndex,
-          this._colorStateToCharacter(this.props.boardColorState)
-        );
-        return {
-          colorState: this.props.boardColorState
-        };
-      });
+    if (this.props.playable) {
+      this.props.updateLevelCurrentBoardState(
+        this.props.rowIndex,
+        this.props.colIndex,
+        this._colorStateToColorCharacter(this.props.levelCurrentBoardColorState)
+      );
     }
   }
 
   render() {
+    const bitColor = this._colorCharacterToCSSColor(
+      this.props.levelCurrentBoardState[this.props.rowIndex][this.props.colIndex]
+    );
     return (
-      <View style={gc.wrapperBit}
+      <View
+        style={gc.wrapperBit}
         onStartShouldSetResponder={(event) => true}
         onResponderRelease={(event) => this._onResponderRelease(event)}>
-        <View style={[{borderRadius: 5, backgroundColor: this._colorStateToCSSColor(this.state.colorState)}, gc.bit]} />
+        <View style={[{borderRadius: 5, backgroundColor: bitColor}, gc.bit]}/>
       </View>
     );
   }
 }
 
 Bit.propTypes = {
+  playable: PropTypes.bool,
   rowIndex: PropTypes.string,
   colIndex: PropTypes.string,
-  colorState: PropTypes.string,
-  updateBoardState: PropTypes.func,
-  boardColorState: PropTypes.string
+  updateLevelCurrentBoardState: PropTypes.func,
+  levelCurrentBoardColorState: PropTypes.string,
+  levelCurrentBoardState: PropTypes.array
 };

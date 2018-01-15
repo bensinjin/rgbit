@@ -1,16 +1,32 @@
 import { connect } from 'react-redux';
-import setGameInProgress from '../store/actions';
+import {
+  setLevelInProgress,
+  resetLevelCurrentBoardState,
+  updateLevelCurrentBoardState,
+  updateLevelCurrentBoardColorState,
+} from '../store/actions';
 import Level from '../components/game/Level';
 
 const mapStateToProps = state => ({
-  gameInProgress: state.gameInProgress
+  levelInProgress: state.levelInProgress,
+  levelCurrentBoardState: state.levelCurrentBoardState,
+  levelCurrentBoardColorState: state.levelCurrentBoardColorState
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    setGameInProgress: gameInProgress => {
-      dispatch(setGameInProgress(gameInProgress))
-    }
+    setLevelInProgress: levelInProgress => {
+      dispatch(setLevelInProgress(levelInProgress));
+    },
+    resetLevelCurrentBoardState: () => {
+      dispatch(resetLevelCurrentBoardState());
+    },
+    updateLevelCurrentBoardState: (rowIndex, colIndex, colorChar) => {
+      dispatch(updateLevelCurrentBoardState(rowIndex, colIndex, colorChar));
+    },
+    updateLevelCurrentBoardColorState: levelCurrentBoardColorState => {
+      dispatch(updateLevelCurrentBoardColorState(levelCurrentBoardColorState));
+    },
   }
 }
 
