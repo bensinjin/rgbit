@@ -45,9 +45,9 @@ export default class Bit extends Component {
         this._colorStateToColorCharacter(this.props.levelCurrentBoardColorState)
       );
       // Check score.
-      const score = this.props.calculateScore();
-      if (score.percentCorrect == 100) {
-        this.props.onLevelOver(levelOverReasons.LEVEL_SOLUTION_MET);
+      const calculatedScore = this.props.calculateScore();
+      if (calculatedScore.percentCorrect == 100) {
+        this.props.onLevelOver(levelOverReasons.LEVEL_SOLUTION_MET, calculatedScore);
       }
     }
   }

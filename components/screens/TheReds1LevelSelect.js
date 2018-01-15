@@ -16,7 +16,7 @@ export default class TheReds1LevelSelect extends Component {
     for (const index in data) {
       const scoreDataPromise = data[index];
       scoreDataPromise.then(result => {
-        if (result && result.levelID && this._isMounted){
+        if (result && result.levelID){
           this.setState(previousState => {
             const key = 'level' + result.levelID + 'Score',
                   obj = {};
@@ -45,14 +45,6 @@ export default class TheReds1LevelSelect extends Component {
     this.props.navigation.navigate('Home');
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
     return (
       <View style={gc.wrapper}>
@@ -66,7 +58,6 @@ export default class TheReds1LevelSelect extends Component {
             onPress={() => {this._onPress('Level1Intro')}}
             title={this._getTitle('level1Score', gc.level1Title)}
           />
-        {/*
           <Button
             buttonStyle={gc.button}
             fontWeight={'bold'}
@@ -139,7 +130,6 @@ export default class TheReds1LevelSelect extends Component {
             onPress={() => {this._onPress('Level10Intro')}}
             title={this._getTitle('level10Score', gc.level10Title)}
           />
-        */}
         </View>
       </View>
     );

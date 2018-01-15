@@ -13,35 +13,11 @@ export default class Level extends Component {
 
   constructor(props) {
     super(props);
-    this._persistScore = this._persistScore.bind(this);
-    this.calculateScore = this.calculateScore.bind(this);
     this.onLevelOver = this.onLevelOver.bind(this);
     this.onLevelExit = this.onLevelExit.bind(this);
     this.onLevelRestart = this.onLevelRestart.bind(this);
-  }
-
-  _persistScore(calculatedScore) {
-    const key = getKey(calculatedScore.levelID);
-    if (key) {
-      persistentStore.get(key)
-        .then(res => {
-          // New score.
-          if (!res) {
-            return persistentStore.save(key, calculatedScore)
-          }
-          // New high score.
-          else if (res.percentCorrect < calculatedScore.percentCorrect) {
-            return persistentStore.update(key, calculatedScore)
-          }
-          // New score but not higher than high score.
-          else {
-            return null;
-          }
-        })
-        .catch(error => {
-          console.error(error.message);
-        });
-    }
+    this.calculateScore = this.calculateScore.bind(this);
+    this.calculatedSolution = this._calculateSolution();
   }
 
   _calculateSolution() {
@@ -79,14 +55,35 @@ export default class Level extends Component {
     };
   }
 
-  onLevelOver(reason = null) {
+  onLevelOver(reason = null, calculatedScore = null) {
     this.props.setLevelInProgress(false);
     if (reason == levelOverReasons.LEVEL_SOLUTION_MET || reason == levelOverReasons.LEVEL_TIME_ELAPSED) {
-      const ps = this._persistScore(this.calculateScore());
-      if (ps) {
-        ps.then(() => this.props.navigation.navigate(this.props.levelOverRoute));
-      } else {
-        this.props.navigation.navigate(this.props.levelOverRoute);
+      if (!calculatedScore) {
+        calculatedScore = this.calculateScore();
+      }
+      // Scoring.
+      const key = getKey(calculatedScore.levelID);
+      if (key) {
+        persistentStore.get(key)
+          .then(res => {
+            // New score.
+            if (!res) {
+              persistentStore.save(key, calculatedScore)
+                .then(this.props.navigation.navigate(this.props.levelOverRoute));
+            }
+            // New high score.
+            else if (res.percentCorrect < calculatedScore.percentCorrect) {
+              return persistentStore.update(key, calculatedScore)
+                .then(this.props.navigation.navigate(this.props.levelOverRoute));
+            }
+            // New score but not higher than high score.
+            else {
+              this.props.navigation.navigate(this.props.levelOverRoute);
+            }
+          })
+          .catch(error => {
+            console.error(error.message);
+          });
       }
     }
     else {
@@ -107,7 +104,6 @@ export default class Level extends Component {
   componentDidMount() {
     this.props.resetLevelCurrentBoardState();
     this.props.setLevelInProgress(true);
-    this.calculatedSolution = this._calculateSolution();
   }
 
   render() {

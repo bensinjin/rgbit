@@ -69,15 +69,15 @@ export function getKey(id){
 export function getScoreData() {
   const keys = [
         getKey(gc.level1ID),
-//        getKey(TR1.Level2.id),
-//        getKey(TR1.Level3.id),
-//        getKey(TR1.Level4.id),
-//        getKey(TR1.Level5.id),
-//        getKey(TR1.Level6.id),
-//        getKey(TR1.Level7.id),
-//        getKey(TR1.Level8.id),
-//        getKey(TR1.Level9.id),
-//        getKey(TR1.Level10.id),
+        getKey(gc.level2ID),
+        getKey(gc.level3ID),
+        getKey(gc.level4ID),
+        getKey(gc.level5ID),
+        getKey(gc.level6ID),
+        getKey(gc.level7ID),
+        getKey(gc.level8ID),
+        getKey(gc.level9ID),
+        getKey(gc.level10ID),
       ],
       data = {};
 
@@ -91,17 +91,17 @@ export function getScoreData() {
 export function deleteScoreData() {
   const keys = [
         getKey(gc.level1ID),
-//        getKey(TR1.Level2.id),
-//        getKey(TR1.Level3.id),
-//        getKey(TR1.Level4.id),
-//        getKey(TR1.Level5.id),
-//        getKey(TR1.Level6.id),
-//        getKey(TR1.Level7.id),
-//        getKey(TR1.Level8.id),
-//        getKey(TR1.Level9.id),
-//        getKey(TR1.Level10.id),
+        getKey(gc.level2ID),
+        getKey(gc.level3ID),
+        getKey(gc.level4ID),
+        getKey(gc.level5ID),
+        getKey(gc.level6ID),
+        getKey(gc.level7ID),
+        getKey(gc.level8ID),
+        getKey(gc.level9ID),
+        getKey(gc.level10ID),
       ],
-      data = {};
+     data = {};
 
   for (const key in keys) {
     data[keys[key]] = store.delete(keys[key]);
