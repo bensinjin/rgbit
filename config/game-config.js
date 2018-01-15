@@ -23,7 +23,7 @@ export default {
   level9Title: 'Three Red Balloons',
   level10Title: 'Clipping',
   levelInstructions: 'Remember the pattern!',
-  beginnerLevelDivisor: 15,
+  beginnerLevelDivisor: 1,
   intermediateLevelDivisor: 2.5,
   expertLevelDivisor: 3.0,
   // TODO styles should be moved to their own file.

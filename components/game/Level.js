@@ -14,7 +14,7 @@ export default class Level extends Component {
   constructor(props) {
     super(props);
     this._persistScore = this._persistScore.bind(this);
-    this._calculateSolution = this._calculateSolution.bind(this);
+    this.calculateScore = this.calculateScore.bind(this);
     this.onLevelOver = this.onLevelOver.bind(this);
     this.onLevelExit = this.onLevelExit.bind(this);
     this.onLevelRestart = this.onLevelRestart.bind(this);
@@ -61,12 +61,11 @@ export default class Level extends Component {
   }
 
   calculateScore() {
-    const calculatedSolution = this._calculateSolution(),
-          bitsToFlip = calculatedSolution.length;
+    const bitsToFlip = this.calculatedSolution.length;
     let correctlyFlipped = 0;
 
-    for (const index in calculatedSolution) {
-      const entry = calculatedSolution[index];
+    for (const index in this.calculatedSolution) {
+      const entry = this.calculatedSolution[index];
       if (entry.colorChar == this.props.levelCurrentBoardState[entry.rowIndex][entry.colIndex]) {
         correctlyFlipped += 1;
       }
@@ -82,10 +81,8 @@ export default class Level extends Component {
 
   onLevelOver(reason = null) {
     this.props.setLevelInProgress(false);
-    const calculatedScore = this.calculateScore();
-
     if (reason == levelOverReasons.LEVEL_SOLUTION_MET || reason == levelOverReasons.LEVEL_TIME_ELAPSED) {
-      const ps = this._persistScore(calculatedScore);
+      const ps = this._persistScore(this.calculateScore());
       if (ps) {
         ps.then(() => this.props.navigation.navigate(this.props.levelOverRoute));
       } else {
@@ -110,6 +107,7 @@ export default class Level extends Component {
   componentDidMount() {
     this.props.resetLevelCurrentBoardState();
     this.props.setLevelInProgress(true);
+    this.calculatedSolution = this._calculateSolution();
   }
 
   render() {

@@ -20,6 +20,7 @@ export default class BitBoard extends Component {
             levelCurrentBoardColorState={this.props.levelCurrentBoardColorState}
             levelCurrentBoardState={this.props.levelCurrentBoardState}
             calculateScore={this.props.calculateScore}
+            calculatedSolution={this.props.calculatedSolution}
             onLevelOver={this.props.onLevelOver}
           />
         );
