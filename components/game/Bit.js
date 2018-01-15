@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import gc from '../../config/game-config';
+import levelOverReasons from './Level';
 
 export default class Bit extends Component {
 
@@ -37,11 +38,17 @@ export default class Bit extends Component {
 
   _onResponderRelease(event) {
     if (this.props.playable) {
+      // Update global board state.
       this.props.updateLevelCurrentBoardState(
         this.props.rowIndex,
         this.props.colIndex,
         this._colorStateToColorCharacter(this.props.levelCurrentBoardColorState)
       );
+      // Check score.
+      const score = this.props.calculateScore();
+      if (score.percentCorrect == 100) {
+        this.props.onLevelOver(levelOverReasons.LEVEL_SOLUTION_MET);
+      }
     }
   }
 
@@ -66,5 +73,7 @@ Bit.propTypes = {
   colIndex: PropTypes.string,
   updateLevelCurrentBoardState: PropTypes.func,
   levelCurrentBoardColorState: PropTypes.string,
-  levelCurrentBoardState: PropTypes.array
+  levelCurrentBoardState: PropTypes.array,
+  calculateScore: PropTypes.func,
+  onLevelOver: PropTypes.func
 };

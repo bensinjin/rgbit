@@ -14,6 +14,7 @@ export default class Level extends Component {
   constructor(props) {
     super(props);
     this._persistScore = this._persistScore.bind(this);
+    this._calculateSolution = this._calculateSolution.bind(this);
     this.onLevelOver = this.onLevelOver.bind(this);
     this.onLevelExit = this.onLevelExit.bind(this);
     this.onLevelRestart = this.onLevelRestart.bind(this);

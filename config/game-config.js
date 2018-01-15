@@ -10,7 +10,7 @@ export default {
   restartGame: 'Restart',
   levelSelect:  'Menu',
   // Level Data
-  theReds1title: 'The Reds 1',
+  theReds1title: 'The Reds',
   level1Title: 'The Apple',
   level1ID: 1,
   level2Title: 'Barber Shop',
@@ -23,7 +23,7 @@ export default {
   level9Title: 'Three Red Balloons',
   level10Title: 'Clipping',
   levelInstructions: 'Remember the pattern!',
-  beginnerLevelDivisor: 1.5,
+  beginnerLevelDivisor: 15,
   intermediateLevelDivisor: 2.5,
   expertLevelDivisor: 3.0,
   // TODO styles should be moved to their own file.

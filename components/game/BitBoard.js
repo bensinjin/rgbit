@@ -9,7 +9,6 @@ export default class BitBoard extends Component {
 
   _getBits() {
     const bits = [];
-
     for (const rowIndex in this.props.levelCurrentBoardState) {
       for (const colIndex in this.props.levelCurrentBoardState[rowIndex]) {
         bits.push(
@@ -20,6 +19,8 @@ export default class BitBoard extends Component {
             updateLevelCurrentBoardState={this.props.updateLevelCurrentBoardState}
             levelCurrentBoardColorState={this.props.levelCurrentBoardColorState}
             levelCurrentBoardState={this.props.levelCurrentBoardState}
+            calculateScore={this.props.calculateScore}
+            onLevelOver={this.props.onLevelOver}
           />
         );
       }
