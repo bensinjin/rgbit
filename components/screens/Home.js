@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import gc from '../../config/game-config';
+import l from '../../config/levels';
 import { deleteScoreData } from '../../utils';
 import Banner from '../misc/Banner';
 
@@ -23,6 +24,16 @@ export default class Home extends Component {
             color={gc.white}
             onPress={() => this.props.navigation.navigate('TheReds1LevelSelect')}
             title={gc.theReds1title}
+          />
+        </View>
+        <View style={gc.buttonContainer}>
+          <Button
+            buttonStyle={gc.button}
+            fontWeight={'bold'}
+            backgroundColor={gc.greyDark}
+            color={gc.white}
+            onPress={() => this.props.navigation.navigate('Level1IDIntro')}
+            title={l.l0.title}
           />
         </View>
       </View>

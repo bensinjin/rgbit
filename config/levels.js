@@ -1,6 +1,10 @@
 // An object to hold reusable level data.
 // The top level key should match the level id.
 export default {
+  l0: {
+    id: 0,
+    title: 'Instant Death'
+  },
   l1: {
     id: 1,
     machineName: 'level1',

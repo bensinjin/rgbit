@@ -3,6 +3,7 @@ import Home from '../components/screens/Home';
 import TheReds1LevelSelect from '../components/screens/TheReds1LevelSelect';
 import * as TR1 from '../components/screens/TheReds1';
 import * as TR1I from '../components/screens/TheReds1LevelIntros';
+import * as ID from '../components/screens/InstantDeath';
 
 const Routes = StackNavigator({
   Home: {
@@ -130,6 +131,32 @@ const Routes = StackNavigator({
  },
  Level10: {
    screen: TR1.Level10,
+   navigationOptions: {
+     headerLeft: null
+   }
+ },
+ // Instant Death routes.
+ Level1IDIntro: {
+   screen: ID.Level1IDIntro,
+   navigationOptions: {
+     headerLeft: null
+   }
+ },
+ Level1ID: {
+   screen: TR1.Level1,
+   navigationOptions: {
+     headerLeft: null
+   }
+ },
+ // Instant Death routes.
+ Level2IDIntro: {
+   screen: ID.Level2IDIntro,
+   navigationOptions: {
+     headerLeft: null
+   }
+ },
+ Level2ID: {
+   screen: TR1.Level2,
    navigationOptions: {
      headerLeft: null
    }

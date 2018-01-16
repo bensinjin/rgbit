@@ -1,26 +1,6 @@
-import React, { Component } from 'react';
-import gc from '../../config/game-config';
+import { Component } from 'react';
 import l from '../../config/levels';
-import { calculateLevelSeconds } from '../../utils.js';
-import LevelContainer from '../../containers/LevelContainer';
-
-const sharedLevelConfig = {
-  levelOverRoute: 'TheReds1LevelSelect',
-  levelExitRoute: 'TheReds1LevelSelect'
-}
-
-const sharedRenderer = (component) => {
-  return (
-    <LevelContainer
-      levelID={component.id}
-      levelRestartRoute={component.levelRestartRoute}
-      levelSolutionBoardState={component.levelSolutionBoardState}
-      levelTimeSeconds = {calculateLevelSeconds(component.levelSolutionBoardState, gc.beginnerLevelDivisor)}
-      navigation={component.props.navigation}
-      {...sharedLevelConfig}
-      />
-  );
-}
+import { levelRenderer } from '../../utils.js';
 
 export class Level1 extends Component {
   constructor(props) {
@@ -31,7 +11,7 @@ export class Level1 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -44,7 +24,7 @@ export class Level2 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -57,7 +37,7 @@ export class Level3 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -70,7 +50,7 @@ export class Level4 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -83,7 +63,7 @@ export class Level5 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -96,7 +76,7 @@ export class Level6 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -109,7 +89,7 @@ export class Level7 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -122,7 +102,7 @@ export class Level8 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -135,7 +115,7 @@ export class Level9 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
 
@@ -148,6 +128,6 @@ export class Level10 extends Component {
   }
 
   render() {
-    return sharedRenderer(this);
+    return levelRenderer(this);
   }
 }
