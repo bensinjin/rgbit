@@ -1,18 +1,10 @@
 import { NavigationActions } from 'react-navigation';
 import gc from './config/game-config';
+import l from './config/levels';
 import store from 'react-native-simple-store';
 
 // Level related
 
-/**
- * The logic to determine how many seconds are allotted to complete a level.
- * We're interested in three things:
- *  1. How many colored squares are in the puzzle?
- *  3. How difficult should this puzzle be? (Some divisor to the sum of the previous two questions).
- *
- * @param {*} boardState
- * @param {*} divisor
- */
 export function calculateLevelSeconds(solutionBoardState, divisor, initialBoardState = null) {
   let time = 0;
   let getColoredSquareCount = function (boardState) {
@@ -61,53 +53,33 @@ export function newLevelBoardColorState() {
   return gc.colorStateRed;
 }
 
-// Store related
+// Persistent store related
+// TODO This is all really lazy, clean it up bro!
 export function getKey(id){
   return gc.storeKeyPrefix + id;
 }
 
 export function getScoreData() {
-  const keys = [
-        getKey(gc.level1ID),
-        getKey(gc.level2ID),
-        getKey(gc.level3ID),
-        getKey(gc.level4ID),
-        getKey(gc.level5ID),
-        getKey(gc.level6ID),
-        getKey(gc.level7ID),
-        getKey(gc.level8ID),
-        getKey(gc.level9ID),
-        getKey(gc.level10ID),
-      ],
-      data = {};
+  const data = {};
 
-  for (const key in keys) {
-    data[keys[key]] = store.get(keys[key]);
+  for (const key in l) {
+    const storeKey = getKey(l[key].id);
+    data[storeKey] = store.get(storeKey);
   }
 
   return data;
 }
 
 export function deleteScoreData() {
-  const keys = [
-        getKey(gc.level1ID),
-        getKey(gc.level2ID),
-        getKey(gc.level3ID),
-        getKey(gc.level4ID),
-        getKey(gc.level5ID),
-        getKey(gc.level6ID),
-        getKey(gc.level7ID),
-        getKey(gc.level8ID),
-        getKey(gc.level9ID),
-        getKey(gc.level10ID),
-      ],
-     data = {};
-
-  for (const key in keys) {
-    data[keys[key]] = store.delete(keys[key]);
+  for (const key in l) {
+    const storeKey = getKey(l[key].id);
+    store.get(storeKey).then((res) => {
+      if (res && res.levelID) {
+        store.delete(storeKey)
+          .then(() => console.warn('Score record deleted.'));
+      }
+    });
   }
-
-  return data;
 }
 
 // Misc

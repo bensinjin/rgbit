@@ -8,13 +8,7 @@ import Banner from '../misc/Banner';
 export default class Home extends Component {
 
   _onBannerPress() {
-    const data = deleteScoreData();
-    for (const index in data) {
-      const scoreDataPromise = data[index];
-      scoreDataPromise.then(result => {
-        console.warn("Results deleted restart application");
-      });
-    }
+    deleteScoreData();
   }
 
   render() {

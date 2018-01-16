@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import gc from '../../config/game-config';
-import sbs from '../../config/solution-board-states';
+import l from '../../config/levels';
 import { calculateLevelSeconds } from '../../utils.js';
 import LevelContainer from '../../containers/LevelContainer';
 
@@ -25,9 +25,9 @@ const sharedRenderer = (component) => {
 export class Level1 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level1ID;
+    this.id = l.l1.id;
     this.levelRestartRoute = 'Level1Intro';
-    this.levelSolutionBoardState = sbs.level1;
+    this.levelSolutionBoardState = l.l1.solution;
   }
 
   render() {
@@ -38,9 +38,9 @@ export class Level1 extends Component {
 export class Level2 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level2ID;
+    this.id = l.l2.id;
     this.levelRestartRoute = 'Level2Intro';
-    this.levelSolutionBoardState = sbs.level2;
+    this.levelSolutionBoardState = l.l2.solution;
   }
 
   render() {
@@ -51,9 +51,9 @@ export class Level2 extends Component {
 export class Level3 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level3ID;
+    this.id = l.l3.id;
     this.levelRestartRoute = 'Level3Intro';
-    this.levelSolutionBoardState = sbs.level3;
+    this.levelSolutionBoardState = l.l3.solution;
   }
 
   render() {
@@ -64,9 +64,9 @@ export class Level3 extends Component {
 export class Level4 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level4ID;
+    this.id = l.l4.id;
     this.levelRestartRoute = 'Level4Intro';
-    this.levelSolutionBoardState = sbs.level4;
+    this.levelSolutionBoardState = l.l4.solution;
   }
 
   render() {
@@ -77,9 +77,9 @@ export class Level4 extends Component {
 export class Level5 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level5ID;
+    this.id = l.l5.id;
     this.levelRestartRoute = 'Level5Intro';
-    this.levelSolutionBoardState = sbs.level5;
+    this.levelSolutionBoardState = l.l5.solution;
   }
 
   render() {
@@ -90,9 +90,9 @@ export class Level5 extends Component {
 export class Level6 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level6ID;
+    this.id = l.l6.id;
     this.levelRestartRoute = 'Level6Intro';
-    this.levelSolutionBoardState = sbs.level6;
+    this.levelSolutionBoardState = l.l6.solution;
   }
 
   render() {
@@ -103,9 +103,9 @@ export class Level6 extends Component {
 export class Level7 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level7ID;
+    this.id = l.l7.id;
     this.levelRestartRoute = 'Level7Intro';
-    this.levelSolutionBoardState = sbs.level7;
+    this.levelSolutionBoardState = l.l7.solution;
   }
 
   render() {
@@ -116,9 +116,9 @@ export class Level7 extends Component {
 export class Level8 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level8ID;
+    this.id = l.l8.id;
     this.levelRestartRoute = 'Level8Intro';
-    this.levelSolutionBoardState = sbs.level8;
+    this.levelSolutionBoardState = l.l8.solution;
   }
 
   render() {
@@ -129,9 +129,9 @@ export class Level8 extends Component {
 export class Level9 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level9ID;
+    this.id = l.l9.id;
     this.levelRestartRoute = 'Level9Intro';
-    this.levelSolutionBoardState = sbs.level9;
+    this.levelSolutionBoardState = l.l9.solution;
   }
 
   render() {
@@ -142,9 +142,9 @@ export class Level9 extends Component {
 export class Level10 extends Component {
   constructor(props) {
     super(props);
-    this.id = gc.level10ID;
+    this.id = l.l10.id;
     this.levelRestartRoute = 'Level10Intro';
-    this.levelSolutionBoardState = sbs.level10;
+    this.levelSolutionBoardState = l.l10.solution;
   }
 
   render() {
