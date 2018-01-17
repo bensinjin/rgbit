@@ -18,7 +18,6 @@ export default class Level extends Component {
     this.onLevelRestart = this.onLevelRestart.bind(this);
     this.calculateScore = this.calculateScore.bind(this);
     this.calculatedSolution = this._calculateSolution();
-    this.isInstantDeathLevelRoute = this._isInstantDeathLevelRoute();
   }
 
   _calculateSolution() {
@@ -35,12 +34,6 @@ export default class Level extends Component {
     }
 
     return calculatedSolution;
-  }
-
-  _isInstantDeathLevelRoute() {
-    // TODO Pretty bad way to see if this is an instant death level...
-    const routeName = this.props.navigation.state.routeName;
-    return routeName.slice(-2) == 'ID';
   }
 
   calculateScore() {
@@ -69,43 +62,23 @@ export default class Level extends Component {
         calculatedScore = this.calculateScore();
       }
       // Scoring.
-      const key = this.isInstantDeathLevelRoute ? getKey(0) : getKey(calculatedScore.levelID);
+      const key = getKey(calculatedScore.levelID);
       if (key) {
         persistentStore.get(key)
           .then(res => {
-            // Instant death level
-            if (this.isInstantDeathLevelRoute) {
-              this.props.dequeueInstantDeathLevel();
-              const nextLevelRoute = this.props.instantDeathLevelQueue[0],
-                    scoreData = {levelID: 0, score: calculatedScore.bitsCorrectlyFlipped};
-              // New score
-              if (!res) {
-                persistentStore.save(key, scoreData)
-                  .then(res => {console.warn(res); this.props.navigation.navigate(nextLevelRoute)});
-              }
-              // Existing score, add it to calculated score
-              else {
-                scoreData.score += res.score;
-                persistentStore.update(key, scoreData)
-                  .then(this.props.navigation.navigate(nextLevelRoute));
-              }
+            // New score
+            if (!res) {
+              persistentStore.save(key, calculatedScore)
+                .then(this.props.navigation.navigate(this.props.levelOverRoute));
             }
-            // Normal level
+            // New high score
+            else if (res.percentCorrect < calculatedScore.percentCorrect) {
+              persistentStore.update(key, calculatedScore)
+                .then(this.props.navigation.navigate(this.props.levelOverRoute));
+            }
+            // New score but not higher than high score
             else {
-              // New score
-              if (!res) {
-                persistentStore.save(key, calculatedScore)
-                  .then(this.props.navigation.navigate(this.props.levelOverRoute));
-              }
-              // New high score
-              else if (res.percentCorrect < calculatedScore.percentCorrect) {
-                persistentStore.update(key, calculatedScore)
-                  .then(this.props.navigation.navigate(this.props.levelOverRoute));
-              }
-              // New score but not higher than high score
-              else {
-                this.props.navigation.navigate(this.props.levelOverRoute);
-              }
+              this.props.navigation.navigate(this.props.levelOverRoute);
             }
           })
           .catch(error => {
@@ -142,7 +115,6 @@ export default class Level extends Component {
           onLevelExit={this.onLevelExit}
           onLevelRestart={this.onLevelRestart}
           levelInProgress={this.props.levelInProgress}
-          isInstantDeathLevelRoute={this.isInstantDeathLevelRoute}
         />
         <BitBoard
           playable={true}
@@ -174,14 +146,11 @@ Level.propTypes = {
   levelInProgress: PropTypes.bool,
   levelCurrentBoardState: PropTypes.array,
   levelCurrentBoardColorState: PropTypes.string,
-  instantDeathLevelQueue: PropTypes.array,
   // Store props (dispatch)
   setLevelInProgress: PropTypes.func,
   resetLevelCurrentBoardState: PropTypes.func,
   updateLevelCurrentBoardState: PropTypes.func,
   updateLevelCurrentBoardColorState: PropTypes.func,
-  dequeueInstantDeathLevel: PropTypes.func,
-  queueInstantDeathLevel: PropTypes.func
 };
 
 export const levelOverReasons = {
