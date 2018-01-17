@@ -143,12 +143,11 @@ const Routes = StackNavigator({
    }
  },
  Level1ID: {
-   screen: TR1.Level1,
+   screen: ID.Level1ID,
    navigationOptions: {
      headerLeft: null
    }
  },
- // Instant Death routes.
  Level2IDIntro: {
    screen: ID.Level2IDIntro,
    navigationOptions: {
@@ -156,7 +155,7 @@ const Routes = StackNavigator({
    }
  },
  Level2ID: {
-   screen: TR1.Level2,
+   screen: ID.Level2ID,
    navigationOptions: {
      headerLeft: null
    }

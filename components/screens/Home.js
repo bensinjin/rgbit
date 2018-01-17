@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import gc from '../../config/game-config';
-import l from '../../config/levels';
 import { deleteScoreData } from '../../utils';
 import Banner from '../misc/Banner';
 
@@ -33,7 +32,7 @@ export default class Home extends Component {
             backgroundColor={gc.greyDark}
             color={gc.white}
             onPress={() => this.props.navigation.navigate('Level1IDIntro')}
-            title={l.l0.title}
+            title={gc.instantDeathtitle}
           />
         </View>
       </View>

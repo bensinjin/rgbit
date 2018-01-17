@@ -8,6 +8,7 @@ import {
   dequeueInstantDeathLevel
 } from '../store/actions';
 import Level from '../components/game/Level';
+import InstantDeathLevel from '../components/game/InstantDeathLevel';
 
 const mapStateToProps = state => ({
   levelInProgress: state.levelInProgress,
@@ -39,9 +40,12 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const LevelContainer = connect(
+export const LevelContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Level)
 
-export default LevelContainer
+export const InstantDeathLevelContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InstantDeathLevel)

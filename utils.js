@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation';
 import gc from './config/game-config';
 import l from './config/levels';
 import store from 'react-native-simple-store';
-import LevelContainer from './containers/LevelContainer';
+import { LevelContainer, InstantDeathLevelContainer } from './containers/Containers';
 
 // Level related
 
@@ -83,6 +83,21 @@ export const levelRenderer = (component) => {
       levelRestartRoute={component.levelRestartRoute}
       levelSolutionBoardState={component.levelSolutionBoardState}
       levelTimeSeconds = {calculateLevelSeconds(component.levelSolutionBoardState, gc.beginnerLevelDivisor)}
+      navigation={component.props.navigation}
+      {...sharedLevelConfig}
+      />
+  );
+}
+
+export const instantDeathLevelRenderer = (component) => {
+  const sharedLevelConfig = {
+    levelExitRoute: 'Home'
+  };
+  return (
+    <InstantDeathLevelContainer
+      levelID={component.id}
+      levelSolutionBoardState={component.levelSolutionBoardState}
+      levelTimeSeconds = {calculateLevelSeconds(component.levelSolutionBoardState, gc.instantDeathLevelDivisor)}
       navigation={component.props.navigation}
       {...sharedLevelConfig}
       />

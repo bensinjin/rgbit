@@ -11,7 +11,10 @@ export default {
   levelSelect:  'Menu',
   // Level Data
   theReds1title: 'The Reds',
+  instantDeathtitle: 'Instant Death',
   levelInstructions: 'Remember the pattern!',
+  instantDeathScoreObjectID: 0,
+  instantDeathLevelDivisor: 7,
   beginnerLevelDivisor: 6,
   intermediateLevelDivisor: 2.5,
   expertLevelDivisor: 3.0,
