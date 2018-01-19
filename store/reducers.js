@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 import * as ac from './actions';
-import { newLevelBoardState, newLevelBoardColorState, instantDeathLevelIntroRoutes } from '../utils.js';
+import {
+  newLevelBoardState,
+  newLevelBoardColorState,
+  instantDeathLevelIntroRoutes
+} from '../utils.js';
 
 function levelInProgress(state = false, action) {
   if (action.type == ac.SET_LEVEL_IN_PROGRESS) {
@@ -47,11 +51,26 @@ function instantDeathLevelQueue(state = instantDeathLevelIntroRoutes(), action) 
   return state;
 }
 
+function instantDeathScoreDisplay(state = 0, action) {
+  if (action.type == ac.RESET_INSTANT_DEATH_SCORE_DISPLAY) {
+    return 0;
+  }
+  else if (action.type == ac.INCREMENT_INSTANT_DEATH_SCORE_DISPLAY) {
+    return state + 1;
+  }
+  else if (action.type == ac.DECREMENT_INSTANT_DEATH_SCORE_DISPLAY) {
+    return state - 1;
+  }
+
+  return state;
+}
+
 const rgbitApp = combineReducers({
   levelInProgress,
   levelCurrentBoardState,
   levelCurrentBoardColorState,
-  instantDeathLevelQueue
+  instantDeathLevelQueue,
+  instantDeathScoreDisplay,
 });
 
 export default rgbitApp;

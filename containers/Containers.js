@@ -5,7 +5,10 @@ import {
   updateLevelCurrentBoardState,
   updateLevelCurrentBoardColorState,
   queueInstantDeathLevel,
-  dequeueInstantDeathLevel
+  dequeueInstantDeathLevel,
+  incrementInstantDeathScoreDisplay,
+  decrementInstantDeathScoreDisplay,
+  resetInstantDeathScoreDisplay,
 } from '../store/actions';
 import Level from '../components/game/Level';
 import InstantDeathLevel from '../components/game/InstantDeathLevel';
@@ -14,7 +17,8 @@ const mapStateToProps = state => ({
   levelInProgress: state.levelInProgress,
   levelCurrentBoardState: state.levelCurrentBoardState,
   levelCurrentBoardColorState: state.levelCurrentBoardColorState,
-  instantDeathLevelQueue: state.instantDeathLevelQueue
+  instantDeathLevelQueue: state.instantDeathLevelQueue,
+  instantDeathScoreDisplay: state.instantDeathScoreDisplay,
 })
 
 const mapDispatchToProps = dispatch => {
@@ -36,6 +40,15 @@ const mapDispatchToProps = dispatch => {
     },
     dequeueInstantDeathLevel: () => {
       dispatch(dequeueInstantDeathLevel());
+    },
+    resetInstantDeathScoreDisplay: () => {
+      dispatch(resetInstantDeathScoreDisplay());
+    },
+    incrementInstantDeathScoreDisplay: () => {
+      dispatch(incrementInstantDeathScoreDisplay());
+    },
+    decrementInstantDeathScoreDisplay: () => {
+      dispatch(decrementInstantDeathScoreDisplay());
     }
   }
 }

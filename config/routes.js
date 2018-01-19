@@ -12,6 +12,7 @@ const Routes = StackNavigator({
       headerLeft: null
     }
   },
+  // Normal level routes
   TheReds1LevelSelect: {
     screen: TheReds1LevelSelect
   },
@@ -135,7 +136,7 @@ const Routes = StackNavigator({
      headerLeft: null
    }
  },
- // Instant Death routes.
+ // Instant death level routes
  Level1IDIntro: {
    screen: ID.Level1IDIntro,
    navigationOptions: {

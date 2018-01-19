@@ -6,7 +6,7 @@ import BitBoard from '../game/BitBoard';
 import LevelHUDTop from '../game/LevelHUDTop';
 import LevelHUDBottom from '../game/LevelHUDBottom';
 import gc from '../../config/game-config';
-import {getKey} from '../../utils.js';
+import { getKey, levelScoreObject } from '../../utils.js';
 
 
 export default class Level extends Component {
@@ -46,13 +46,15 @@ export default class Level extends Component {
         correctlyFlipped += 1;
       }
     }
-    return {
-      levelID: this.props.levelID,
-      //time:
-      bitsToFlip: bitsToFlip,
-      bitsCorrectlyFlipped: correctlyFlipped,
-      percentCorrect: correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
-    };
+
+    const percentCorrect = correctlyFlipped == 0 ? 0 : Math.round(correctlyFlipped / bitsToFlip * 100)
+
+    const score = levelScoreObject(
+      gc.instantDeathScoreObjectID,
+      bitsToFlip,
+      correctlyFlipped,
+      percentCorrect
+    );
   }
 
   onLevelOver(reason = null, calculatedScore = null) {

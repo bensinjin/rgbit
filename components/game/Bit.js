@@ -37,13 +37,24 @@ export default class Bit extends Component {
   }
 
   _onResponderRelease(event) {
+    const colorCharacter = this._colorStateToColorCharacter(
+      this.props.levelCurrentBoardColorState
+    );
     if (this.props.playable) {
       // Update global board state.
       this.props.updateLevelCurrentBoardState(
         this.props.rowIndex,
         this.props.colIndex,
-        this._colorStateToColorCharacter(this.props.levelCurrentBoardColorState)
+        colorCharacter
       );
+      // Call optional callback.
+      if (this.props.onBitPressed) {
+        this.props.onBitPressed(
+          this.props.rowIndex,
+          this.props.colIndex,
+          colorCharacter
+        );
+      }
       // Check score.
       const calculatedScore = this.props.calculateScore();
       if (calculatedScore.percentCorrect == 100) {
@@ -75,5 +86,6 @@ Bit.propTypes = {
   updateLevelCurrentBoardState: PropTypes.func,
   levelCurrentBoardColorState: PropTypes.string,
   levelCurrentBoardState: PropTypes.array,
-  onLevelOver: PropTypes.func
+  onLevelOver: PropTypes.func,
+  onBitPressed: PropTypes.func
 };

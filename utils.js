@@ -55,13 +55,23 @@ export function newLevelBoardColorState() {
   return gc.colorStateRed;
 }
 
+export function levelScoreObject(levelID = 0, bitsToFlip = 0, bitsCorrectlyFlipped = 0, percentCorrect = 0) {
+  return {
+    levelID: levelID,
+    //time:
+    bitsToFlip: bitsToFlip,
+    bitsCorrectlyFlipped: bitsCorrectlyFlipped,
+    percentCorrect: percentCorrect
+  }
+}
+
 export function instantDeathLevelIntroRoutes() {
   const levels = l,
         levelIntros = [];
 
   for (const key in levels) {
     const level = levels[key];
-    if (level.machineName) {
+    if (level.machineName && level.id != 0) {
       const introRoute =
               level.machineName.charAt(0).toUpperCase() +
               level.machineName.slice(1) + 'IDIntro';

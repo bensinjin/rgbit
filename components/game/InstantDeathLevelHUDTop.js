@@ -3,11 +3,30 @@ import { Text } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
 import { Button } from 'react-native-elements'
 import gc from '../../config/game-config';
+import { getScore } from '../../utils';
 import Timer from './Timer';
 import PropTypes from 'prop-types';
 import { levelOverReasons } from './Level';
 
 export default class InstantDeathLevelHUDTop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      instantDeathHighScore: 0
+    };
+    // Populate state from score data.
+    getScore(gc.instantDeathScoreObjectID)
+      .then(result => {
+        if (result && this.props.levelInProgress) {
+          this.setState(previousState => {
+            return {
+              instantDeathHighScore: result.bitsCorrectlyFlipped
+            }
+          });
+        }
+      });
+  }
+
   render() {
     return (
       <Grid style={gc.wrapperHUD}>
@@ -30,8 +49,8 @@ export default class InstantDeathLevelHUDTop extends Component {
           />
         </Col>
         <Col size={2}>
-            <Text>Current Score</Text>
-            <Text>High Score</Text>
+            <Text>Best: {this.state.instantDeathHighScore}</Text>
+            <Text>Current Score: {this.props.instantDeathScoreDisplay}</Text>
         </Col>
       </Grid>
     );
@@ -43,4 +62,5 @@ InstantDeathLevelHUDTop.propTypes = {
   onLevelOver: PropTypes.func,
   onLevelExit: PropTypes.func,
   levelInProgress: PropTypes.bool,
+  instantDeathScoreDisplay: PropTypes.number,
 }

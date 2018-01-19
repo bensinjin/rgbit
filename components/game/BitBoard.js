@@ -20,8 +20,8 @@ export default class BitBoard extends Component {
             levelCurrentBoardColorState={this.props.levelCurrentBoardColorState}
             levelCurrentBoardState={this.props.levelCurrentBoardState}
             calculateScore={this.props.calculateScore}
-            calculatedSolution={this.props.calculatedSolution}
             onLevelOver={this.props.onLevelOver}
+            onBitPressed={this.props.onBitPressed}
           />
         );
       }
@@ -52,5 +52,6 @@ BitBoard.propTypes = {
   updateLevelCurrentBoardState: PropTypes.func,
   levelCurrentBoardState: PropTypes.array,
   levelCurrentBoardColorState: PropTypes.string,
-  levelInProgress: PropTypes.bool
+  levelInProgress: PropTypes.bool,
+  onBitPressed: PropTypes.func,
 };

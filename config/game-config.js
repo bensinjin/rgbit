@@ -14,8 +14,8 @@ export default {
   instantDeathtitle: 'Instant Death',
   levelInstructions: 'Remember the pattern!',
   instantDeathScoreObjectID: 0,
-  instantDeathLevelDivisor: 7,
-  beginnerLevelDivisor: 6,
+  instantDeathLevelDivisor: 1.75,
+  beginnerLevelDivisor: 2,
   intermediateLevelDivisor: 2.5,
   expertLevelDivisor: 3.0,
   // TODO styles should be moved to their own file.
@@ -33,7 +33,6 @@ export default {
     marginTop: '10%'
   },
   button: {
-    height: 30,
     borderRadius: 5,
     margin: 5
   },
