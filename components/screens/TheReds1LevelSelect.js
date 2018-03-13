@@ -1,50 +1,14 @@
-import React, { Component } from 'react';
+import React/*, { Component }*/ from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-elements';
 import gc from '../../config/game-config';
 import l from '../../config/levels';
-import { getScoreData } from '../../utils';
+//import { getScoreData } from '../../utils';
 import Banner from '../misc/Banner';
-import {resetNavigation} from '../../utils'
+//import {resetNavigation} from '../../utils';
+import LevelSelect from '../game/LevelSelect';
 
-export default class TheReds1LevelSelect extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-    // Populate state from score data.
-    const data = getScoreData();
-    for (const index in data) {
-      const scoreDataPromise = data[index];
-      scoreDataPromise.then(result => {
-        if (result && result.levelID){
-          this.setState(previousState => {
-            const key = 'level' + result.levelID + 'Score',
-                  obj = {};
-            obj[key] = result;
-            return obj;
-          });
-        }
-      })
-    }
-    this._onBannerPress = this._onBannerPress.bind(this);
-  }
-
-  _getBgColor(scoreProp) {
-    return this.state[scoreProp] && this.state[scoreProp].percentCorrect >= 100 ? gc.red : gc.greyDark;
-  }
-
-  _getTitle(scoreProp, title) {
-    return this.state[scoreProp] ? title + ' - ' + this.state[scoreProp].percentCorrect + '% complete' : title;
-  }
-
-  _onPress(route) {
-    resetNavigation(route, this.props.navigation);
-  }
-
-  _onBannerPress() {
-    this.props.navigation.navigate('Home');
-  }
+export default class TheReds1LevelSelect extends LevelSelect {
 
   render() {
     return (

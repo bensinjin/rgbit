@@ -11,8 +11,9 @@ export default {
   levelSelect:  'Menu',
   // Level Data
   theReds1title: 'The Reds',
+  theGreens1title: 'The Greens',
   levelInstructions: 'Remember the pattern!',
-  beginnerLevelDivisor: 6,
+  beginnerLevelDivisor: 2.0,
   intermediateLevelDivisor: 2.5,
   expertLevelDivisor: 3.0,
   // TODO styles should be moved to their own file.

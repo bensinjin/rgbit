@@ -140,5 +140,19 @@ export default {
       ['B', 'B', 'B', 'W', 'B'],
       ['B', 'B', 'B', 'B', 'B']
     ]
+  },
+  l11: {
+    id: 11,
+    machineName: 'level11',
+    title: 'Herb',
+    solution: [
+      ['W', 'W', 'G', 'W', 'W'],
+      ['W', 'G', 'G', 'G', 'W'],
+      ['W', 'G', 'G', 'G', 'W'],
+      ['G', 'G', 'G', 'G', 'G'],
+      ['W', 'G', 'G', 'G', 'W'],
+      ['W', 'W', 'G', 'W', 'W'],
+      ['W', 'W', 'G', 'W', 'W']
+    ]
   }
 }

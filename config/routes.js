@@ -1,8 +1,11 @@
 import { StackNavigator } from 'react-navigation';
 import Home from '../components/screens/Home';
 import TheReds1LevelSelect from '../components/screens/TheReds1LevelSelect';
+import TheGreens1LevelSelect from '../components/screens/TheGreens1LevelSelect';
 import * as TR1 from '../components/screens/TheReds1';
+import * as TG1 from '../components/screens/TheGreens1';
 import * as TR1I from '../components/screens/TheReds1LevelIntros';
+import * as TG1I from '../components/screens/TheGreens1LevelIntros';
 
 const Routes = StackNavigator({
   Home: {
@@ -11,6 +14,7 @@ const Routes = StackNavigator({
       headerLeft: null
     }
   },
+  // Reds routes
   TheReds1LevelSelect: {
     screen: TheReds1LevelSelect
   },
@@ -130,6 +134,22 @@ const Routes = StackNavigator({
  },
  Level10: {
    screen: TR1.Level10,
+   navigationOptions: {
+     headerLeft: null
+   }
+ },
+ // Green's routes
+ TheGreens1LevelSelect: {
+   screen: TheGreens1LevelSelect
+ },
+ Level11Intro: {
+   screen: TG1I.Level11Intro,
+   navigationOptions: {
+     headerLeft: null
+   }
+ },
+ Level11: {
+   screen: TG1.Level11,
    navigationOptions: {
      headerLeft: null
    }

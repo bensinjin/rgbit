@@ -55,7 +55,7 @@ export function newLevelBoardColorState() {
 
 // Persistent store related
 // TODO This is all really lazy, clean it up bro!
-export function getKey(id){
+export function getKey(id) {
   return gc.storeKeyPrefix + id;
 }
 
@@ -90,5 +90,6 @@ export function resetNavigation(targetRoute, navigation) {
       NavigationActions.navigate({ routeName: targetRoute }),
     ],
   });
+
   navigation.dispatch(resetAction);
 }

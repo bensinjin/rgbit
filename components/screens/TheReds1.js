@@ -4,11 +4,6 @@ import l from '../../config/levels';
 import { calculateLevelSeconds } from '../../utils.js';
 import LevelContainer from '../../containers/LevelContainer';
 
-const sharedLevelConfig = {
-  levelOverRoute: 'TheReds1LevelSelect',
-  levelExitRoute: 'TheReds1LevelSelect'
-}
-
 const sharedRenderer = (component) => {
   return (
     <LevelContainer
@@ -17,7 +12,8 @@ const sharedRenderer = (component) => {
       levelSolutionBoardState={component.levelSolutionBoardState}
       levelTimeSeconds = {calculateLevelSeconds(component.levelSolutionBoardState, gc.beginnerLevelDivisor)}
       navigation={component.props.navigation}
-      {...sharedLevelConfig}
+      levelOverRoute='TheReds1LevelSelect'
+      levelExitRoute='TheReds1LevelSelect'
       />
   );
 }
